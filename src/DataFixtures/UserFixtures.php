@@ -29,7 +29,7 @@ class UserFixtures extends Fixture
         foreach ($userData as $UD) {
             $user = new User();
             $user->setEmail($UD['email']);
-            $user->setRole($UD['role']);
+            $user->setRoles($UD['role']);
             $user->setPassword($this->passwordHashed->hashPassword($user, $UD['password']));
             $manager->persist($user);
         }
