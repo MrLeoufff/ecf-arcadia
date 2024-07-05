@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\NoXSS;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/admin/user')]
 class UserController extends AbstractController
 {
+    private NoXSS $noXSS;
+
+    public function __construct(NoXSS $noXSS)
+    {
+        $this->noXSS = $noXSS;
+    }
     #[Route('/', name: 'app_user_list', methods: ['GET'])]
     public function list(EntityManagerInterface $em): Response
     {
@@ -34,6 +41,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $cleanEmail = $this->noXSS->nettoyage($form->get('email')->getData());
+            $user->setEmail($cleanEmail);
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
@@ -58,6 +67,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $cleanEmail = $this->noXSS->nettoyage($form->get('email')->getData());
+            $user->setEmail($cleanEmail);
             if ($form->get('password')->getData()) {
                 $user->setPassword(
                     $passwordHasher->hashPassword(
