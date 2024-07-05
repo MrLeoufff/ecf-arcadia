@@ -15,18 +15,21 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
+            ->add('email', EmailType::class, [
+                'required' => true,
+            ])
+            ->add('password', PasswordType::class, [
+                'required' => true,
+            ])
             ->add('roles', ChoiceType::class, [
-                'choice' => [
-                    'Admin' => 'ROLE_ADMIN',
-                    'Veterinarian' => 'ROLE_VETERINARIAN',
+                'choices' => [
+                    'Veterinaire' => 'ROLE_VETERINARIAN',
                     'Employee' => 'ROLE_EMPLOYEE',
                 ],
                 'expanded' => true,
                 'multiple' => true,
-            ])
-        ;
+                'required' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

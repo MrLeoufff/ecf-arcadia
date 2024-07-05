@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin')]
+#[Route('/admin/user')]
 class UserController extends AbstractController
 {
-    #[Route('/user/new', name: 'app_user_new')]
+    #[Route('/new', name: 'app_user_new')]
     public function new(Request $request,EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
@@ -40,7 +40,42 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/users', name: 'app_user_list')]
+    #[Route('/{id}/edit', name: 'app_user_edit')]
+    public function edit(Request $request, User $user, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('password')->getData()) {
+                $user->setPassword(
+                    $passwordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+            }
+            $em->flush();
+
+            return $this->redirectToRoute('app_user_list');
+        }
+        return $this->render('user/edit.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
+    public function delete(Request $request, User $user, EntityManagerInterface $em):Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $em->remove($user);
+            $em->flush();
+        }
+        return $this->redirectToRoute('app_user_list');
+    }
+
+    #[Route('/', name: 'app_user_list')]
     public function list(EntityManagerInterface $em): Response
     {
         $users = $em->getRepository(User::class)->findAll();
