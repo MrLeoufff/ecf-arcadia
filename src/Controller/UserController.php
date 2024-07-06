@@ -14,7 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/admin/user')]
+#[Route('/admin/user', name: 'app_user_')]
 class UserController extends AbstractController
 {
     private NoXSS $noXSS;
@@ -23,7 +23,7 @@ class UserController extends AbstractController
     {
         $this->noXSS = $noXSS;
     }
-    #[Route('/', name: 'app_user_list', methods: ['GET'])]
+    #[Route('/', name: 'list', methods: ['GET'])]
     public function list(EntityManagerInterface $em): Response
     {
         $users = $em->getRepository(User::class)->findAll();
@@ -33,7 +33,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_user_new')]
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request,EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
@@ -60,7 +60,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_user_edit')]
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(UserType::class, $user);
@@ -87,7 +87,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, User $user, EntityManagerInterface $em):Response
     {

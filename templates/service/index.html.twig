@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Services</h1>
+
+    <a href="{{ path('app_service_new') }}" class="btn btn-primary">Create new Service</a>
+
+    <table class="table mt-3">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.name }}</td>
+                <td>{{ service.description }}</td>
+                <td>
+                    {% for image in service.image %}
+                        <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ service.name }}" height="50">
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_service_edit', {'id': service.id}) }}" class="btn btn-warning">Edit</a>
+                    <form method="post" action="{{ path('app_service_delete', {'id': service.id}) }}" onsubmit="return confirm('Are you sure you want to delete this service?');" style="display:inline-block;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ service.id) }}">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

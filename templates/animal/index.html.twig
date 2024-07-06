@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Animals</h1>
+
+    <a href="{{ path('app_animal_new') }}" class="btn btn-primary">Create new Animal</a>
+
+    <table class="table mt-3">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Race</th>
+            <th>Habitat</th>
+            <th>Images</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for animal in animals %}
+            <tr>
+                <td>{{ animal.name }}</td>
+                <td>{{ animal.race }}</td>
+                <td>{{ animal.habitatId.name }}</td>
+                <td>
+                    {% for image in animal.image %}
+                        <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}" height="50">
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}" class="btn btn-warning">Edit</a>
+                    <form method="post" action="{{ path('app_animal_delete', {'id': animal.id}) }}" onsubmit="return confirm('Are you sure you want to delete this animal?');" style="display:inline-block;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ animal.id) }}">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
