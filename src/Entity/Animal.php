@@ -24,9 +24,9 @@ class Animal
     #[ORM\Column]
     private array $image = [];
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'animals')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?self $habitat_id = null;
+    #[ORM\ManyToOne(targetEntity: Habitat::class, inversedBy: 'animals')]
+    #[ORM\JoinColumn(name: 'habitat_id', nullable: false)]
+    private ?Habitat $habitat = null;
 
     /**
      * @var Collection<int, self>
@@ -96,12 +96,12 @@ class Animal
 
     public function getHabitatId(): ?self
     {
-        return $this->habitat_id;
+        return $this->habitat;
     }
 
-    public function setHabitatId(?self $habitat_id): static
+    public function setHabitatId(?self $habitat): static
     {
-        $this->habitat_id = $habitat_id;
+        $this->habitat = $habitat;
 
         return $this;
     }
@@ -194,5 +194,13 @@ class Animal
         }
 
         return $this;
+    }
+
+    public function setHabitat(Habitat $param)
+    {
+    }
+
+    public function getHabitat()
+    {
     }
 }

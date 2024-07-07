@@ -15,10 +15,10 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin/service', name: 'app_service_')]
-#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_EMPLOYEE')]
 class ServiceController extends AbstractController
 {
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function index(ServiceRepository $serviceRepository): Response
     {
         return $this->render('service/index.html.twig', [
@@ -29,6 +29,8 @@ class ServiceController extends AbstractController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
+
         $service = new Service();
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
@@ -70,6 +72,8 @@ class ServiceController extends AbstractController
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Service $service, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
+
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
 

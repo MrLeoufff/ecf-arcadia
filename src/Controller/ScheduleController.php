@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/schedule', name: 'app_schedule_')]
-#[IsGranted('ROLE_ADMIN')]
+//#[IsGranted('ROLE_ADMIN', 'ROLE_EMPLOYEE')]
 class ScheduleController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -27,6 +27,8 @@ class ScheduleController extends AbstractController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
+
         $schedule = new Schedule();
         $form = $this->createForm(ScheduleType::class, $schedule);
         $form->handleRequest($request);
@@ -47,6 +49,8 @@ class ScheduleController extends AbstractController
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Schedule $schedule, EntityManagerInterface  $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
+
         $form = $this->createForm(ScheduleType::class, $schedule);
         $form->handleRequest($request);
 
@@ -65,6 +69,8 @@ class ScheduleController extends AbstractController
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Schedule $schedule, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
+
         if ($this->isCsrfTokenValid('delete'.$schedule->getId(), $request->request->get('_token'))) {
             $em->remove($schedule);
             $em->flush();

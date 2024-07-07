@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habitats{% endblock %}
+
+{% block body %}
+    <h1>Habitats</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for habitat in habitats %}
+            <tr>
+                <td>{{ habitat.id }}</td>
+                <td>{{ habitat.name }}</td>
+                <td>{{ habitat.description }}</td>
+                <td>
+                    <a href="{{ path('app_habitat_edit', {'id': habitat.id}) }}" class="btn btn-primary">Edit</a>
+                    {{ include('habitat/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_habitat_new') }}" class="btn btn-success">Create new</a>
+{% endblock %}

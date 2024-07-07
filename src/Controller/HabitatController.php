@@ -2,33 +2,33 @@
 
 namespace App\Controller;
 
-use App\Entity\Animal;
-use App\Form\AnimalType;
-use App\Repository\AnimalRepository;
+use App\Entity\Habitat;
+use App\Form\HabitatType;
+use App\Repository\HabitatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/admin/animal', name: 'app_animal_')]
-class AnimalController extends AbstractController
+#[Route('/admin/habitat', name: 'app_habitat_')]
+class HabitatController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(AnimalRepository $animalRepository): Response
+    public function index(HabitatRepository $habitatRepository): Response
     {
-        return $this->render('animal/index.html.twig', [
-            'animals' => $animalRepository->findAll(),
+        return $this->render('habitat/index.html.twig', [
+            'habitats' => $habitatRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request,EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
-        $animal = new Animal();
-        $form = $this->createForm(AnimalType::class, $animal);
+        $habitat = new Habitat();
+        $form = $this->createForm(HabitatType::class, $habitat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,7 +39,7 @@ class AnimalController extends AbstractController
                 foreach ($images as $image) {
                     $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                     $safeFilename = $slugger->slug($originalFilename);
-                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
 
                     try {
                         $image->move(
@@ -53,34 +53,24 @@ class AnimalController extends AbstractController
                     $imageNames[] = $newFilename;
                 }
 
-                $animal->setImage($imageNames);
+                $habitat->setImage($imageNames);
             }
 
-            $habitat = $form->get('habitat')->getData();
-            if ($habitat) {
-                $animal->setHabitat($habitat);
-            } else {
-                $this->addFlash('error', 'Please select a habitat.');
-                return $this->render('animal/new.html.twig', [
-                    'form' => $form->createView(),
-                ]);
-            }
+            $em->persist($habitat);
+            $em->flush();
 
-            $entityManager->persist($animal);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_animal_index');
+            return $this->redirectToRoute('app_habitat_index');
         }
 
-        return $this->render('animal/new.html.twig', [
+        return $this->render('habitat/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Animal $animal, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Request $request, Habitat $habitat, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-        $form = $this->createForm(AnimalType::class, $animal);
+        $form = $this->createForm(HabitatType::class, $habitat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,7 +81,7 @@ class AnimalController extends AbstractController
                 foreach ($images as $image) {
                     $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                     $safeFilename = $slugger->slug($originalFilename);
-                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
 
                     try {
                         $image->move(
@@ -105,39 +95,28 @@ class AnimalController extends AbstractController
                     $imageNames[] = $newFilename;
                 }
 
-                $animal->setImage($imageNames);
-            }
-
-            $habitat = $form->get('habitat')->getData();
-            if ($habitat) {
-                $animal->setHabitat($habitat);
-            } else {
-                $this->addFlash('error', 'Please select a habitat.');
-                return $this->render('animal/edit.html.twig', [
-                    'form' => $form->createView(),
-                    'animal' => $animal,
-                ]);
+                $habitat->setImage($imageNames);
             }
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_animal_index');
+            return $this->redirectToRoute('app_habitat_index');
         }
 
-        return $this->render('animal/edit.html.twig', [
+        return $this->render('habitat/edit.html.twig', [
             'form' => $form->createView(),
-            'animal' => $animal,
+            'habitat' => $habitat,
         ]);
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Animal $animal, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Habitat $habitat, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $animal->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($animal);
+        if ($this->isCsrfTokenValid('delete'.$habitat->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($habitat);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_animal_index');
+        return $this->redirectToRoute('app_habitat_index');
     }
 }

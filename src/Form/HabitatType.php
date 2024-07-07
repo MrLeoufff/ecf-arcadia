@@ -2,45 +2,38 @@
 
 namespace App\Form;
 
-use App\Entity\Animal;
 use App\Entity\Habitat;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AnimalType extends AbstractType
+class HabitatType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',TextType::class, [
-                'label' => 'Nom de l\'animal',
+            ->add('name', TextType::class, [
+                'label' => 'Nom de l\'habitat'
             ])
-            ->add('race', TextType::class, [
-                'label' => 'Race',
+            ->add('description', TextareaType::class, [
+                'label' => 'Description'
             ])
             ->add('image', FileType::class, [
-                'label' => 'Animal Image (Image file)',
+                'label' => 'Images',
                 'multiple' => true,
-                'required' => true,
                 'mapped' => false,
-            ])
-            ->add('habitat', EntityType::class, [
-                'class' => Habitat::class,
-                'choice_label' => 'name',
-                'label' => 'Habitat',
-                'placeholder' => 'Select a habitat',
+                'required' => false,
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Animal::class,
+            'data_class' => Habitat::class,
         ]);
     }
 }
