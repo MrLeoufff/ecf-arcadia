@@ -1,43 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row mb-4">
-        <div class="col-md-4">
+    <div class="row mb-4 m-4">
+        <div class="col-md-8">
             <div class="card mb-3">
                 <div class="row g-0">
-
-                    <div class="col-md-12">
+                    {# Section présentation #}
+                    <div class="col-md-6">
                         <div class="card-body">
                             <h5 class="card-title">Présentation</h5>
                             <p class="card-text">Arcadia est un zoo situé en France près de la forêt de Brocéliande, en Bretagne depuis 1990. Ils possèdent tout un panel d'animaux.</p>
                         </div>
                     </div>
+                    {# Fin présentation #}
+                    {# Section caroussel #}
+                    <div class="col-md-6">
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('assets/images/dinos/diplodocus.jpg') }}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('assets/images/dinos/sarcosuchus.jpg') }}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('assets/images/dinos/spinosaurus.jpg') }}" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            {# Section services #}
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card">
-                        <img src="path_to_service_image" class="card-img-top" alt="...">
+                        <img src="{{ asset('assets/images/services/gigantes.jpg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Visite guidée</h5>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('assets/images/services/train.jpg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Visite guidée</h5>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('assets/images/services/visite.jpg') }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Visite guidée</h5>
                         </div>
                     </div>
                 </div>
+                {# Section habitat #}
                 <div class="col">
                     <div class="card">
-                        <img src="path_to_habitat_image" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Habitats</h5>
-                        </div>
+                        <img src="{{ asset('assets/images/habitat/jungle.jpg') }}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('assets/images/habitat/marais.jpg') }}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('assets/images/habitat/savane.jpg') }}" class="card-img-top" alt="...">
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="path_to_animal_image" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Animaux</h5>
-                        </div>
+                        <img src="{{ asset('assets/images/dinos/spinosaurus.jpg') }}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('assets/images/dinos/velociraptor.jpg') }}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card">
+                        <img src="{{ asset('assets/images/dinos/diplodocus.jpg') }}" class="card-img-top" alt="...">
                     </div>
                 </div>
             </div>
