@@ -21,8 +21,8 @@ class Animal
     #[ORM\Column(length: 150)]
     private ?string $race = null;
 
-    #[ORM\Column]
-    private array $image = [];
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $image = null;
 
     #[ORM\ManyToOne(targetEntity: Habitat::class, inversedBy: 'animals')]
     #[ORM\JoinColumn(name: 'habitat_id', nullable: false)]
@@ -82,19 +82,19 @@ class Animal
         return $this;
     }
 
-    public function getImage(): array
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function setImage(array $image): static
+    public function setImage(string $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getHabitatId(): ?self
+    public function getHabitatId(): Habitat
     {
         return $this->habitat;
     }
@@ -127,7 +127,6 @@ class Animal
     public function removeAnimal(self $animal): static
     {
         if ($this->animals->removeElement($animal)) {
-            // set the owning side to null (unless already changed)
             if ($animal->getHabitatId() === $this) {
                 $animal->setHabitatId(null);
             }

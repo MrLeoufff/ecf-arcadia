@@ -22,8 +22,8 @@ class Habitat
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private array $image = [];
+    #[ORM\Column(type: 'string')]
+    private ?string $image = null;
 
     #[ORM\OneToMany(targetEntity: Animal::class, mappedBy: 'habitat')]
     private Collection $animals;
@@ -32,6 +32,7 @@ class Habitat
     {
         $this->animals = new ArrayCollection();
     }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,12 +62,12 @@ class Habitat
         return $this;
     }
 
-    public function getImage(): array
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function setImage(array $image): static
+    public function setImage(string $image): static
     {
         $this->image = $image;
 
@@ -91,6 +92,7 @@ class Habitat
     public function removeAnimal(Animal $animal): static
     {
         if ($this->animals->removeElement($animal)) {
+            // set the owning side to null (unless already changed)
             if ($animal->getHabitat() === $this) {
                 $animal->setHabitat(null);
             }

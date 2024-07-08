@@ -11,9 +11,12 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin/animal', name: 'app_animal_')]
+#[IsGranted('ROLE_ADMIN', message: 'Access denied')] // Ensure only admin can access these routes
+#[IsGranted('ROLE_EMPLOYEE', message: 'Access denied')] // Ensure only employees can access these routes
 class AnimalController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -32,28 +35,25 @@ class AnimalController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $images = $form->get('image')->getData();
-            $imageNames = [];
+            $image = $form->get('image')->getData();
 
-            if ($images) {
-                foreach ($images as $image) {
-                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                    $safeFilename = $slugger->slug($originalFilename);
-                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+            if ($image) {
+                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
-                    try {
-                        $image->move(
-                            $this->getParameter('images_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        // Handle exception if something happens during file upload
-                    }
-
-                    $imageNames[] = $newFilename;
+                try {
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                    $animal->setImage($newFilename);
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Une erreur s\'est produite lors du téléchargement de l\'image.');
+                    return $this->render('animal/new.html.twig', [
+                        'form' => $form->createView(),
+                    ]);
                 }
-
-                $animal->setImage($imageNames);
             }
 
             $habitat = $form->get('habitat')->getData();
@@ -84,28 +84,26 @@ class AnimalController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $images = $form->get('image')->getData();
-            $imageNames = [];
+            $image = $form->get('image')->getData();
 
-            if ($images) {
-                foreach ($images as $image) {
-                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                    $safeFilename = $slugger->slug($originalFilename);
-                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+            if ($image) {
+                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
-                    try {
-                        $image->move(
-                            $this->getParameter('images_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        // Handle exception if something happens during file upload
-                    }
-
-                    $imageNames[] = $newFilename;
+                try {
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                    $animal->setImage($newFilename);
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'An error occurred while uploading the image.');
+                    return $this->render('animal/edit.html.twig', [
+                        'form' => $form->createView(),
+                        'animal' => $animal,
+                    ]);
                 }
-
-                $animal->setImage($imageNames);
             }
 
             $habitat = $form->get('habitat')->getData();
@@ -130,7 +128,7 @@ class AnimalController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[Route('/{id}/', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Animal $animal, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $animal->getId(), $request->request->get('_token'))) {

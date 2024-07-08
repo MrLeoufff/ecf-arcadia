@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class AnimalType extends AbstractType
 {
@@ -24,10 +25,19 @@ class AnimalType extends AbstractType
                 'label' => 'Race',
             ])
             ->add('image', FileType::class, [
-                'label' => 'Animal Image (Image file)',
-                'multiple' => true,
-                'required' => true,
+                'label' => 'Animal Image (JPEG/PNG file)',
                 'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image file (JPEG/PNG)',
+                    ])
+                ],
             ])
             ->add('habitat', EntityType::class, [
                 'class' => Habitat::class,
