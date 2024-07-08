@@ -21,9 +21,9 @@ class UserFixtures extends Fixture
 
 
         $userData = [
-            ['email' => 'jose.hammond@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_ADMIN']],
-            ['email' => 'veterinaire.grant@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_VETO']],
-            ['email' => 'employe.nedry@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_EMPLOYEE']],
+            ['email' => 'jose.hammond.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_ADMIN']],
+            ['email' => 'veterinaire.grant.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_VETO']],
+            ['email' => 'employe.nedry.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_EMPLOYEE']],
         ];
 
         foreach ($userData as $UD) {

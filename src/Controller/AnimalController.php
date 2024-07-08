@@ -3,20 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Animal;
+use App\Entity\Habitat;
 use App\Form\AnimalType;
 use App\Repository\AnimalRepository;
+use App\Repository\HabitatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/admin/animal', name: 'app_animal_')]
-#[IsGranted('ROLE_ADMIN', message: 'Access denied')] // Ensure only admin can access these routes
-#[IsGranted('ROLE_EMPLOYEE', message: 'Access denied')] // Ensure only employees can access these routes
+#[Route('/veto/animal', name: 'app_animal_')]
 class AnimalController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -28,9 +27,14 @@ class AnimalController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, HabitatRepository $habitatRepository, SluggerInterface $slugger): Response
     {
-        $animal = new Animal();
+        $habitat = $habitatRepository->findOneBy([]);
+        if (!$habitat) {
+            throw $this->createNotFoundException('Aucun habitat trouvé, veuillez en créer un avant de créer un animal.');
+        }
+
+        $animal = new Animal($habitat);
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
 
@@ -49,36 +53,37 @@ class AnimalController extends AbstractController
                     );
                     $animal->setImage($newFilename);
                 } catch (FileException $e) {
-                    $this->addFlash('error', 'Une erreur s\'est produite lors du téléchargement de l\'image.');
-                    return $this->render('animal/new.html.twig', [
+                    $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
+                    return $this->render('animal/edit.html.twig', [
                         'form' => $form->createView(),
                     ]);
                 }
             }
 
-            $habitat = $form->get('habitat')->getData();
-            if ($habitat) {
-                $animal->setHabitat($habitat);
-            } else {
-                $this->addFlash('error', 'Please select a habitat.');
-                return $this->render('animal/new.html.twig', [
-                    'form' => $form->createView(),
-                ]);
-            }
-
             $entityManager->persist($animal);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_animal_index');
+            return $this->redirectToRoute('app_animal_list');
         }
 
-        return $this->render('animal/new.html.twig', [
+        return $this->render('animal/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
+    #[Route('/animal', name: 'list')]
+    public function list(EntityManagerInterface $entityManager): Response
+    {
+        $animals = $entityManager->getRepository(Animal::class)->findAll();
+
+        return $this->render('animal/list.html.twig', [
+            'animals' => $animals,
+        ]);
+    }
+
+
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Animal $animal, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Request $request, Animal $animal, EntityManagerInterface $entityManager, SluggerInterface $slugger, HabitatRepository $habitatRepository): Response
     {
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
@@ -98,7 +103,7 @@ class AnimalController extends AbstractController
                     );
                     $animal->setImage($newFilename);
                 } catch (FileException $e) {
-                    $this->addFlash('error', 'An error occurred while uploading the image.');
+                    $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
                     return $this->render('animal/edit.html.twig', [
                         'form' => $form->createView(),
                         'animal' => $animal,
@@ -107,10 +112,10 @@ class AnimalController extends AbstractController
             }
 
             $habitat = $form->get('habitat')->getData();
-            if ($habitat) {
+            if ($habitat && $habitat->getId()) {
                 $animal->setHabitat($habitat);
             } else {
-                $this->addFlash('error', 'Please select a habitat.');
+                $this->addFlash('error', 'Veuillez sélectionner un habitat valide.');
                 return $this->render('animal/edit.html.twig', [
                     'form' => $form->createView(),
                     'animal' => $animal,

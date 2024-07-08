@@ -17,10 +17,11 @@
         </thead>
         <tbody>
         {% for animal in animals %}
+
             <tr>
                 <td>{{ animal.name }}</td>
                 <td>{{ animal.race }}</td>
-                <td>{{ animal.habitatId.name }}</td>
+                <td>{{ animal.habitat.name }}</td>
                 <td>
                     {% for image in animal.image %}
                         <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}" height="50">

@@ -15,40 +15,28 @@ class Animal
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 150, nullable: false)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 150, nullable: false)]
     private ?string $race = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private ?string $image = null;
 
     #[ORM\ManyToOne(targetEntity: Habitat::class, inversedBy: 'animals')]
-    #[ORM\JoinColumn(name: 'habitat_id', nullable: false)]
-    private ?Habitat $habitat = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private Habitat $habitat;
 
-    /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'habitat_id')]
-    private Collection $animals;
-
-    /**
-     * @var Collection<int, VeterinaryReport>
-     */
-    #[ORM\OneToMany(targetEntity: VeterinaryReport::class, mappedBy: 'animal_id')]
+    #[ORM\OneToMany(targetEntity: VeterinaryReport::class, mappedBy: 'animal')]
     private Collection $veterinaryReports;
 
-    /**
-     * @var Collection<int, AnimalFeeding>
-     */
-    #[ORM\OneToMany(targetEntity: AnimalFeeding::class, mappedBy: 'animal_id')]
+    #[ORM\OneToMany(targetEntity: AnimalFeeding::class, mappedBy: 'animal')]
     private Collection $animalFeedings;
 
-    public function __construct()
+    public function __construct(Habitat $habitat)
     {
-        $this->animals = new ArrayCollection();
+        $this->habitat = $habitat;
         $this->veterinaryReports = new ArrayCollection();
         $this->animalFeedings = new ArrayCollection();
     }
@@ -82,7 +70,7 @@ class Animal
         return $this;
     }
 
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }
@@ -94,112 +82,16 @@ class Animal
         return $this;
     }
 
-    public function getHabitatId(): Habitat
+    public function getHabitat(): Habitat
     {
         return $this->habitat;
     }
 
-    public function setHabitatId(?self $habitat): static
+    public function setHabitat(Habitat $habitat): static
     {
         $this->habitat = $habitat;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, self>
-     */
-    public function getAnimals(): Collection
-    {
-        return $this->animals;
-    }
-
-    public function addAnimal(self $animal): static
-    {
-        if (!$this->animals->contains($animal)) {
-            $this->animals->add($animal);
-            $animal->setHabitatId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnimal(self $animal): static
-    {
-        if ($this->animals->removeElement($animal)) {
-            if ($animal->getHabitatId() === $this) {
-                $animal->setHabitatId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, VeterinaryReport>
-     */
-    public function getVeterinaryReports(): Collection
-    {
-        return $this->veterinaryReports;
-    }
-
-    public function addVeterinaryReport(VeterinaryReport $veterinaryReport): static
-    {
-        if (!$this->veterinaryReports->contains($veterinaryReport)) {
-            $this->veterinaryReports->add($veterinaryReport);
-            $veterinaryReport->setAnimalId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVeterinaryReport(VeterinaryReport $veterinaryReport): static
-    {
-        if ($this->veterinaryReports->removeElement($veterinaryReport)) {
-            // set the owning side to null (unless already changed)
-            if ($veterinaryReport->getAnimalId() === $this) {
-                $veterinaryReport->setAnimalId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, AnimalFeeding>
-     */
-    public function getAnimalFeedings(): Collection
-    {
-        return $this->animalFeedings;
-    }
-
-    public function addAnimalFeeding(AnimalFeeding $animalFeeding): static
-    {
-        if (!$this->animalFeedings->contains($animalFeeding)) {
-            $this->animalFeedings->add($animalFeeding);
-            $animalFeeding->setAnimalId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnimalFeeding(AnimalFeeding $animalFeeding): static
-    {
-        if ($this->animalFeedings->removeElement($animalFeeding)) {
-            // set the owning side to null (unless already changed)
-            if ($animalFeeding->getAnimalId() === $this) {
-                $animalFeeding->setAnimalId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function setHabitat(Habitat $param)
-    {
-    }
-
-    public function getHabitat()
-    {
-    }
 }

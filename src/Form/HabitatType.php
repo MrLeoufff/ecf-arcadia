@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class HabitatType extends AbstractType
 {
@@ -23,10 +24,19 @@ class HabitatType extends AbstractType
                 'label' => 'Description'
             ])
             ->add('image', FileType::class, [
-                'label' => 'Images',
-                'multiple' => true,
+                'label' => 'Habitat Image (JPEG/PNG file)',
                 'mapped' => false,
                 'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image file (JPEG/PNG)',
+                    ])
+                ],
             ]);
     }
 

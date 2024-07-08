@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/admin/schedule', name: 'app_schedule_')]
+#[Route('/employee/schedule', name: 'app_schedule_')]
 //#[IsGranted('ROLE_ADMIN', 'ROLE_EMPLOYEE')]
 class ScheduleController extends AbstractController
 {

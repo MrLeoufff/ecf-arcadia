@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Habitats{% endblock %}
-
 {% block body %}
-    <h1>Habitats</h1>
+    <h1>Liste des Habitats</h1>
 
-    <table class="table">
+    <table>
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>Nom</th>
             <th>Description</th>
+            <th>Image</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -21,13 +20,25 @@
                 <td>{{ habitat.name }}</td>
                 <td>{{ habitat.description }}</td>
                 <td>
-                    <a href="{{ path('app_habitat_edit', {'id': habitat.id}) }}" class="btn btn-primary">Edit</a>
-                    {{ include('habitat/_delete_form.html.twig') }}
+                    {% if habitat.image %}
+                        <img src="{{ asset('uploads/' ~ habitat.image) }}" alt="{{ habitat.name }}" width="100">
+                    {% else %}
+                        Pas d'image
+                    {% endif %}
                 </td>
+                <td>
+                    <a href="{{ path('app_habitat_show', {'id': habitat.id}) }}">Afficher</a>
+                    <a href="{{ path('app_habitat_edit', {'id': habitat.id}) }}">Éditer</a>
+                    {{ include('habitat/_delete_form.html.twig', {'id': habitat.id}) }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_habitat_new') }}" class="btn btn-success">Create new</a>
+    <a href="{{ path('app_habitat_new') }}">Créer un nouveau</a>
 {% endblock %}
