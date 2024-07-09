@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Rapports Vétérinaires{% endblock %}
+
+{% block body %}
+    <h1>Liste des Rapports Vétérinaires</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>État de santé</th>
+            <th>Animal</th>
+            <th>Utilisateur</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for report in veterinary_reports %}
+            <tr>
+                <td>{{ report.id }}</td>
+                <td>{{ report.reportDate|date('Y-m-d H:i') }}</td>
+                <td>{{ report.healthStatus }}</td>
+                <td>{{ report.animalId.name }}</td>
+                <td>{{ report.userId.email }}</td>
+                <td>
+                    <a href="{{ path('app_veterinary_report_show', {'id': report.id}) }}">Voir</a>
+                    <a href="{{ path('app_veterinary_report_edit', {'id': report.id}) }}">Modifier</a>
+                    <form method="post" action="{{ path('app_veterinary_report_delete', {'id': report.id}) }}" style="display:inline-block;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ report.id) }}">
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_veterinary_report_new') }}">Créer un nouveau rapport</a>
+{% endblock %}

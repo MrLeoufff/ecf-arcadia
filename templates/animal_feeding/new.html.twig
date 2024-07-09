@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un Nourrissage d'Animal{% endblock %}
+
+{% block body %}
+    <h1>Créer un Nourrissage d'Animal</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.feeding_date) }}
+    {{ form_row(form.food) }}
+    {{ form_row(form.quantity) }}
+    {{ form_row(form.animal_id) }}
+    {{ form_row(form.user_id) }}
+    <button class="btn">Enregistrer</button>
+    {{ form_end(form) }}
+    <a href="{{ path('app_animal_feeding_index') }}">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Rapport Vétérinaire{% endblock %}
+
+{% block body %}
+    <h1>Détails du Rapport Vétérinaire</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <td>{{ veterinary_report.id }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ veterinary_report.reportDate|date('Y-m-d H:i') }}</td>
+        </tr>
+        <tr>
+            <th>État de santé</th>
+            <td>{{ veterinary_report.healthStatus }}</td>
+        </tr>
+        <tr>
+            <th>Notes</th>
+            <td>{{ veterinary_report.detail }}</td>
+        </tr>
+        <tr>
+            <th>Animal</th>
+            <td>{{ veterinary_report.animalId.name }}</td>
+        </tr>
+        <tr>
+            <th>Utilisateur</th>
+            <td>{{ veterinary_report.userId.email }}</td>
+        </tr>
+    </table>
+    <a href="{{ path('app_veterinary_report_index') }}">Retour à la liste</a>
+    <a href="{{ path('app_veterinary_report_edit', {'id': veterinary_report.id}) }}">Modifier</a>
+    <form method="post" action="{{ path('app_veterinary_report_delete', {'id': veterinary_report.id}) }}" style="display:inline-block;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ veterinary_report.id) }}">
+        <button type="submit">Supprimer</button>
+    </form>
+{% endblock %}
