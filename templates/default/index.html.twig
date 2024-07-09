@@ -65,6 +65,7 @@
                         <img src="{{ asset('assets/images/habitat/savane.jpg') }}" class="card-img-top" alt="...">
                     </div>
                 </div>
+                {# Section Dino #}
                 <div class="col">
                     <div class="card">
                         <img src="{{ asset('assets/images/dinos/spinosaurus.jpg') }}" class="card-img-top" alt="...">
@@ -78,11 +79,10 @@
                 </div>
             </div>
         </div>
-
+        {# Section Avis #}
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Avis</h5>
                     <p class="card-text">Sandra Bolloque</p>
                     <p class="card-text">Superbe expérience</p>
                     <p class="card-text">
@@ -92,7 +92,6 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Avis</h5>
                     <p class="card-text">Sandra Bolloque</p>
                     <p class="card-text">Superbe expérience</p>
                     <p class="card-text">
@@ -102,7 +101,6 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Avis</h5>
                     <p class="card-text">Sandra Bolloque</p>
                     <p class="card-text">Superbe expérience</p>
                     <p class="card-text">
@@ -110,6 +108,32 @@
                     </p>
                 </div>
             </div>
+
+            <ul>
+
+                {% for singleReview in reviews %}
+
+                    <div class="card">
+                        <div class="card-header">
+                            {{ singleReview.pseudo }}
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted">{{ singleReview.submittedAt |date('d/m/Y') }}</p>
+                            <p>{{ singleReview.comment }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+                    {{ form_start(form) }}
+                    {{ form_label(form.pseudo) }}
+                    {{ form_widget(form.pseudo) }}
+                    {{ form_label(form.comment) }}
+                    {{ form_widget(form.comment) }}
+                    {{ form_end(form) }}
+
+
+            </ul>
         </div>
     </div>
 {% endblock %}

@@ -18,10 +18,18 @@ class Review
     private ?string $pseudo = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $review = null;
+    private ?string $comment = null;
 
-    #[ORM\Column]
-    private ?bool $valid = null;
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $valid = false;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $submittedAt = null;
+
+    public function __construct()
+    {
+        $this->submittedAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -40,14 +48,14 @@ class Review
         return $this;
     }
 
-    public function getReview(): ?string
+    public function getComment(): ?string
     {
-        return $this->review;
+        return $this->comment;
     }
 
-    public function setReview(string $review): static
+    public function setComment(string $comment): static
     {
-        $this->review = $review;
+        $this->comment = $comment;
 
         return $this;
     }
@@ -61,6 +69,17 @@ class Review
     {
         $this->valid = $valid;
 
+        return $this;
+    }
+
+    public function getSubmittedAt(): ?\DateTimeInterface
+    {
+        return $this->submittedAt;
+    }
+
+    public function setSubmittedAt(\DateTimeInterface $submittedAt): self
+    {
+        $this->submittedAt = $submittedAt;
         return $this;
     }
 }
