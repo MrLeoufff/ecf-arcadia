@@ -7,7 +7,7 @@
     <h1>Liste des animaux</h1>
     <ul>
         {% for animal in animals %}
-            <li>{{ animal.name }} - {{ animal.race }} ({{ animal.habitat.name }})</li>
+            <li>{{ animal.name }} - {{ animal.race }}  ({{ animal.habitat.name }})</li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Administrateur{% endblock %}
+
+{% block body %}
+    <h1>Dashboard Administrateur</h1>
+
+    <h2>Consultations des animaux</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Animal</th>
+            <th>Nombre de consultations</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for animalView in animalViews %}
+            <tr>
+                <td>{{ animalView.animalName }}</td>
+                <td>{{ animalView.views }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

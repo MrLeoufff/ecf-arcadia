@@ -28,7 +28,7 @@ CREATE TABLE service (
 CREATE TABLE review (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pseudo VARCHAR(30) NOT NULL,
-    review TEXT NOT NULL,
+    comment TEXT NOT NULL,
     valid BOOLEAN DEFAULT FALSE
 );
 

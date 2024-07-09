@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Document\AnimalView;
 use App\Entity\Animal;
 use App\Entity\Habitat;
 use App\Form\AnimalType;
 use App\Repository\AnimalRepository;
 use App\Repository\HabitatRepository;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -142,5 +144,25 @@ class AnimalController extends AbstractController
         }
 
         return $this->redirectToRoute('app_animal_index');
+    }
+
+    #[Route('/animal/{id}', name: 'animal_show', methods: ['GET'])]
+    public function show(Animal $animal, DocumentManager $dm): Response
+    {
+        $animalView = $dm->getRepository(AnimalView::class)->findOneBy(['animalName' => $animal->getName()]);
+
+        if (!$animalView) {
+            $animalView = new AnimalView();
+            $animalView->setAnimalName($animal->getName());
+            $dm->persist($animalView);
+        }
+
+        $animalView->incrementViews();
+        $dm->flush();
+
+        return $this->render('animal/show.html.twig', [
+            'animal' => $animal,
+            'views' => $animalView->getViews(),
+        ]);
     }
 }

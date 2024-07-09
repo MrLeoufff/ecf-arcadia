@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 
+use App\Document\AnimalView;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Service\NoXSS;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,7 +90,6 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, User $user, EntityManagerInterface $em):Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
@@ -96,6 +97,16 @@ class UserController extends AbstractController
             $em->flush();
         }
         return $this->redirectToRoute('app_user_list');
+    }
+
+    #[Route('/dashboard', name: 'dashboard', methods: ['GET'])]
+    public function dashboard(DocumentManager $dm): Response
+    {
+        $animalViews = $dm->getRepository(AnimalView::class)->findAll();
+
+        return $this->render('admin/dashboard.html.twig', [
+            'animalViews' => $animalViews,
+        ]);
     }
 
 }

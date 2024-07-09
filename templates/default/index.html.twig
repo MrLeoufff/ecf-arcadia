@@ -81,38 +81,7 @@
         </div>
         {# Section Avis #}
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Sandra Bolloque</p>
-                    <p class="card-text">Superbe expérience</p>
-                    <p class="card-text">
-                        <small class="text-muted">★★★★★</small>
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Sandra Bolloque</p>
-                    <p class="card-text">Superbe expérience</p>
-                    <p class="card-text">
-                        <small class="text-muted">★★★★★</small>
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Sandra Bolloque</p>
-                    <p class="card-text">Superbe expérience</p>
-                    <p class="card-text">
-                        <small class="text-muted">★★★★★</small>
-                    </p>
-                </div>
-            </div>
-
-            <ul>
-
-                {% for singleReview in reviews %}
-
+                {% for singleReview in reviews | reverse | slice(0, 3) %}
                     <div class="card">
                         <div class="card-header">
                             {{ singleReview.pseudo }}
@@ -123,17 +92,19 @@
                         </div>
                     </div>
                 {% endfor %}
-
-
+            <div class="card">
                     {{ form_start(form) }}
+                <div class="card-header">
                     {{ form_label(form.pseudo) }}
                     {{ form_widget(form.pseudo) }}
+                </div>
+                <div class="card-body">
                     {{ form_label(form.comment) }}
                     {{ form_widget(form.comment) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Soumettre</button>
                     {{ form_end(form) }}
-
-
-            </ul>
+            </div>
         </div>
     </div>
 {% endblock %}
