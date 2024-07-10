@@ -33,7 +33,7 @@ class AnimalFeedingController extends AbstractController
             $entityManager->persist($animalFeeding);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_animal_feeding_show');
+            return $this->redirectToRoute('app_animal_feeding_index');
         }
 
         return $this->render('animal_feeding/new.html.twig', [

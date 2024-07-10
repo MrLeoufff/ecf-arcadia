@@ -15,49 +15,101 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('assets/logos/ArcadiaN&B.svg') }}">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item ms-lg-5">
+                            <a class="nav-link" href="{{ path('app_habitat') }}">Habitat</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item ms-lg-5">
+                            <a class="nav-link" href="{{ path('app_service') }}">Service</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion/Déconnexion</a>
+                        <li class="nav-item ms-lg-5">
+                            <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-lock"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') or is_granted('ROLE_VETERINARIAN') %}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Admin/Employee/Veto Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="adminNavbar">
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_user_list') }}">Gestion des Utilisateurs</a>
+                                </li>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_service_index') }}">Gestion des Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_habitat_index') }}">Gestion des Habitats</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_schedule_index') }}">Gestion des Horaires</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_animal_feeding_index') }}">Gestion des l'Alimentations</a>
+                                </li>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_VETERINARIAN') %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_animal_list') }}">Gestion des Animaux</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_veterinary_report_index') }}">Gestion des Raports</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% endif %}
     </header>
-
+    <div class="container mt-3">
+        {% for label, messages in app.flashes %}
+            <div class="alert alert-{{ label }}">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
         {% block body %}
         {% endblock %}
-    <footer>
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0">
             <p class="col-md-4 mb-0 text-muted">© 2024 Arcadia</p>
-            <ul class="nav col-md-4 justify-content-end">
+            <ul class="nav col-md-4 justify-content-center">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Mentions légales</a></li>
             </ul>
-            <div class="col-md-4 d-flex justify-content-end">
-                <a href="#" class="me-2 text-muted"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="me-2 text-muted"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="text-muted"><i class="bi bi-instagram"></i></a>
+            <div class="col-md-4 d-flex justify-content-end ">
+                <a href="#" class="m-lg-4 me-2 text-muted"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="m-lg-4 me-2 text-muted"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="m-lg-4 me-2 text-muted"><i class="bi bi-instagram"></i></a>
             </div>
         </footer>
-    </footer>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

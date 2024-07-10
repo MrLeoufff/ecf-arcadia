@@ -11,11 +11,9 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/admin/service', name: 'app_service_')]
-#[IsGranted('ROLE_EMPLOYEE')]
+#[Route('/employee/service', name: 'app_service_')]
 class ServiceController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -29,8 +27,6 @@ class ServiceController extends AbstractController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
-
         $service = new Service();
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);

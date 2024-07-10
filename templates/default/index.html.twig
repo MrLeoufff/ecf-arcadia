@@ -34,25 +34,19 @@
             {# Section services #}
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('assets/images/services/gigantes.jpg') }}" class="card-img-top" alt="...">
+                    <h2 class="text-center">Services</h2>
+                    {% for service in services %}
+                    <div class="card-header text-center form-control">
+                        {{ service.name }}
                         <div class="card-body">
-                            <h5 class="card-title">Visite guidée</h5>
+                            {% for image in service.image %}
+                                <img class="img-fluid rounded-start" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ service.name }}">
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="card">
-                        <img src="{{ asset('assets/images/services/train.jpg') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Visite guidée</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('assets/images/services/visite.jpg') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Visite guidée</h5>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
+                {# Fin section services #}
                 {# Section habitat #}
                 <div class="col">
                     <div class="card">
@@ -65,6 +59,7 @@
                         <img src="{{ asset('assets/images/habitat/savane.jpg') }}" class="card-img-top" alt="...">
                     </div>
                 </div>
+                {# Fin section habitat #}
                 {# Section Dino #}
                 <div class="col">
                     <div class="card">
@@ -79,6 +74,7 @@
                 </div>
             </div>
         </div>
+        {# Fin section Dino #}
         {# Section Avis #}
         <div class="col-md-4">
                 {% for singleReview in reviews | reverse | slice(0, 3) %}
@@ -92,7 +88,7 @@
                         </div>
                     </div>
                 {% endfor %}
-            <div class="card">
+            <div class="card container text-center form-control">
                     {{ form_start(form) }}
                 <div class="card-header">
                     {{ form_label(form.pseudo) }}
@@ -104,6 +100,28 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Soumettre</button>
                     {{ form_end(form) }}
+            </div>
+            {# Fin section avis #}
+            {# Section Horaires #}
+            <div class="card container-fluid mt-3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Jours </th>
+                        <th>Heure d'ouverture</th>
+                        <th>Heure de fermeture</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for schedule in schedules %}
+                        <tr>
+                            <td>{{ schedule.day }}</td>
+                            <td>{{ schedule.openingTime|date('H:i') }}</td>
+                            <td>{{ schedule.closingTime|date('H:i') }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

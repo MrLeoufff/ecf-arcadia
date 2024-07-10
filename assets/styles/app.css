@@ -1,5 +1,22 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    height: 100%;
+}
+
 header {
     background-color: #5F6F52;
+}
+
+.navbar-brand {
+    margin: -0.8dvh;
+}
+
+.navbar-brand img {
+    width: 5rem;
+    height: auto;
+    background-color: #B99470;
 }
 
 footer {

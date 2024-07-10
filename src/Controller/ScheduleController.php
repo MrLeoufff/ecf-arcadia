@@ -27,7 +27,6 @@ class ScheduleController extends AbstractController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
 
         $schedule = new Schedule();
         $form = $this->createForm(ScheduleType::class, $schedule);

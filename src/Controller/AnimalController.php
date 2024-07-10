@@ -73,7 +73,7 @@ class AnimalController extends AbstractController
         ]);
     }
 
-    #[Route('/animal', name: 'list')]
+    #[Route('/', name: 'list')]
     public function list(EntityManagerInterface $entityManager): Response
     {
         $animals = $entityManager->getRepository(Animal::class)->findAll();
