@@ -50,7 +50,7 @@ class HabitatController extends AbstractController
                     );
                     $habitat->setImage($newFilename);
                 } catch (FileException $e) {
-                    $this->addFlash('error', 'An error occurred while uploading the image.');
+                    $this->addFlash('error', 'Une érreur est survenue lors de l\'envoie de la photo.');
                     return $this->render('habitat/new.html.twig', [
                         'habitat' => $habitat,
                         'form' => $form,
