@@ -25,9 +25,10 @@ class AnimalType extends AbstractType
                 'required' => true,
             ])
             ->add('image', FileType::class, [
-                'label' => 'Animal Image',
+                'label' => 'Animal Image (Image file)',
+                'multiple' => true,
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
             ])
             ->add('habitat', EntityType::class, [
                 'class' => Habitat::class,

@@ -22,3 +22,7 @@ header {
 footer {
     background-color: #B99470;
 }
+
+#map {
+    height: 400px;
+}

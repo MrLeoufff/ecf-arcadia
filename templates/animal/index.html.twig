@@ -17,15 +17,18 @@
         </thead>
         <tbody>
         {% for animal in animals %}
-
             <tr>
                 <td>{{ animal.name }}</td>
                 <td>{{ animal.race }}</td>
                 <td>{{ animal.habitat.name }}</td>
                 <td>
-                    {% for image in animal.image %}
-                        <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}" height="50">
-                    {% endfor %}
+                    {% if animal.image is not empty %}
+                        {% for image in animal.image %}
+                            <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}" width="100">
+                        {% endfor %}
+                    {% else %}
+                        Pas d'image
+                    {% endif %}
                 </td>
                 <td>
                     <a href="{{ path('app_animal_edit', {'id': animal.id}) }}" class="btn btn-warning">Edit</a>

@@ -28,38 +28,48 @@ class HabitatController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
         $habitat = new Habitat();
         $form = $this->createForm(HabitatType::class, $habitat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('image')->getData();
+            $images = $form->get('image')->getData();
+            $imageNames = [];
 
 
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+            if ($images) {
+                foreach ($images as $image){
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                    $habitat->setImage($newFilename);
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Une érreur est survenue lors de l\'envoie de la photo.');
-                    return $this->render('habitat/new.html.twig', [
-                        'habitat' => $habitat,
-                        'form' => $form,
-                    ]);
+                    try {
+                        $image->move(
+                            $this->getParameter('images_directory'),
+                            $newFilename
+                        );
+                        $this->addFlash('success', 'Image uploaded successfully.');
+                    } catch (FileException $e) {
+                        $this->addFlash('error', 'Une érreur est survenue lors de l\'envoie de la photo.');
+                        return $this->render('habitat/new.html.twig', [
+                            'habitat' => $habitat,
+                            'form' => $form,
+                        ]);
+                    }
+
+                    $imageNames [] = $newFilename;
                 }
+                $habitat->setImage($imageNames);
+            } else {
+                $this->addFlash('error', 'No images found.');
             }
 
-            $entityManager->persist($habitat);
-            $entityManager->flush();
+            $em->persist($habitat);
+            $em->flush();
+
+            $this->addFlash('success', 'Habitat created successfully with images.');
 
             return $this->redirectToRoute('app_habitat_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -79,35 +89,42 @@ class HabitatController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Habitat $habitat, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Request $request, Habitat $habitat, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(HabitatType::class, $habitat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('image')->getData();
+            $images = $form->get('image')->getData();
+            $imageNames = [];
 
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+            if ($images) {
+                foreach ($images as $image) {
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                    $habitat->setImage($newFilename);
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'An error occurred while uploading the image.');
-                    return $this->render('habitat/edit.html.twig', [
-                        'habitat' => $habitat,
-                        'form' => $form,
-                    ]);
+                    try {
+                        $image->move(
+                            $this->getParameter('images_directory'),
+                            $newFilename
+                        );
+                        $this->addFlash('success', 'Image uploaded successfully.');
+                    } catch (FileException $e) {
+                        $this->addFlash('error', 'An error occurred while uploading the image.');
+                        return $this->render('habitat/edit.html.twig', [
+                            'habitat' => $habitat,
+                            'form' => $form,
+                        ]);
+                    }
+                    $imageNames[] = $newFilename;
                 }
+                $habitat->setImage($imageNames);
+            } else {
+                $this->addFlash('error', 'No images found.');
             }
 
-            $entityManager->flush();
+            $em->flush();
 
             return $this->redirectToRoute('app_habitat_index', [], Response::HTTP_SEE_OTHER);
         }

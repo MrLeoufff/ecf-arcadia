@@ -29,7 +29,7 @@ class AnimalController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, HabitatRepository $habitatRepository, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $em, HabitatRepository $habitatRepository, SluggerInterface $slugger): Response
     {
         $habitat = $habitatRepository->findOneBy([]);
         if (!$habitat) {
@@ -40,30 +40,41 @@ class AnimalController extends AbstractController
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form->get('image')->getData();
 
-            if ($image) {
-                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('image')->getData();
+            $imageNames = [];
+
+            if ($images) {
+                foreach ($images as $image) {
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
                 try {
                     $image->move(
                         $this->getParameter('images_directory'),
                         $newFilename
                     );
-                    $animal->setImage($newFilename);
+                    $this->addFlash('success', 'Image uploaded successfully.');
                 } catch (FileException $e) {
                     $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
                     return $this->render('animal/edit.html.twig', [
-                        'form' => $form->createView(),
+                        'animal' => $animal,
+                        'form' => $form,
                     ]);
                 }
+                $imageNames [] = $newFilename;
+            }
+            $animal->setImage($imageNames);
+        } else {
+                $this->addFlash('error', 'No images found.');
             }
 
-            $entityManager->persist($animal);
-            $entityManager->flush();
+            $em->persist($animal);
+            $em->flush();
+
+            $this->addFlash('success', 'Animal created successfully with images.');
 
             return $this->redirectToRoute('app_animal_list');
         }
@@ -74,9 +85,9 @@ class AnimalController extends AbstractController
     }
 
     #[Route('/', name: 'list')]
-    public function list(EntityManagerInterface $entityManager): Response
+    public function list(EntityManagerInterface $em): Response
     {
-        $animals = $entityManager->getRepository(Animal::class)->findAll();
+        $animals = $em->getRepository(Animal::class)->findAll();
 
         return $this->render('animal/list.html.twig', [
             'animals' => $animals,
@@ -85,33 +96,16 @@ class AnimalController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Animal $animal, EntityManagerInterface $entityManager, SluggerInterface $slugger, HabitatRepository $habitatRepository): Response
+    public function edit(Request $request, Animal $animal, EntityManagerInterface $em, SluggerInterface $slugger, HabitatRepository $habitatRepository): Response
     {
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form->get('image')->getData();
+            $images = $form->get('image')->getData();
+            $imageNames = [];
 
-            if ($image) {
-                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
-                try {
-                    $image->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                    $animal->setImage($newFilename);
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
-                    return $this->render('animal/edit.html.twig', [
-                        'form' => $form->createView(),
-                        'animal' => $animal,
-                    ]);
-                }
-            }
 
             $habitat = $form->get('habitat')->getData();
             if ($habitat && $habitat->getId()) {
@@ -124,23 +118,47 @@ class AnimalController extends AbstractController
                 ]);
             }
 
-            $entityManager->flush();
+            if ($images) {
+                foreach ($images as $image) {
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
-            return $this->redirectToRoute('app_animal_index');
+                    try {
+                        $image->move(
+                            $this->getParameter('images_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
+                        return $this->render('animal/edit.html.twig', [
+                            'form' => $form,
+                            'animal' => $animal,
+                        ]);
+                    }
+                    $imageNames[] = $newFilename;
+                }
+                $animal->setImage($imageNames);
+            }
+
+            $em->flush();
+
+            return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('animal/edit.html.twig', [
-            'form' => $form->createView(),
             'animal' => $animal,
+            'form' => $form,
+
         ]);
     }
 
     #[Route('/{id}/', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Animal $animal, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Animal $animal, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete' . $animal->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($animal);
-            $entityManager->flush();
+            $em->remove($animal);
+            $em->flush();
         }
 
         return $this->redirectToRoute('app_animal_index');

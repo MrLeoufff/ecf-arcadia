@@ -46,6 +46,7 @@ class ServiceController extends AbstractController
                             $this->getParameter('images_directory'),
                             $newFilename
                         );
+                        $this->addFlash('success', 'Image uploaded successfully.');
                     } catch (FileException $e) {
 
                     }

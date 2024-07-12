@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Habitat;
 use App\Entity\Review;
 use App\Form\ReviewType;
+use App\Repository\AnimalRepository;
 use App\Repository\HabitatRepository;
 use App\Repository\ReviewRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\ServiceRepository;
+use App\Repository\VeterinaryReportRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +27,7 @@ class DefaultController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         HabitatRepository $habitatRepository,
+        AnimalRepository $animalRepository,
     ): Response
     {
         $avisAAfficher = $reviewRepository->findBy(['valid' => true]);
@@ -31,6 +35,7 @@ class DefaultController extends AbstractController
         $services = $serviceRepository->findAll();
         $user = $this->getUser();
         $habitats = $habitatRepository->findAll();
+        $animals = $animalRepository->findAll();
 
 
 
@@ -53,18 +58,64 @@ class DefaultController extends AbstractController
             'schedules' => $schedules,
             'user' => $user,
             'services' => $services,
-            'habitats' => $habitats
+            'habitats' => $habitats,
+            'animals' => $animals
         ]);
     }
 
     #[Route('/habitat', name: 'app_habitat')]
-    public function habitat(HabitatRepository $habitatRepository): Response
+    public function habitat(
+        HabitatRepository $habitatRepository,
+        AnimalRepository $animalRepository,
+        VeterinaryReportRepository $veterinaryReportRepository,
+    ): Response
     {
         $habitat = $habitatRepository->findAll();
+        $animal = $animalRepository->findAll();
+        $veterinaryReport = $veterinaryReportRepository->findAll();
 
         return $this->render('default/habitat.html.twig', [
-            'habitats' => $habitat
+            'habitats' => $habitat,
+            'animal' => $animal,
+            'veterinaryReport' => $veterinaryReport,
         ]);
+    }
+
+    #[Route('/habitat/{id}/animals', name: 'app_habitat_animals', methods: ['GET'])]
+    public function getAnimalsByHabitat(
+        Habitat $habitat,
+        AnimalRepository $animalRepository,
+        VeterinaryReportRepository $veterinaryReportRepository
+    ): Response
+    {
+        $animals = $animalRepository->findBy(['habitat' => $habitat]);
+
+
+        $animalData = [];
+        foreach ($animals as $animal) {
+            $veterinaryReports = $veterinaryReportRepository->findBy(['animal' => $animal]);
+
+            $reportData = [];
+            foreach ($veterinaryReports as $report) {
+                $reportData[] = [
+                    'id' => $report->getId(),
+                    'health_status' => $report->getHealthStatus(),
+                    'food' => $report->getFood(),
+                    'food_weight' => $report->getFoodWeight(),
+                    'report_date' => $report->getReportDate()->format('Y-m-d H:i:s'),
+                    'detail' => $report->getDetail(),
+                ];
+            }
+
+            $animalData[] = [
+                'id' => $animal->getId(),
+                'name' => $animal->getName(),
+                'image' => $animal->getImage(),
+                'veterinary_reports' => $reportData,
+            ];
+        }
+
+        return $this->json($animalData);
     }
 
     #[Route('/service', name: 'app_service')]

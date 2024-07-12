@@ -14,15 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReviewController extends AbstractController
 {
     #[Route('/review/new', name: 'app_review_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $em): Response
     {
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($review);
-            $entityManager->flush();
+            $em->persist($review);
+            $em->flush();
 
             $this->addFlash('success', 'Votre avis a été soumis et est en attente de validation.');
 

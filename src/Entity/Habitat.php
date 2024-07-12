@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HabitatRepository::class)]
 class Habitat
@@ -22,8 +23,8 @@ class Habitat
     #[ORM\Column(type: Types::TEXT, nullable: false)]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $image = null;
+    #[ORM\Column(type: 'json', nullable: false)]
+    private array $image = [];
 
     #[ORM\OneToMany(targetEntity: Animal::class, mappedBy: 'habitat')]
     private Collection $animals;
@@ -62,12 +63,12 @@ class Habitat
         return $this;
     }
 
-    public function getImage(): string
+    public function getImage(): array
     {
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(array $image): static
     {
         $this->image = $image;
 

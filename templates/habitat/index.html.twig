@@ -3,10 +3,11 @@
 {% block body %}
     <h1>Liste des Habitats</h1>
 
+    <a href="{{ path('app_habitat_new') }}" class="btn btn-primary">Créer un nouvelle habitat</a>
+
     <table>
         <thead>
         <tr>
-            <th>Id</th>
             <th>Nom</th>
             <th>Description</th>
             <th>Image</th>
@@ -16,14 +17,15 @@
         <tbody>
         {% for habitat in habitats %}
             <tr>
-                <td>{{ habitat.id }}</td>
                 <td>{{ habitat.name }}</td>
                 <td>{{ habitat.description }}</td>
                 <td>
-                    {% if habitat.image %}
-                        <img src="{{ asset('uploads/' ~ habitat.image) }}" alt="{{ habitat.name }}" width="100">
-                    {% else %}
-                        Pas d'image
+                    {% if habitat.image is not empty %}
+                        {% for image in habitat.image %}
+                            <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ habitat.name }}" width="100">
+                        {% endfor %}
+                        {% else %}
+                            Pas d'image
                     {% endif %}
                 </td>
                 <td>
@@ -40,5 +42,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_habitat_new') }}">Créer un nouveau</a>
 {% endblock %}

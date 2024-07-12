@@ -20,8 +20,10 @@
         <tr>
             <th>Image</th>
             <td>
-                {% if habitat.image %}
-                    <img src="{{ asset('uploads/' ~ habitat.image) }}" alt="{{ habitat.name }}" width="200">
+                {% if habitat.image is not empty %}
+                    {% for image in habitat.image %}
+                        <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ habitat.name }}" width="100">
+                    {% endfor %}
                 {% else %}
                     Pas d'image
                 {% endif %}

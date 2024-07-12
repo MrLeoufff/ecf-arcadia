@@ -35,12 +35,12 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <h2 class="text-center">Services</h2>
-                    {% for service in services %}
-                    <div class="card-header text-center form-control">
-                        {{ service.name }}
+                    {% for service in services | slice(0, 3) %}
+                    <div class="card-header text-center form-control m-2">
+                        <h3>{{ service.name }}</h3>
                         <div class="card-body">
                             {% for image in service.image %}
-                                <img class="img-fluid rounded-start" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ service.name }}">
+                                <img class="img-fluid rounded-3" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ service.name }}">
                             {% endfor %}
                         </div>
                     </div>
@@ -49,28 +49,32 @@
                 {# Fin section services #}
                 {# Section habitat #}
                 <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('assets/images/habitat/jungle.jpg') }}" class="card-img-top" alt="...">
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('assets/images/habitat/marais.jpg') }}" class="card-img-top" alt="...">
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('assets/images/habitat/savane.jpg') }}" class="card-img-top" alt="...">
-                    </div>
+                    <h2 class="text-center">Habitats</h2>
+                    {% for habitat in habitats | slice(0, 3) %}
+                        <div class="card-header text-center form-control m-2">
+                            <h3>{{ habitat.name }}</h3>
+                            <div class="card-body">
+                                {% for image in habitat.image %}
+                                    <img class="img-fluid rounded-3" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ habitat.name }}">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
                 {# Fin section habitat #}
                 {# Section Dino #}
                 <div class="col">
-                    <div class="card">
-                        <img src="{{ asset('assets/images/dinos/spinosaurus.jpg') }}" class="card-img-top" alt="...">
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('assets/images/dinos/velociraptor.jpg') }}" class="card-img-top" alt="...">
-                    </div>
-                    <div class="card">
-                        <img src="{{ asset('assets/images/dinos/diplodocus.jpg') }}" class="card-img-top" alt="...">
-                    </div>
+                    <h2 class="text-center">Animaux</h2>
+                    {% for animal in animals | slice(0, 3) %}
+                        <div class="card-header text-center form-control m-2">
+                            <h3>{{ animal.name }}</h3>
+                            <div class="card-body">
+                                {% for image in animal.image %}
+                                    <img class="img-fluid rounded-3" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

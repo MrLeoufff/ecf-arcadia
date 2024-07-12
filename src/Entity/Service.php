@@ -20,7 +20,7 @@ class Service
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $image = [];
 
     public function getId(): ?int

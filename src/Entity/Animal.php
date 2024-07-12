@@ -21,8 +21,8 @@ class Animal
     #[ORM\Column(length: 150, nullable: false)]
     private ?string $race = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private ?string $image = null;
+    #[ORM\Column(type: 'json', nullable: false)]
+    private array $image = [];
 
     #[ORM\ManyToOne(targetEntity: Habitat::class, inversedBy: 'animals')]
     #[ORM\JoinColumn(nullable: false)]
@@ -70,12 +70,12 @@ class Animal
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): array
     {
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(array $image): static
     {
         $this->image = $image;
 

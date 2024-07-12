@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Habitat;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,20 +23,12 @@ class HabitatType extends AbstractType
                 'label' => 'Description'
             ])
             ->add('image', FileType::class, [
-                'label' => 'Habitat Image (JPEG/PNG file)',
+                'label' => 'Habitat Image (Image file)',
+                'multiple' => true,
+                'required' => true,
                 'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid image file (JPEG/PNG)',
-                    ])
-                ],
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

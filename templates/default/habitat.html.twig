@@ -1,26 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Habitat</h1>
-    <div class="card mb-3" style="max-width: 540px;">
+    <h1 class="text-center">Habitats</h1>
+    {% for habitat in habitats | slice(0, 3) %}
+    <div class="card mb-3 m-4">
         <div class="row g-0">
-            <div class="col-md-4">
-{#{% for image in habitat.image %}
-                    <img class="img-fluid rounded-start" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ habitat.name }}">
-                {% endfor %}#}
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <a href="#"> <h3>{{ habitat.name }}</h3></a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    {% for habitat in habitats %}
-                        <div class="card-header text-center form-control">
-                        {{ habitat.name }}
-                        </div>
+                    {% for image in habitat.image %}
+                        <img class="img-fluid rounded-3" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ habitat.name }}">
                     {% endfor %}
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %}
+    <h1>Liste des Habitats</h1>
+
+    <div id="habitats-list">
+        {% for habitat in habitats %}
+            <button class="habitat-button" data-habitat-id="{{ habitat.id }}">{{ habitat.name }}</button>
+        {% endfor %}
+    </div>
+
+    <div id="animals-list">
+        <!-- Les animaux seront affichés ici -->
+    </div>
 {% endblock body %}
+
+
+
 
