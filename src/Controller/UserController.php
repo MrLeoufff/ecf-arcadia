@@ -5,25 +5,32 @@ namespace App\Controller;
 
 use App\Document\AnimalView;
 use App\Entity\User;
+use App\Form\ResetPasswordRequestType;
+use App\Form\ResetPasswordType;
 use App\Form\UserType;
+use App\Service\MailerService;
 use App\Service\NoXSS;
+use App\Service\ResetPasswordService;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
+
 
 #[Route('/admin/user', name: 'app_user_')]
 class UserController extends AbstractController
 {
     private NoXSS $noXSS;
+    private Security $security;
 
-    public function __construct(NoXSS $noXSS)
+    public function __construct(NoXSS $noXSS, Security $security)
     {
         $this->noXSS = $noXSS;
+        $this->security = $security;
     }
     #[Route('/', name: 'list', methods: ['GET'])]
     public function list(EntityManagerInterface $em): Response
@@ -35,8 +42,15 @@ class UserController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request,EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $em,
+        UserPasswordHasherInterface $passwordHasher,
+        MailerService $mailer
+    ): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -54,6 +68,8 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
 
+            $mailer->sendUserCreationEmail($user);
+
             return $this->redirectToRoute('app_user_list');
         }
 
@@ -61,6 +77,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response

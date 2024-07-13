@@ -10,10 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/employee/schedule', name: 'app_schedule_')]
-//#[IsGranted('ROLE_ADMIN', 'ROLE_EMPLOYEE')]
+
+#[Route('/admin/schedule', name: 'app_schedule_')]
 class ScheduleController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]

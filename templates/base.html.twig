@@ -37,7 +37,7 @@
                             <a class="nav-link" href="{{ path('app_service') }}">Service</a>
                         </li>
                         <li class="nav-item ms-lg-5">
-                            <a class="nav-link" href="{{ path('app_contact__') }}">Contact</a>
+                            <a class="nav-link" href="{{ path('app_contact_index') }}">Contact</a>
                         </li>
                         <li class="nav-item ms-lg-5">
                             <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-lock"></i></a>
@@ -65,18 +65,21 @@
                         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_user_list') }}">Gestion des Utilisateurs</a>
+                                    <a class="nav-link" href="{{ path('app_admin_dashboard') }}">Dashboard</a>
                                 </li>
-                            {% endif %}
-                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_service_index') }}">Gestion des Services</a>
+                                    <a class="nav-link" href="{{ path('app_user_list') }}">Gestion des Utilisateurs</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_habitat_index') }}">Gestion des Habitats</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_schedule_index') }}">Gestion des Horaires</a>
+                                </li>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_service_index') }}">Gestion des Services</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_animal_feeding_index') }}">Gestion des l'Alimentations</a>

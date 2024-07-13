@@ -23,6 +23,9 @@ class Habitat
     #[ORM\Column(type: Types::TEXT, nullable: false)]
     private ?string $description = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    private ?string $comment = null;
+
     #[ORM\Column(type: 'json', nullable: false)]
     private array $image = [];
 
@@ -61,6 +64,16 @@ class Habitat
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): void
+    {
+        $this->comment = $comment;
     }
 
     public function getImage(): array

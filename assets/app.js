@@ -1,11 +1,11 @@
-import '../assets/bootstrap.js';
+import './bootstrap.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
  * This file will be included onto the page via the importmap() Twig function,
  * which should already be in your base.html.twig.
  */
-import '../assets/styles/app.css';
+import './styles/app.css';
 
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -82,6 +82,7 @@ function degToRad(deg) {
     return deg * (Math.PI / 180);
 }
 
+console.log('coucou');
 document.querySelectorAll('.habitat-button').forEach(button => {
     button.addEventListener('click', () => {
         const habitatId = button.getAttribute('data-habitat-id');

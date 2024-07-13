@@ -30,8 +30,11 @@
                 </td>
                 <td>
                     <a href="{{ path('app_habitat_show', {'id': habitat.id}) }}">Afficher</a>
-                    <a href="{{ path('app_habitat_edit', {'id': habitat.id}) }}">Éditer</a>
-                    {{ include('habitat/_delete_form.html.twig', {'id': habitat.id}) }}
+                    <a href="{{ path('app_habitat_edit', {'id': habitat.id}) }}" class="btn btn-warning">Éditer</a>
+                    <form method="post" action="{{ path('app_habitat_delete', {'id': habitat.id}) }}" onsubmit="return confirm('Êtes vous sur de vouloir supprimer cette habitat?');" style="display:inline-block;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ habitat.id) }}">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
                 </td>
             </tr>
         {% else %}

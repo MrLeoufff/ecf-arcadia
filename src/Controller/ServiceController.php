@@ -20,7 +20,7 @@ class ServiceController extends AbstractController
     public function index(ServiceRepository $serviceRepository): Response
     {
         return $this->render('service/index.html.twig', [
-            'services' => $serviceRepository->findAll(),
+            'service' => $serviceRepository->findAll(),
         ]);
     }
 
@@ -48,21 +48,39 @@ class ServiceController extends AbstractController
                         );
                         $this->addFlash('success', 'Image uploaded successfully.');
                     } catch (FileException $e) {
-
+                        $this->addFlash('error', 'Une érreur est survenue lors de l\'envoie de la photo.');
+                        return $this->render('service/new.html.twig', [
+                            'service' => $service,
+                            'form' => $form,
+                        ]);
                     }
 
                     $imageNames[] = $newFilename;
                 }
                 $service->setImage($imageNames);
+            } else {
+                $this->addFlash('error', 'No images found.');
             }
+
             $em->persist($service);
             $em->flush();
 
-            return $this->redirectToRoute('app_service_index');
+            $this->addFlash('success', 'Service created successfully with images.');
+
+            return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('service/new.html.twig', [
+            'service' => $service,
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    public function show(Service $service): Response
+    {
+        return $this->render('service/show.html.twig', [
+            'service' => $service,
         ]);
     }
 

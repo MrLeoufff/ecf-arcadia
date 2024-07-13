@@ -23,6 +23,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    #[ORM\Column(type: 'string', length: 64, nullable: true)]
+    private ?string $resetPasswordToken;
+
+    private ?string $plainPassword = null;
+
     #[ORM\Column]
     private array $roles = [];
 
@@ -163,5 +168,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->email;
+    }
+
+    public function getResetPasswordToken(): ?string
+    {
+        return $this->resetPasswordToken;
+    }
+
+    public function setResetPasswordToken(?string $resetPasswordToken): self
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
     }
 }
