@@ -5,11 +5,11 @@
 {% block body %}
     <h1>Modifier le Rapport Vétérinaire</h1>
     {{ form_start(form) }}
-    {{ form_row(form.reportDate) }}
-    {{ form_row(form.healthStatus) }}
-    {{ form_row(form.notes) }}
-    {{ form_row(form.animal) }}
-    {{ form_row(form.user) }}
+    {{ form_row(form.report_date) }}
+    {{ form_row(form.health_status) }}
+    {{ form_row(form.detail) }}
+    {{ form_row(form.animal_id) }}
+    {{ form_row(form.user_id) }}
     <button class="btn">Enregistrer</button>
     {{ form_end(form) }}
     <a href="{{ path('app_veterinary_report_index') }}">Retour à la liste</a>

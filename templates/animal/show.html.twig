@@ -3,7 +3,10 @@
 {% block title %}Détails de l'animal{% endblock %}
 
 {% block body %}
-    <h1>{{ animal.name }}</h1>
-    <p>Consultations : {{ views }}</p>
+    <div class="container mt-4">
+        <h1>{{ animal.name }}</h1>
+        <p>Consultations : {{ views }}</p>
+    </div>
+
     <!-- Ajoutez d'autres détails de l'animal ici -->
 {% endblock %}

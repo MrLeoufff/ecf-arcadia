@@ -1,12 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {# <div id="habitats-list">
-        {% for habitat in habitats %}
-            <button class="habitat-button" data-habitat-id="{{ habitat.id }}">{{ habitat.name }}</button>
-        {% endfor %}
-    </div> #}
-    <div id="animals-list">
+    <a class="text-center" href="{{ path('app_animal_list') }}">
+    <h1>Venez visiter tout nos animaux</h1>
+    </a>
+    <div id="animals-list" class="row">
         <!-- Les animaux seront affichés ici -->
     </div>
     {% for habitat in habitats %}
@@ -25,12 +23,11 @@
             </div>
         </div>
     {% endfor %}
-
-
-
-
-
 {% endblock body %}
+{% block javascripts %}
+    {{ parent() }}
+<script type="module" src="{{ asset('js/filtre_animaux.js') }}"></script>
+{% endblock %}
 
 
 

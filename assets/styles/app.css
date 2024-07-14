@@ -23,6 +23,13 @@ header {
     background-color: #FEFAE0;
 }
 
+.center-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .avis {
     background-color: #A9B388;
 }

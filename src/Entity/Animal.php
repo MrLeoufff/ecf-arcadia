@@ -28,10 +28,10 @@ class Animal
     #[ORM\JoinColumn(nullable: false)]
     private Habitat $habitat;
 
-    #[ORM\OneToMany(targetEntity: VeterinaryReport::class, mappedBy: 'animal')]
+    #[ORM\OneToMany(targetEntity: VeterinaryReport::class, mappedBy: 'animal', cascade: ['remove'])]
     private Collection $veterinaryReports;
 
-    #[ORM\OneToMany(targetEntity: AnimalFeeding::class, mappedBy: 'animal')]
+    #[ORM\OneToMany(targetEntity: AnimalFeeding::class, mappedBy: 'animal', cascade: ['remove'])]
     private Collection $animalFeedings;
 
     public function __construct(Habitat $habitat)

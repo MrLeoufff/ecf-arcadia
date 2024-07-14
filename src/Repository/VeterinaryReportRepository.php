@@ -6,9 +6,7 @@ use App\Entity\VeterinaryReport;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<VeterinaryReport>
- */
+
 class VeterinaryReportRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -16,7 +14,24 @@ class VeterinaryReportRepository extends ServiceEntityRepository
         parent::__construct($registry, VeterinaryReport::class);
     }
 
-    //    /**
+    public function findAllFoodOptions(): array
+    {
+        $qb = $this->createQueryBuilder('vr')
+            ->select('DISTINCT vr.food')
+            ->getQuery();
+
+        $results = $qb->getResult();
+        $foods = [];
+        foreach ($results as $result) {
+            $foods[$result['food']] = $result['food'];
+        }
+
+        return $foods;
+    }
+
+
+
+//    /**
     //     * @return VeterinaryReport[] Returns an array of VeterinaryReport objects
     //     */
     //    public function findByExampleField($value): array

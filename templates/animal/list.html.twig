@@ -1,4 +1,3 @@
-{# templates/animal/list.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des Animaux{% endblock %}
@@ -10,4 +9,20 @@
             <li>{{ animal.name }} - {{ animal.race }}  ({{ animal.habitat.name }})</li>
         {% endfor %}
     </ul>
+    <h1 class="text-center">Liste des Animaux</h1>
+    <div class="row">
+        {% for animal in animals %}
+            <div class="col-md-4">
+                <div class="card text-center cadre">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ animal.name }}</h5>
+                        {% for image in animal.image %}
+                            <img class="img-fluid rounded-3" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}">
+                        {% endfor %}
+                        <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

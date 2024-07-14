@@ -23,22 +23,42 @@ class VeterinaryReportController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $em, VeterinaryReportRepository $veterinaryReportRepository): Response
     {
         $veterinaryReport = new VeterinaryReport();
         $form = $this->createForm(VeterinaryReportType::class, $veterinaryReport);
+
+        $existingFoods = $veterinaryReportRepository->findAllFoodOptions();
+
+
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($veterinaryReport);
-            $entityManager->flush();
+            $existingFood = $form->get('existing_food')->getData();
+            $newFood = $form->get('food')->getData();
+
+            if ($existingFood) {
+                $veterinaryReport->setFood($existingFood);
+            } elseif ($newFood) {
+                $veterinaryReport->setFood($newFood);
+            } else {
+                $this->addFlash('error', 'Vous devez sélectionner ou entrer une nourriture.');
+                return $this->render('veterinary_report/new.html.twig', [
+                    'form' => $form->createView(),
+                    'existing_foods' => $existingFoods
+                ]);
+            }
+            $em->persist($veterinaryReport);
+            $em->flush();
 
             return $this->redirectToRoute('app_veterinary_report_index');
         }
 
         return $this->render('veterinary_report/new.html.twig', [
             'veterinary_report' => $veterinaryReport,
-            'form' => $form,
+            'form' => $form->createView(),
+            'existing_foods' => $existingFoods,
         ]);
     }
 

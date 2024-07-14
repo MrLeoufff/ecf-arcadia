@@ -1,16 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un Rapport Vétérinaire{% endblock %}
-
 {% block body %}
-    <h1>Créer un Rapport Vétérinaire</h1>
+    <h1>Créer un nouveau rapport vétérinaire</h1>
     {{ form_start(form) }}
-    {{ form_row(form.report_date) }}
     {{ form_row(form.health_status) }}
+
+    <div class="form-group">
+        <label for="existing_food">Choisir une nourriture existante :</label>
+        <select name="veterinary_report[existing_food]" class="form-control">
+            <option value="">Sélectionnez une nourriture</option>
+            {% for food in existing_foods %}
+                <option value="{{ food }}">{{ food }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+    {{ form_widget(form.food) }}
+    {{ form_row(form.food_weight) }}
+    {{ form_row(form.report_date) }}
     {{ form_row(form.detail) }}
     {{ form_row(form.animal_id) }}
     {{ form_row(form.user_id) }}
-    <button class="btn">Enregistrer</button>
+    <button class="btn btn-primary">Enregistrer</button>
     {{ form_end(form) }}
-    <a href="{{ path('app_veterinary_report_index') }}">Retour à la liste</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/feeding_choices.js') }}"></script>
 {% endblock %}
