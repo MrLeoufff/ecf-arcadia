@@ -61,7 +61,7 @@ class AnimalController extends AbstractController
                     $this->addFlash('success', 'Image uploaded successfully.');
                 } catch (FileException $e) {
                     $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
-                    return $this->render('animal/edit.html.twig', [
+                    return $this->render('animal/new.html.twig', [
                         'animal' => $animal,
                         'form' => $form,
                     ]);
@@ -81,7 +81,7 @@ class AnimalController extends AbstractController
             return $this->redirectToRoute('app_animal_list');
         }
 
-        return $this->render('animal/edit.html.twig', [
+        return $this->render('animal/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }

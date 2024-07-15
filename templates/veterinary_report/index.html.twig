@@ -3,37 +3,38 @@
 {% block title %}Liste des Rapports Vétérinaires{% endblock %}
 
 {% block body %}
-    <h1>Liste des Rapports Vétérinaires</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Date</th>
-            <th>État de santé</th>
-            <th>Animal</th>
-            <th>Utilisateur</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for report in veterinary_reports %}
-            <tr>
-                <td>{{ report.id }}</td>
-                <td>{{ report.reportDate|date('Y-m-d H:i') }}</td>
-                <td>{{ report.healthStatus }}</td>
-                <td>{{ report.animalId.name }}</td>
-                <td>{{ report.userId.email }}</td>
-                <td>
-                    <a href="{{ path('app_veterinary_report_show', {'id': report.id}) }}">Voir</a>
-                    <a href="{{ path('app_veterinary_report_edit', {'id': report.id}) }}">Modifier</a>
-                    <form method="post" action="{{ path('app_veterinary_report_delete', {'id': report.id}) }}" style="display:inline-block;">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ report.id) }}">
-                        <button type="submit">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ path('app_veterinary_report_new') }}">Créer un nouveau rapport</a>
+    <h1 class="text-center">Liste des Rapports Vétérinaires</h1>
+    <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-md-12 text-center">
+                <a href="{{ path('app_veterinary_report_new') }}" class="btn btn-primary">Créer un nouveau rapport</a>
+            </div>
+        </div>
+        <div class="row">
+            {% for report in veterinary_reports %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Rapport {{ report.animalId.name }}</h5>
+                            <p class="card-text"><strong>Date:</strong> {{ report.reportDate|date('Y-m-d H:i') }}</p>
+                            <p class="card-text"><strong>État de santé:</strong> {{ report.healthStatus }}</p>
+                            <p class="card-text"><strong>Utilisateur:</strong> {{ report.userId.email }}</p>
+                            <a href="{{ path('app_veterinary_report_show', {'id': report.id}) }}" class="btn btn-primary mb-2">Voir</a>
+                            <a href="{{ path('app_veterinary_report_edit', {'id': report.id}) }}" class="btn btn-warning mb-2">Modifier</a>
+                            <form method="post" action="{{ path('app_veterinary_report_delete', {'id': report.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?');" style="display:inline-block;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ report.id) }}">
+                                <button type="submit" class="btn btn-danger mb-2">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    <div class="alert alert-info text-center" role="alert">
+                        Aucun rapport trouvé
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

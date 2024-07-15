@@ -24,7 +24,11 @@ class ScheduleController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $em): Response
+    public function new(
+        Request $request,
+        ScheduleRepository$scheduleRepository,
+        EntityManagerInterface $em
+    ): Response
     {
 
         $schedule = new Schedule();
@@ -32,6 +36,12 @@ class ScheduleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $existingSchedule = $scheduleRepository->findOneBy(['day' => $schedule->getDay()]);
+
+            if ($existingSchedule) {
+                return $this->redirectToRoute('app_schedule_edit', ['id' => $existingSchedule->getId()]);
+            }
+
             $em->persist($schedule);
             $em->flush();
 
@@ -47,8 +57,6 @@ class ScheduleController extends AbstractController
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Schedule $schedule, EntityManagerInterface  $em): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
-
         $form = $this->createForm(ScheduleType::class, $schedule);
         $form->handleRequest($request);
 
@@ -67,8 +75,6 @@ class ScheduleController extends AbstractController
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Schedule $schedule, EntityManagerInterface $em): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
-
         if ($this->isCsrfTokenValid('delete'.$schedule->getId(), $request->request->get('_token'))) {
             $em->remove($schedule);
             $em->flush();

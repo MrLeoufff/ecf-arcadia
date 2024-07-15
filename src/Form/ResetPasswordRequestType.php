@@ -22,11 +22,8 @@ class ResetPasswordRequestType extends AbstractType
                     ]),
                 ],
                 'attr' => ['class' => 'form-control']
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Réinitialiser le mot de passe',
-                'attr' => ['class' => 'btn btn-primary']
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

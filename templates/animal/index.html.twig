@@ -1,44 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Animals</h1>
-
-    <a href="{{ path('app_animal_new') }}" class="btn btn-primary">Create new Animal</a>
-
-    <table class="table mt-3">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Race</th>
-            <th>Habitat</th>
-            <th>Images</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for animal in animals %}
-            <tr>
-                <td>{{ animal.name }}</td>
-                <td>{{ animal.race }}</td>
-                <td>{{ animal.habitat.name }}</td>
-                <td>
-                    {% if animal.image is not empty %}
-                        {% for image in animal.image %}
-                            <img src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}" width="100">
-                        {% endfor %}
-                    {% else %}
-                        Pas d'image
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}" class="btn btn-warning">Edit</a>
-                    <form method="post" action="{{ path('app_animal_delete', {'id': animal.id}) }}" onsubmit="return confirm('Are you sure you want to delete this animal?');" style="display:inline-block;">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ animal.id) }}">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h1 class="text-center">Animaux</h1>
+    <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-md-12 text-center">
+                <a href="{{ path('app_animal_new') }}" class="btn btn-primary">Créer un nouvel Animal</a>
+            </div>
+        </div>
+        <div class="row">
+            {% for animal in animals %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center cadre">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ animal.name }}</h5>
+                            <p class="card-text">Race: {{ animal.race }}</p>
+                            <p class="card-text">Habitat: {{ animal.habitat.name }}</p>
+                            <div class="mb-3">
+                                {% if animal.image is not empty %}
+                                    {% for image in animal.image %}
+                                        <img class="img-fluid rounded-3 mb-3" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ animal.name }}">
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Pas d'image</p>
+                                {% endif %}
+                            </div>
+                            <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="btn btn-primary mb-2">Voir détails</a>
+                            <a href="{{ path('app_animal_edit', {'id': animal.id}) }}" class="btn btn-warning mb-2">Modifier</a>
+                            <form method="post" action="{{ path('app_animal_delete', {'id': animal.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet animal ?');" style="display:inline-block;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ animal.id) }}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

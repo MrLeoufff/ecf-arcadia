@@ -15,6 +15,7 @@ class ScheduleType extends AbstractType
     {
         $builder
             ->add('day', ChoiceType::class, [
+                'label' => 'Jour',
                 'choices' => [
                     'Lundi' => 'Lundi',
                     'Mardi' => 'Mardi',
@@ -26,12 +27,16 @@ class ScheduleType extends AbstractType
                 ]
             ])
             ->add('opening_time', TimeType::class, [
+                'label' => 'Heure d\'ouverture',
                 'widget' => 'single_text',
+                'required' => true,
             ])
             ->add('closing_time', TimeType::class, [
+                'label' => 'Heure de fermeture',
                 'widget' => 'single_text',
-            ])
-        ;
+                'required' => true,
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -41,3 +46,5 @@ class ScheduleType extends AbstractType
         ]);
     }
 }
+
+

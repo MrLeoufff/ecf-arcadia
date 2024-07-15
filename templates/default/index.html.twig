@@ -36,7 +36,7 @@
                 <div class="col rounded-4 border cadre">
                     <h2 class="text-center">Services</h2>
                     {% for service in services | slice(0, 3) %}
-                    <div class="card-header text-center form-control mb-3">
+                    <div class="card-header text-center form-control mb-3 avis">
                         <h3>{{ service.name }}</h3>
                         <div class="card-body">
                             {% for image in service.image %}
@@ -51,7 +51,7 @@
                 <div class="col rounded-4 border cadre">
                     <h2 class="text-center">Habitats</h2>
                     {% for habitat in habitats | slice(0, 3) %}
-                        <div class="card-header text-center form-control mb-3">
+                        <div class="card-header text-center form-control mb-3 avis">
                             <h3>{{ habitat.name }}</h3>
                             <div class="card-body">
                                 {% for image in habitat.image %}
@@ -66,7 +66,7 @@
                 <div class="col rounded-4 border cadre">
                     <h2 class="text-center">Animaux</h2>
                     {% for animal in animals | slice(0, 3) %}
-                        <div class="card-header text-center form-control mb-3">
+                        <div class="card-header text-center form-control mb-3 avis">
                             <h3>{{ animal.name }}</h3>
                             <div class="card-body">
                                 {% for image in animal.image %}
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 {% endfor %}
-            <div class="card container text-center form-control">
+            <div class="card container text-center form-control avis">
                     {{ form_start(form) }}
                 <div class="card-header">
                     {{ form_label(form.pseudo) }}
@@ -108,7 +108,7 @@
             {# Fin section avis #}
             {# Section Horaires #}
             <div class="card container-fluid mt-3">
-                <table class="table">
+                <table class="table avis">
                     <thead>
                     <tr>
                         <th>Jours </th>
