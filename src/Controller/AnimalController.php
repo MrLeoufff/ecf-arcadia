@@ -187,14 +187,4 @@ class AnimalController extends AbstractController
             'views' => $animalView->getViews(),
         ]);
     }
-
-    #[Route('/veto/animal/dashboard', name: 'app_animal_dashboard', methods: ['GET'])]
-    public function dashboard(DocumentManager $dm): Response
-    {
-        $animalViews = $dm->getRepository(AnimalView::class)->findAll();
-
-        return $this->render('admin/dashboard.html.twig', [
-            'animalViews' => $animalViews,
-        ]);
-    }
 }

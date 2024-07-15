@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+        {{ parent() }}
+        <script type="module" src="{{ asset('js/filtre_animaux.js') }}"></script>
+{% endblock %}
+
 {% block body %}
     <a class="text-center" href="{{ path('app_animal_list') }}">
     <h1>Venez visiter tout nos animaux</h1>
@@ -19,15 +24,27 @@
                             <img class="img-fluid rounded-3" src="{{ asset('uploads/images/' ~ image) }}" alt="{{ habitat.name }}">
                         {% endfor %}
                     </div>
+                    <div class="card-footer rounded-2 avis">
+                        <p>{{ habitat.comment }}</p>
+                    </div>
                 </div>
             </div>
+            {% if formViews is defined and formViews[habitat.id] is defined %}
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h3>Ajouter un commentaire</h3>
+                        {{ form_start(formViews[habitat.id]) }}
+                        {{ form_row(formViews[habitat.id].comment) }}
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                        {{ form_end(formViews[habitat.id]) }}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     {% endfor %}
+
+
 {% endblock body %}
-{% block javascripts %}
-    {{ parent() }}
-<script type="module" src="{{ asset('js/filtre_animaux.js') }}"></script>
-{% endblock %}
 
 
 

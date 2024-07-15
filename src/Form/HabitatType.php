@@ -28,6 +28,14 @@ class HabitatType extends AbstractType
                 'required' => true,
                 'mapped' => false,
             ])
+            ->add('comment', TextareaType::class, [
+                'label' => 'Commentaire',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'rows' => 5,
+                ],
+            ])
         ;
     }
 

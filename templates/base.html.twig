@@ -93,7 +93,7 @@
                             {% endif %}
                             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_VETERINARIAN') %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_animal_list') }}">Gestion des Animaux</a>
+                                    <a class="nav-link" href="{{ path('app_animal_index') }}">Gestion des Animaux</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_veterinary_report_index') }}">Gestion des Raports</a>

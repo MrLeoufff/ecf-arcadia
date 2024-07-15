@@ -33,15 +33,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4 m-4">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Animaux les plus consultés</h5>
                         <ul class="list-group">
-                            {% for animalView in animalViews %}
+                            {% for view in animalViews %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ animalView.animalName }}
-                                    <span class="badge badge-primary badge-pill">{{ animalView.views }}</span>
+                                    {{ view.animalName }}
+                                    <span class="">{{ view.views }}</span>
                                 </li>
                             {% endfor %}
                         </ul>

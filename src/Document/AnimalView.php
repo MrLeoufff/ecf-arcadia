@@ -13,10 +13,10 @@ class AnimalView
     #[MongoDB\Field(type: 'string')]
     protected ?string $animalName;
 
-    #[MongoDB\Field(type: 'integer')]
+    #[MongoDB\Field(type: 'int')]
     protected ?int $animalId;
 
-    #[MongoDB\Field(type: 'integer')]
+    #[MongoDB\Field(type: 'int')]
     protected ?int $views = 0;
 
     public function getId(): ?string
@@ -48,6 +48,12 @@ class AnimalView
     public function getViews(): int
     {
         return $this->views;
+    }
+
+    public function setViews(int $views): self
+    {
+        $this->views = $views;
+        return $this;
     }
 
     public function incrementViews(): self

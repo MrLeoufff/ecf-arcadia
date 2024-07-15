@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Habitat;
 use App\Entity\Review;
+use App\Form\HabitatCommentType;
+use App\Form\HabitatType;
 use App\Form\ReviewType;
 use App\Repository\AnimalRepository;
 use App\Repository\HabitatRepository;
@@ -63,21 +65,40 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/habitat', name: 'app_habitat')]
+    #[Route('/habitat', name: 'app_habitat', methods: ['GET', 'POST'])]
     public function habitat(
         HabitatRepository $habitatRepository,
         AnimalRepository $animalRepository,
         VeterinaryReportRepository $veterinaryReportRepository,
+        Request $request,
+        EntityManagerInterface $em
     ): Response
     {
-        $habitat = $habitatRepository->findAll();
-        $animal = $animalRepository->findAll();
-        $veterinaryReport = $veterinaryReportRepository->findAll();
+        $habitats = $habitatRepository->findAll();
+        $animals = $animalRepository->findAll();
+        $veterinaryReports = $veterinaryReportRepository->findAll();
+
+        $formViews = [];
+        if ($this->isGranted('ROLE_VETERINARIAN')) {
+            foreach ($habitats as $habitat) {
+                $form = $this->createForm(HabitatCommentType::class, $habitat);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $em->persist($habitat);
+                    $em->flush();
+                    $this->addFlash('success', 'Commentaire ajouté avec succes');
+                    return $this->redirectToRoute('app_habitat');
+                }
+                $formViews[$habitat->getId()] = $form->createView();
+            }
+        }
 
         return $this->render('default/habitat.html.twig', [
-            'habitats' => $habitat,
-            'animal' => $animal,
-            'veterinaryReport' => $veterinaryReport,
+            'habitats' => $habitats,
+            'animals' => $animals,
+            'veterinaryReports' => $veterinaryReports,
+            'formViews' => $formViews
         ]);
     }
 
