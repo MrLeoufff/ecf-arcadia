@@ -24,8 +24,7 @@ class DashboardController extends AbstractController
         $totalUsers = $userRepository->count([]);
         $totalAnimals = $animalRepository->count([]);
         $totalServices = $serviceRepository->count([]);
-        $animalViews = $dm->getRepository(AnimalView::class)->findAll();
-
+        $animalViews = $dm->getRepository(AnimalView::class)->findBy([], ['views' => 'DESC']);
 
         return $this->render('admin/dashboard.html.twig', [
             'total_users' => $totalUsers,

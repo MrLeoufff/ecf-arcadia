@@ -169,7 +169,12 @@ class AnimalController extends AbstractController
     }
 
     #[Route('/animal/{id}', name: 'app_animal_show', methods: ['GET'])]
-    public function show(Animal $animal, DocumentManager $dm): Response
+    public function show(
+        Animal $animal,
+        DocumentManager $dm,
+        VeterinaryReportRepository $veterinaryReportRepository,
+        AnimalFeedingRepository $animalFeedingRepository
+    ): Response
     {
         $animalView = $dm->getRepository(AnimalView::class)->findOneBy(['animalName' => $animal->getName()]);
 
@@ -182,9 +187,14 @@ class AnimalController extends AbstractController
         $animalView->incrementViews();
         $dm->flush();
 
+        $veterinaryReports = $veterinaryReportRepository->findBy(['animal' => $animal]);
+        $animalFeedings = $animalFeedingRepository->findBy(['animal' => $animal]);
+
         return $this->render('animal/show.html.twig', [
             'animal' => $animal,
             'views' => $animalView->getViews(),
+            'veterinaryReports' => $veterinaryReports,
+            'animalFeedings' => $animalFeedings
         ]);
     }
 }

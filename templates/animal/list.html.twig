@@ -6,15 +6,12 @@
     <h1 class="text-center">Liste des Animaux</h1>
     <div class="container mt-5">
         <div class="row mb-3">
-            <div class="col-md-12 text-center">
-                <a href="{{ path('app_animal_new') }}" class="btn btn-primary">Créer un nouvel Animal</a>
-            </div>
+            <ul class="list-unstyled">
+                {% for animal in animals %}
+                    <li>{{ animal.name }} - {{ animal.race }} ({{ animal.habitat.name }})</li>
+                {% endfor %}
+            </ul>
         </div>
-        <ul class="list-unstyled">
-            {% for animal in animals %}
-                <li>{{ animal.name }} - {{ animal.race }} ({{ animal.habitat.name }})</li>
-            {% endfor %}
-        </ul>
         <div class="row">
             {% for animal in animals %}
                 <div class="col-md-4 mb-4">

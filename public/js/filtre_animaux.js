@@ -22,21 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     data.forEach(animal => {
                         const animalDiv = document.createElement('div');
                         animalDiv.className = 'col-lg-4';
+                        const lastReport = animal.veterinary_reports.length > 0 ? animal.veterinary_reports[animal.veterinary_reports.length - 1] : null;
                         animalDiv.innerHTML = `
                             <div class="card m-4 cadre">
                                 <div class="card-body">
                                     <h3 class="card-title">${animal.name}</h3>
                                     <img src="/uploads/images/${animal.image}" class="card-img-top" alt="${animal.name}" width="100">
-                                    <h4>Rapports Vétérinaires</h4>
-                                    ${animal.veterinary_reports.map(report => `
+                                    <h4>Rapport Vétérinaire</h4>
+                                    ${lastReport ? `
                                         <div>
-                                            <p><strong>État de santé:</strong> ${report.health_status}</p>
-                                            <p><strong>Nourriture:</strong> ${report.food}</p>
-                                            <p><strong>Poids de la nourriture:</strong> ${report.food_weight} kg</p>
-                                            <p><strong>Date du rapport:</strong> ${report.report_date}</p>
-                                            <p><strong>Détail:</strong> ${report.detail}</p>
+                                            <p><strong>État de santé:</strong> ${lastReport.health_status}</p>
+                                            <p><strong>Nourriture:</strong> ${lastReport.food}</p>
+                                            <p><strong>Poids de la nourriture:</strong> ${lastReport.food_weight} kg</p>
+                                            <p><strong>Date du rapport:</strong> ${lastReport.report_date}</p>
+                                            <p><strong>Détail:</strong> ${lastReport.detail}</p>
                                         </div>
-                                    `).join('')}
+                                    ` : '<p>Aucun rapport vétérinaire disponible.</p>'}
                                 </div>
                             </div>
                         `;
