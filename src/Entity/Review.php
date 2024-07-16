@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReviewRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
@@ -25,6 +26,10 @@ class Review
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $submittedAt = null;
+
+    #[ORM\Column(type: 'integer')]
+    #[Assert\Range(min: 1, max: 5)]
+    private $rating;
 
     public function __construct()
     {
@@ -81,5 +86,15 @@ class Review
     {
         $this->submittedAt = $submittedAt;
         return $this;
+    }
+
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    public function setRating($rating): void
+    {
+        $this->rating = $rating;
     }
 }

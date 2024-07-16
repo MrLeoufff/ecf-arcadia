@@ -1,30 +1,46 @@
-console.log('coucou');
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.habitat-link').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const habitatId = link.getAttribute('data-habitat-id');
-            console.log('Fetching animals for habitat:', habitatId);
 
-            fetch(`/habitat/${habitatId}/animals`)
-                .then(response => {
-                    console.log('Response:', response);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Data:', data);
-                    const animalsList = document.getElementById('animals-list');
-                    animalsList.innerHTML = '';
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM fully loaded and parsed');
+        document.querySelectorAll('.habitat-link').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const habitatId = link.getAttribute('data-habitat-id');
+                console.log('Fetching habitat details for habitat:', habitatId);
 
-                    data.forEach(animal => {
-                        const animalDiv = document.createElement('div');
-                        animalDiv.className = 'col-lg-4';
-                        const lastReport = animal.veterinary_reports.length > 0 ? animal.veterinary_reports[animal.veterinary_reports.length - 1] : null;
-                        animalDiv.innerHTML = `
-                            <div class="card m-4 cadre">
+                // Fetch habitat details and animals
+                fetch(`/habitat/${habitatId}/animals`)
+                    .then(response => {
+                        console.log('Response:', response);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Data:', data);
+                        const animalsList = document.getElementById('animals-list');
+                        animalsList.innerHTML = '';
+
+                        // Display habitat description
+                        const habitatDescriptionDiv = document.createElement('div');
+                        habitatDescriptionDiv.className = 'col-lg-12';
+                        habitatDescriptionDiv.innerHTML = `
+                        <div class="card m-4 cadre">
+                            <div class="card-body">
+                                <h3 class="card-title">Description de l'habitat (${data.habitat_name})</h3>
+                                <p>${data.habitat_detail}</p>
+                            </div>
+                        </div>
+                    `;
+                        animalsList.appendChild(habitatDescriptionDiv);
+
+                        // Display animals
+                        data.animals.forEach(animal => {
+                            const animalDiv = document.createElement('div');
+                            animalDiv.className = 'col-lg-4';
+                            const lastReport = animal.veterinary_reports.length > 0 ? animal.veterinary_reports[animal.veterinary_reports.length - 1] : null;
+                            animalDiv.innerHTML = `
+                            <div class="card m-4 cadre detail">
                                 <div class="card-body">
                                     <h3 class="card-title">${animal.name}</h3>
                                     <img src="/uploads/images/${animal.image}" class="card-img-top" alt="${animal.name}" width="100">
@@ -41,13 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                         `;
-                        animalsList.appendChild(animalDiv);
+                            animalsList.appendChild(animalDiv);
+                        });
+                        animalsList.scrollIntoView({behavior: 'smooth'});
+                    })
+                    .catch(error => {
+                        console.error('Error fetching habitat details:', error);
                     });
-                    animalsList.scrollIntoView({ behavior: 'smooth' });
-                })
-                .catch(error => {
-                    console.error('Error fetching animals:', error);
-                });
+            });
         });
     });
-});
+
+

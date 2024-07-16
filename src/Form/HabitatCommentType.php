@@ -14,6 +14,7 @@ class HabitatCommentType extends AbstractType
     {
         $builder
             ->add('comment', TextareaType::class, [
+                'required' => false,
                 'label' => 'Commentaire',
                 'attr' => ['class' => 'form-control'],
             ]);

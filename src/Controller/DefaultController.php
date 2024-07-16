@@ -136,7 +136,11 @@ class DefaultController extends AbstractController
             ];
         }
 
-        return $this->json($animalData);
+        return $this->json([
+            'habitat_name' => $habitat->getName(),
+            'habitat_detail' => $habitat->getDescription(),
+            'animals' =>$animalData,
+        ]);
     }
 
     #[Route('/service', name: 'app_service')]

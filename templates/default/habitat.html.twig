@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block javascripts %}
-        {{ parent() }}
-        <script type="module" src="{{ asset('js/filtre_animaux.js') }}"></script>
-{% endblock %}
-
 {% block body %}
     <a class="text-center" href="{{ path('app_animal_list') }}">
     <h1>Venez visiter tout nos animaux</h1>
     </a>
+    <div id="habitat-detail" class="row">
+        <!-- Les détails de l'habitat seront affichés ici -->
+    </div>
     <div id="animals-list" class="row">
         <!-- Les animaux seront affichés ici -->
     </div>
@@ -42,9 +40,16 @@
             {% endif %}
         </div>
     {% endfor %}
-
-
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/filtre_animaux.js') }}"></script>
+    {% endblock %}
 {% endblock body %}
+{# {% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/filtre_animaux.js') }}?${{ "now"|date("U") }}"></script>
+{% endblock %} #}
+
 
 
 

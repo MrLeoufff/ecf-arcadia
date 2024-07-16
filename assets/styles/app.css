@@ -5,6 +5,19 @@ html, body {
     height: 100%;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', serif;
+}
+
+link, p, button {
+    font-family: 'Open sans', sans-serif;
+}
+
 header {
     background-color: #5F6F52;
 }
@@ -17,6 +30,17 @@ header {
     width: 5rem;
     height: auto;
     background-color: #B99470;
+}
+
+.detail {
+    width: auto;
+    height: 500px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.detail::-webkit-scrollbar {
+    display: none;
 }
 
 .cadre {
@@ -41,3 +65,10 @@ footer {
 #map {
     height: 400px;
 }
+
+.rating i {
+    cursor: pointer;
+    color: gold;
+    font-size: 24px;
+}
+
