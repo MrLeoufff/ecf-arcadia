@@ -128,8 +128,6 @@
             </div>
         </div>
         {# Fin section avis #}
-
-
         {# Section Horaires #}
             <div class="card container-fluid mt-3  mt-xxl-5">
                 <table class="table avis">
@@ -144,8 +142,13 @@
                     {% for schedule in schedules %}
                         <tr>
                             <td>{{ schedule.day }}</td>
-                            <td>{{ schedule.openingTime|date('H:i') }}</td>
-                            <td>{{ schedule.closingTime|date('H:i') }}</td>
+                            {% if schedule.isclosed %}
+                                <td>Fermé</td>
+                                <td>Fermé</td>
+                            {% else %}
+                                <td>{{ schedule.openingTime|date('H:i') }}</td>
+                                <td>{{ schedule.closingTime|date('H:i') }}</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
