@@ -9,11 +9,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-    private UserPasswordHasherInterface $passwordHashed;
+    private UserPasswordHasherInterface $passwordHasher;
 
-    public function __construct(UserPasswordHasherInterface $passwordHashed)
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        $this->passwordHashed = $passwordHashed;
+        $this->passwordHasher = $passwordHasher;
     }
 
     public function load(ObjectManager $manager): void
@@ -21,16 +21,16 @@ class UserFixtures extends Fixture
 
 
         $userData = [
-            ['email' => 'jose.hammond@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_ADMIN']],
-            ['email' => 'veterinaire.grant@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_VETO']],
-            ['email' => 'employe.nedry@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_EMPLOYEE']],
+            ['email' => 'jose.hammond.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_ADMIN']],
+            ['email' => 'veterinaire.grant.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_VETO']],
+            ['email' => 'employe.nedry.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_EMPLOYEE']],
         ];
 
         foreach ($userData as $UD) {
             $user = new User();
             $user->setEmail($UD['email']);
-            $user->setRole($UD['role']);
-            $user->setPassword($this->passwordHashed->hashPassword($user, $UD['password']));
+            $user->setRoles($UD['role']);
+            $user->setPassword($this->passwordHasher->hashPassword($user, $UD['password']));
             $manager->persist($user);
         }
         $manager->flush();

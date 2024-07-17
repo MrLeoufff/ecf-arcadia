@@ -8,6 +8,11 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Animal>
+ *
+ * @method Animal|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Animal|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Animal[]    findAll()
+ * @method Animal[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class AnimalRepository extends ServiceEntityRepository
 {
@@ -16,28 +21,25 @@ class AnimalRepository extends ServiceEntityRepository
         parent::__construct($registry, Animal::class);
     }
 
-    //    /**
-    //     * @return Animal[] Returns an array of Animal objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findByRace(string $race): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.race = :race')
+            ->setParameter('race', $race)
+            ->orderBy('a.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
-    //    public function findOneBySomeField($value): ?Animal
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findByHabitat(int $habitatId): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.habitat = :habitatId')
+            ->setParameter('habitatId', $habitatId)
+            ->orderBy('a.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

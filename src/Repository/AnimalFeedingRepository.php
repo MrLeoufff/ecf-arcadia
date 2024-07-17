@@ -16,6 +16,22 @@ class AnimalFeedingRepository extends ServiceEntityRepository
         parent::__construct($registry, AnimalFeeding::class);
     }
 
+    public function findAllFoodOptions(): array
+    {
+        $qb = $this->createQueryBuilder('vr')
+            ->select('DISTINCT vr.food')
+            ->getQuery();
+
+        $results = $qb->getResult();
+        $foods = [];
+        foreach ($results as $result) {
+            $foods[$result['food']] = $result['food'];
+        }
+
+        return $foods;
+    }
+
+
     //    /**
     //     * @return AnimalFeeding[] Returns an array of AnimalFeeding objects
     //     */
