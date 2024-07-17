@@ -1,6 +1,4 @@
-
-alert('coucou');
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             function (position) {

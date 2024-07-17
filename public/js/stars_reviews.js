@@ -12,7 +12,7 @@ window.onload = function() {
         formStars.forEach(star => {
             star.addEventListener('click', function() {
                 const rating = parseInt(star.getAttribute('data-value'), 10);
-                ratingInput.value = rating;
+                ratingInput.value = rating.toString();
                 updateStars(rating);
             });
         });

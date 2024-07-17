@@ -3,19 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
                 const habitatId = link.getAttribute('data-habitat-id');
-                console.log('Fetching habitat details for habitat:', habitatId);
+                //console.log('Fetching habitat details for habitat:', habitatId);
 
 
                 fetch(`/habitat/${habitatId}/animals`)
                     .then(response => {
-                        console.log('Response:', response);
+                        //console.log('Response:', response);
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
                         }
                         return response.json();
                     })
                     .then(data => {
-                        console.log('Data:', data);
+                        //console.log('Data:', data);
                         const animalsList = document.getElementById('animals-list');
                         animalsList.innerHTML = '';
 
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         animalsList.scrollIntoView({behavior: 'smooth'});
                     })
                     .catch(error => {
-                        console.error('Error fetching habitat details:', error);
+                        console.error('Error fetching habitat details:', error.message);
                     });
             });
         });

@@ -28,6 +28,10 @@ header {
     margin: -0.8dvh;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .navbar-brand img {
     width: 5rem;
     height: auto;

@@ -10,6 +10,7 @@
 /vendor/
 /DataFixtures/
 /node_modules/
+/php-getting-started/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

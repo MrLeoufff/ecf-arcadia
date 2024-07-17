@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const existingFoodSelect = document.querySelector('select[name="veterinary_report[existing_food]"]');
     const newFoodInput = document.querySelector('input[name="veterinary_report[food]"]');
 
