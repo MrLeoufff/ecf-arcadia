@@ -40,11 +40,11 @@
             {% endif %}
         </div>
     {% endfor %}
-    {% block javascripts %}
-        {{ parent() }}
-        <script src="{{ asset('js/filtre_animaux.js') }}"></script>
-    {% endblock %}
 {% endblock body %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/filtre_animaux.js') }}?v={{ "now"|date("U") }}"></script>
+{% endblock %}
 {# {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/filtre_animaux.js') }}?${{ "now"|date("U") }}"></script>

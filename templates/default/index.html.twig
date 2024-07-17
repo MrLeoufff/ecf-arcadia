@@ -111,14 +111,16 @@
                 <div class="card-body">
                     {{ form_label(form.comment) }}
                     {{ form_widget(form.comment) }}
-                    <div class="rating">
-                        {{ form_label(form.rating) }}
-                        {{ form_widget(form.rating, { 'attr': {'type': 'hidden'} }) }}
-                        <i class="far fa-star" data-value="1"></i>
-                        <i class="far fa-star" data-value="2"></i>
-                        <i class="far fa-star" data-value="3"></i>
-                        <i class="far fa-star" data-value="4"></i>
-                        <i class="far fa-star" data-value="5"></i>
+                    <div class="form-group">
+                        <label>Note</label>
+                        <div class="rating" id="review-rating-container">
+                            {{ form_widget(form.rating, { 'attr': {'type': 'hidden', 'id': 'review_rating'} }) }}
+                            <i class="far fa-star" data-value="1"></i>
+                            <i class="far fa-star" data-value="2"></i>
+                            <i class="far fa-star" data-value="3"></i>
+                            <i class="far fa-star" data-value="4"></i>
+                            <i class="far fa-star" data-value="5"></i>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Soumettre</button>
@@ -127,7 +129,8 @@
         </div>
         {# Fin section avis #}
 
-            {# Section Horaires #}
+
+        {# Section Horaires #}
             <div class="card container-fluid mt-3  mt-xxl-5">
                 <table class="table avis">
                     <thead>

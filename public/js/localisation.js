@@ -1,5 +1,5 @@
 
-
+alert('coucou');
 document.addEventListener('DOMContentLoaded', (event) => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(

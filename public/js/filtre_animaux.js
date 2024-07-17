@@ -1,13 +1,11 @@
-
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM fully loaded and parsed');
+document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.habitat-link').forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
                 const habitatId = link.getAttribute('data-habitat-id');
                 console.log('Fetching habitat details for habitat:', habitatId);
 
-                // Fetch habitat details and animals
+
                 fetch(`/habitat/${habitatId}/animals`)
                     .then(response => {
                         console.log('Response:', response);
@@ -21,7 +19,7 @@
                         const animalsList = document.getElementById('animals-list');
                         animalsList.innerHTML = '';
 
-                        // Display habitat description
+
                         const habitatDescriptionDiv = document.createElement('div');
                         habitatDescriptionDiv.className = 'col-lg-12';
                         habitatDescriptionDiv.innerHTML = `
@@ -34,7 +32,7 @@
                     `;
                         animalsList.appendChild(habitatDescriptionDiv);
 
-                        // Display animals
+
                         data.animals.forEach(animal => {
                             const animalDiv = document.createElement('div');
                             animalDiv.className = 'col-lg-4';
