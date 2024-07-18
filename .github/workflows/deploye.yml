@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SSHPASS: ${{ secrets.SSHPASS }}
+      SSHPASS: ${{ secrets.SSH_PASS }}
 
     steps:
       - name: Checkout repository
