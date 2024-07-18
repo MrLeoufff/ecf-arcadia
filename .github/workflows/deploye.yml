@@ -1,0 +1,30 @@
+name: CD
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      SSHPASS: ${{ secrets.SSHPASS }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install sshpass & update apt
+        run: |
+          sudo apt update
+          sudo apt install sshpass
+
+      - name: Deploy application
+        run: |
+          sshpass -e ssh -o strictHostKeyChecking=no  ${{ secrets.SSH_USER}}@${{ secrets.SSH_IP}} "
+          cd htdocs &&
+          cd reneleliard.online/ &&
+          git pull https://github.com/MrLeoufff/ecf-arcadia.git && 
+          composer install
+          "
