@@ -5,8 +5,9 @@ USE arcadia_db;
 CREATE TABLE habitat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    description TEXT,
-    image JSON
+    description TEXT NOT NULL ,
+    image JSON NOT NULL ,
+    comment TEXT
 );
 
 CREATE TABLE animal (
@@ -16,6 +17,13 @@ CREATE TABLE animal (
     image JSON,
     habitat_id INT,
     FOREIGN KEY (habitat_id) REFERENCES habitat(id)
+);
+
+CREATE TABLE contact (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    email VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE service (
@@ -29,21 +37,25 @@ CREATE TABLE review (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pseudo VARCHAR(30) NOT NULL,
     comment TEXT NOT NULL,
-    valid BOOLEAN DEFAULT FALSE
+    valid BOOLEAN DEFAULT FALSE,
+    submitted_at DATETIME NOT NULL,
+    rating INT NOT NULL
 );
 
 CREATE TABLE schedule (
     id INT AUTO_INCREMENT PRIMARY KEY,
     day VARCHAR(30) NOT NULL,
     opening_time TIME NOT NULL,
-    closing_time TIME NOT NULL
+    closing_time TIME NOT NULL,
+    is_closed BOOLEAN NOT NULL
 );
 
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'veterinarian', 'employee') NOT NULL
+    role JSON NOT NULL,
+    reset_password_token VARCHAR(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 );
 
 CREATE TABLE veterinary_report (
