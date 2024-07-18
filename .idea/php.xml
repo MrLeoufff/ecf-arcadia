@@ -155,6 +155,32 @@
       <path value="$PROJECT_DIR$/vendor/lorenzo/pinky" />
       <path value="$PROJECT_DIR$/vendor/twig/cssinliner-extra" />
       <path value="$PROJECT_DIR$/vendor/twig/inky-extra" />
+      <path value="$PROJECT_DIR$/vendor/symfony/doctrine-messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/fig/http-message-util" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/slim/psr7" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/slim/twig-view" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/heroku/heroku-buildpack-php" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/php-di/php-di" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/php-di/invoker" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/php-di/slim-bridge" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/php-getting-started/vendor/composer" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

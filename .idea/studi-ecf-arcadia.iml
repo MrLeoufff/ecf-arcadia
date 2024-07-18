@@ -147,6 +147,30 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/cssinliner-extra" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/inky-extra" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/fig/http-message-util" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/heroku/heroku-buildpack-php" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/laravel/serializable-closure" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/nikic/fast-route" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/php-di/invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/php-di/php-di" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/php-di/slim-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/psr/http-server-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/psr/http-server-middleware" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/slim/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/slim/slim" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/slim/twig-view" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/php-getting-started/vendor/twig/twig" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
