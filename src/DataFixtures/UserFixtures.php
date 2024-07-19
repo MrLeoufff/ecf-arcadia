@@ -21,15 +21,15 @@ class UserFixtures extends Fixture
 
 
         $userData = [
-            ['email' => 'jose.hammond.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_ADMIN']],
-            ['email' => 'veterinaire.grant.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_VETO']],
-            ['email' => 'employe.nedry.ecf@gmail.com', 'password' => 'azerty', 'role' => ['ROLE_EMPLOYEE']],
+            ['email' => 'jose.hammond.ecf@gmail.com', 'password' => 'azerty', 'roles' => ['ROLE_ADMIN']],
+            ['email' => 'veterinaire.grant.ecf@gmail.com', 'password' => 'azerty', 'roles' => ['ROLE_VETO']],
+            ['email' => 'employe.nedry.ecf@gmail.com', 'password' => 'azerty', 'roles' => ['ROLE_EMPLOYEE']],
         ];
 
         foreach ($userData as $UD) {
             $user = new User();
             $user->setEmail($UD['email']);
-            $user->setRoles($UD['role']);
+            $user->setRoles($UD['roles']);
             $user->setPassword($this->passwordHasher->hashPassword($user, $UD['password']));
             $manager->persist($user);
         }

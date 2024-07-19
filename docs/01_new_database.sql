@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS Arcadia_db CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS arcadia_db CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE arcadia_db;
 
-CREATE TABLE habitat (
+CREATE TABLE IF NOT EXISTS habitat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL ,
@@ -10,7 +10,7 @@ CREATE TABLE habitat (
     comment TEXT
 );
 
-CREATE TABLE animal (
+CREATE TABLE IF NOT EXISTS animal (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     race VARCHAR(150) NOT NULL,
@@ -19,21 +19,21 @@ CREATE TABLE animal (
     FOREIGN KEY (habitat_id) REFERENCES habitat(id)
 );
 
-CREATE TABLE contact (
+CREATE TABLE IF NOT EXISTS contact (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     email VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE service (
+CREATE TABLE IF NOT EXISTS service (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     image JSON
 );
 
-CREATE TABLE review (
+CREATE TABLE IF NOT EXISTS review (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pseudo VARCHAR(30) NOT NULL,
     comment TEXT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE review (
     rating INT NOT NULL
 );
 
-CREATE TABLE schedule (
+CREATE TABLE IF NOT EXISTS schedule (
     id INT AUTO_INCREMENT PRIMARY KEY,
     day VARCHAR(30) NOT NULL,
     opening_time TIME NOT NULL,
@@ -50,15 +50,15 @@ CREATE TABLE schedule (
     is_closed BOOLEAN NOT NULL
 );
 
-CREATE TABLE user (
+CREATE TABLE IF NOT EXISTS user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role JSON NOT NULL,
+    roles JSON NOT NULL,
     reset_password_token VARCHAR(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 );
 
-CREATE TABLE veterinary_report (
+CREATE TABLE IF NOT EXISTS veterinary_report (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT,
     user_id INT,
@@ -71,7 +71,7 @@ CREATE TABLE veterinary_report (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-CREATE TABLE animal_feeding (
+CREATE TABLE IF NOT EXISTS animal_feeding (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT,
     user_id INT,
@@ -81,3 +81,5 @@ CREATE TABLE animal_feeding (
     FOREIGN KEY (animal_id) REFERENCES animal(id),
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
+
+
