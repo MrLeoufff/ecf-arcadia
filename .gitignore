@@ -10,6 +10,7 @@
 /vendor/
 /DataFixtures/
 /node_modules/
+/supervisord.log/
 
 ###< symfony/framework-bundle ###
 
