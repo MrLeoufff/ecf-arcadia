@@ -51,6 +51,11 @@ RUN composer install --no-interaction --optimize-autoloader
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
+# Assurez-vous que le répertoire des hydrators est accessible en écriture
+RUN mkdir -p /var/www/html/var/doctrine \
+    && chown -R www-data:www-data /var/www/html/var/doctrine \
+    && chmod -R 777 /var/www/html/var/doctrine
+
 # Exposer le port 9000
 EXPOSE 9000
 
