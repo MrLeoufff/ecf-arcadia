@@ -2,7 +2,7 @@
 
 {% block body %}
     <a class="text-center" href="{{ path('app_animal_list') }}">
-    <h1>Venez visiter tout nos animaux</h1>
+        <h1>Venez visiter tout nos animaux</h1>
     </a>
     <div id="habitat-detail" class="row">
         <!-- Les détails de l'habitat seront affichés ici -->
@@ -45,7 +45,6 @@
     {{ parent() }}
     <script src="{{ asset('js/filtre_animaux.js') }}?v={{ "now"|date("U") }}"></script>
 {% endblock %}
-
 
 
 

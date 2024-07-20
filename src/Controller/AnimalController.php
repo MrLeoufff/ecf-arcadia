@@ -53,23 +53,23 @@ class AnimalController extends AbstractController
                     $safeFilename = $slugger->slug($originalFilename);
                     $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
-                try {
-                    $image->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                    $this->addFlash('success', 'Image uploaded successfully.');
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
-                    return $this->render('animal/new.html.twig', [
-                        'animal' => $animal,
-                        'form' => $form,
-                    ]);
+                    try {
+                        $image->move(
+                            $this->getParameter('images_directory'),
+                            $newFilename
+                        );
+                        $this->addFlash('success', 'Image uploaded successfully.');
+                    } catch (FileException $e) {
+                        $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
+                        return $this->render('animal/new.html.twig', [
+                            'animal' => $animal,
+                            'form' => $form,
+                        ]);
+                    }
+                    $imageNames [] = $newFilename;
                 }
-                $imageNames [] = $newFilename;
-            }
-            $animal->setImage($imageNames);
-        } else {
+                $animal->setImage($imageNames);
+            } else {
                 $this->addFlash('error', 'No images found.');
             }
 

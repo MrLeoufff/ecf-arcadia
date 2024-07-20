@@ -42,4 +42,5 @@ class AnimalRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
 }

@@ -29,8 +29,6 @@ class VeterinaryReportRepository extends ServiceEntityRepository
         return $foods;
     }
 
-
-
 //    /**
     //     * @return VeterinaryReport[] Returns an array of VeterinaryReport objects
     //     */
