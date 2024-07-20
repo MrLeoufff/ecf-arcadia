@@ -1,0 +1,104 @@
+<?php //App__Document__AnimalView%24MONGODBODMCLASSMETADATA
+
+return [PHP_INT_MAX, static fn () => \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ODM\\MongoDB\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ODM\\MongoDB\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ODM\\MongoDB\\Id\\AutoGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ODM\\MongoDB\\Id\\AutoGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collection' => [
+                'animal_view',
+            ],
+            'identifier' => [
+                'id',
+            ],
+            'name' => [
+                'App\\Document\\AnimalView',
+            ],
+            'rootDocumentName' => [
+                'App\\Document\\AnimalView',
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'name' => '_id',
+                        'type' => 'id',
+                        'nullable' => false,
+                        'options' => [],
+                        'strategy' => 'auto',
+                        'notSaved' => false,
+                        'id' => true,
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'isOwningSide' => true,
+                        'isInverseSide' => false,
+                    ],
+                    'animalName' => [
+                        'fieldName' => 'animalName',
+                        'name' => 'animalName',
+                        'type' => 'string',
+                        'nullable' => false,
+                        'options' => [],
+                        'strategy' => 'set',
+                        'notSaved' => false,
+                        'enumType' => null,
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'isOwningSide' => true,
+                        'isInverseSide' => false,
+                    ],
+                    'animalId' => [
+                        'fieldName' => 'animalId',
+                        'name' => 'animalId',
+                        'type' => 'int',
+                        'nullable' => false,
+                        'options' => [],
+                        'strategy' => 'set',
+                        'notSaved' => false,
+                        'enumType' => null,
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'isOwningSide' => true,
+                        'isInverseSide' => false,
+                    ],
+                    'views' => [
+                        'fieldName' => 'views',
+                        'name' => 'views',
+                        'type' => 'int',
+                        'nullable' => false,
+                        'options' => [],
+                        'strategy' => 'set',
+                        'notSaved' => false,
+                        'enumType' => null,
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'isOwningSide' => true,
+                        'isInverseSide' => false,
+                    ],
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    [
+        1 => 0,
+    ]
+)];
