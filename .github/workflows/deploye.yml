@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: vps
+    environment: jurasikarcadia
 
     steps:
       - name: Checkout repository
