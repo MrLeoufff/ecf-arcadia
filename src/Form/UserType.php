@@ -7,8 +7,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Count;
 
 class UserType extends AbstractType
 {
@@ -19,9 +22,17 @@ class UserType extends AbstractType
                 'required' => true,
                 'label' => 'Email',
             ])
-            ->add('password', PasswordType::class, [
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe doivent correspondre.',
+                'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'label' => 'Mot de passe',
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Vérification du mot de passe'],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 6]),
+                ],
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
@@ -32,6 +43,12 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'required' => true,
                 'label' => 'Rôle',
+                'constraints' => [
+                    new Count([
+                        'min' => 1,
+                        'minMessage' => 'Veuillez sélectionner au moins un rôle.',
+                    ]),
+                ],
             ]);
     }
 

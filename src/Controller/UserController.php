@@ -70,6 +70,10 @@ class UserController extends AbstractController
 
             $mailer->sendUserCreationEmail($user);
 
+            $roles = implode(', ', $user->getRoles());
+            $this->addFlash('success', sprintf('Nouvel utilisateur créé avec le rôle: %s', $roles));
+
+
             return $this->redirectToRoute('app_user_list');
         }
 
