@@ -87,7 +87,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         yield "\">
                     <img src=\"";
         // line 29
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/logo/ArcadiaN&B.svg"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("logos/ArcadiaN&B.svg"), "html", null, true);
         yield "\" alt=\"Logo Jurasikarcadia\">
                 </a>
                 <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -123,8 +123,8 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         // line 53
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_password_reset_request");
         yield "\"><img src=\"";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/logos/mot-de-passe-oublie1.png"), "html", null, true);
-        yield "\"></a>
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("logos/mot-de-passe-oublie1.png"), "html", null, true);
+        yield "\" alt=\"mot de passe oublié\"></a>
                         </li>
                     </ul>
                 </div>
@@ -465,7 +465,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         <nav class=\"navbar navbar-expand-lg\">
             <div class=\"container-fluid\">
                 <a class=\"navbar-brand\" href=\"{{ path('app_home') }}\">
-                    <img src=\"{{ asset('assets/logo/ArcadiaN&B.svg') }}\" alt=\"Logo Jurasikarcadia\">
+                    <img src=\"{{ asset('logos/ArcadiaN&B.svg') }}\" alt=\"Logo Jurasikarcadia\">
                 </a>
                 <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                     <span class=\"navbar-toggler-icon\"></span>
@@ -489,7 +489,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
                             <a class=\"nav-link\" href=\"{{ path('app_login') }}\"><i class=\"bi bi-lock\"></i></a>
                         </li>
                         <li class=\"nav-item ms-lg-5\">
-                            <a class=\"nav-link\" href=\"{{ path('app_password_reset_request') }}\"><img src=\"{{ asset('assets/logos/mot-de-passe-oublie1.png') }}\"></a>
+                            <a class=\"nav-link\" href=\"{{ path('app_password_reset_request') }}\"><img src=\"{{ asset('logos/mot-de-passe-oublie1.png') }}\" alt=\"mot de passe oublié\"></a>
                         </li>
                     </ul>
                 </div>

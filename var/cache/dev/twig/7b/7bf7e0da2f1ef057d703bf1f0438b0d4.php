@@ -89,19 +89,19 @@ class __TwigTemplate_b0b6939847db2c0d68842c0101825b3e extends Template
                                 <div class=\"carousel-item active\">
                                     <img src=\"";
         // line 21
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/images/dinos/diplodocus.jpg"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("dino/564267612354285529.jpg"), "html", null, true);
         yield "\" class=\"d-block w-100\" alt=\"...\">
                                 </div>
                                 <div class=\"carousel-item\">
                                     <img src=\"";
         // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/images/dinos/sarcosuchus.jpg"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("dino/IMG_20240713_112328.jpg"), "html", null, true);
         yield "\" class=\"d-block w-100\" alt=\"...\">
                                 </div>
                                 <div class=\"carousel-item\">
                                     <img src=\"";
         // line 27
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/images/dinos/spinosaurus.jpg"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("dino/IMG_20240713_113033.jpg"), "html", null, true);
         yield "\" class=\"d-block w-100\" alt=\"...\">
                                 </div>
                             </div>
@@ -491,13 +491,13 @@ class __TwigTemplate_b0b6939847db2c0d68842c0101825b3e extends Template
                         <div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-bs-ride=\"carousel\">
                             <div class=\"carousel-inner rounded-4\">
                                 <div class=\"carousel-item active\">
-                                    <img src=\"{{ asset('assets/images/dinos/diplodocus.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
+                                    <img src=\"{{ asset('dino/564267612354285529.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
                                 </div>
                                 <div class=\"carousel-item\">
-                                    <img src=\"{{ asset('assets/images/dinos/sarcosuchus.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
+                                    <img src=\"{{ asset('dino/IMG_20240713_112328.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
                                 </div>
                                 <div class=\"carousel-item\">
-                                    <img src=\"{{ asset('assets/images/dinos/spinosaurus.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
+                                    <img src=\"{{ asset('dino/IMG_20240713_113033.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
                                 </div>
                             </div>
                         </div>

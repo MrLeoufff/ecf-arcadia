@@ -25,6 +25,7 @@ header {
 
 .navbar-brand {
     margin: -0.8dvh;
+    height: 8dvh;
 }
 
 .clickable {
@@ -32,9 +33,7 @@ header {
 }
 
 .navbar-brand img {
-    width: 5rem;
-    height: auto;
-    background-color: #B99470;
+    height: 10dvh;
 }
 
 .detail {
