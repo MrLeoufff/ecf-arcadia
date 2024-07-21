@@ -164,7 +164,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
             if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
                 // line 77
                 yield "                                <li class=\"nav-item\">
-                                    <a class=\"nav-link\" onclick=\"window.location.replace('/admin/dashboard')\">Dashboard</a>
+                                    <a class=\"nav-link clickable\" onclick=\"window.location.replace('/admin/dashboard')\">Dashboard</a>
                                 </li>
                                 <li class=\"nav-item\">
                                     <a class=\"nav-link\" href=\"";
@@ -514,7 +514,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
                         <ul class=\"navbar-nav mx-auto mb-2 mb-lg-0\">
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li class=\"nav-item\">
-                                    <a class=\"nav-link\" onclick=\"window.location.replace('/admin/dashboard')\">Dashboard</a>
+                                    <a class=\"nav-link clickable\" onclick=\"window.location.replace('/admin/dashboard')\">Dashboard</a>
                                 </li>
                                 <li class=\"nav-item\">
                                     <a class=\"nav-link\" href=\"{{ path('app_user_list') }}\">Gestion des Utilisateurs</a>

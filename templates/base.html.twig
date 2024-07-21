@@ -75,7 +75,7 @@
                         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item">
-                                    <a class="nav-link" onclick="window.location.replace('/admin/dashboard')">Dashboard</a>
+                                    <a class="nav-link clickable" onclick="window.location.replace('/admin/dashboard')">Dashboard</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_user_list') }}">Gestion des Utilisateurs</a>

@@ -28,9 +28,18 @@ class ResetPasswordType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-                'attr' => ['class' => 'form-control']
+                'attr' => ['autocomplete' => 'new-password'],
+            ])
+            ->add('confirmPassword', PasswordType::class, [
+                'label' => 'Confirmer le mot de passe',
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez confirmer votre mot de passe',
+                    ]),
+                ],
+                'attr' => ['autocomplete' => 'new-password'],
             ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
