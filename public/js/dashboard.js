@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOM chargé complètement');
+    //console.log('DOM chargé complètement');
 
     const filterForm = document.getElementById('filter-form');
     const filterButton = document.getElementById('filter-button');
