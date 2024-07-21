@@ -3,10 +3,9 @@
 {% block title %}Dashboard Administrateur{% endblock %}
 
 {% block body %}
-
     <div class="container mt-5">
         <h1 class="text-center mb-4">Dashboard Administrateur</h1>
-        <div class="row cadre p-5">
+        <div class="row cadre p-5 rounded-4">
             <div class="col-md-4 mb-4">
                 <div class="card text-center avis">
                     <div class="card-body">
@@ -47,5 +46,40 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mt-5 p-5 rounded-4 cadre">
+            <div class="col-md-12">
+                {{ form_start(filter_form, {'attr': {'id': 'filter-form', 'data-turbo': 'false', 'data-filter-url': path('app_admin_dashboard_filter')}}) }}
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        {{ form_row(filter_form.start_date, {'attr': {'id': 'veterinary_report_filter_start_date'}}) }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form_row(filter_form.end_date, {'attr': {'id': 'veterinary_report_filter_end_date'}}) }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form_row(filter_form.animal, {'attr': {'id': 'veterinary_report_filter_animal'}}) }}
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="button" id="filter-button" class="btn btn-primary">Filtrer</button>
+                    </div>
+                </div>
+                {{ form_end(filter_form) }}
+            </div>
+        </div>
+
+        <div class="row mt-5 p-5 rounded-4 cadre">
+            <div class="col-md-12">
+                <h2>Rapports Vétérinaires</h2>
+                <ul id="veterinary-reports-list" class="list-group">
+                    <!-- Rapport veto -->
+                </ul>
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 {% endblock %}

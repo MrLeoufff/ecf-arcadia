@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     lieuPrecis.lon
                 );
 
-                console.log("Distance par rapport au lieu précis : " + distance + " km");
+                //console.log("Distance par rapport au lieu précis : " + distance + " km");
                 alert("Distance par rapport au lieu précis : " + distance + " km");
 
                 L.Routing.control({
@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 100);
             },
             function (error) {
-                console.error("Erreur de géolocalisation : " + error.message);
+                //console.error("Erreur de géolocalisation : " + error.message);
                 alert("Erreur de géolocalisation : " + error.message);
             }
         );
     } else {
-        console.error("La géolocalisation n'est pas prise en charge par ce navigateur");
+        //console.error("La géolocalisation n'est pas prise en charge par ce navigateur");
         alert("La géolocalisation n'est pas prise en charge par ce navigateur");
     }
 

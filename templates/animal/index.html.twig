@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1 class="text-center">Animaux</h1>
-    <div class="container mt-5">
+    <div class="container mt-5 p-5 rounded-4 cadre">
         <div class="row mb-3">
             <div class="col-md-12 text-center">
                 <a href="{{ path('app_animal_new') }}" class="btn btn-primary">Créer un nouvel Animal</a>
@@ -11,8 +11,8 @@
         <div class="row">
             {% for animal in animals %}
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center cadre">
-                        <div class="card-body detail">
+                    <div class="card h-100 text-center avis">
+                        <div class="card-body">
                             <h5 class="card-title">{{ animal.name }}</h5>
                             <p class="card-text">Race: {{ animal.race }}</p>
                             <p class="card-text">Habitat: {{ animal.habitat.name }}</p>
@@ -27,7 +27,7 @@
                             </div>
                             {# <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="btn btn-primary mb-2">Voir détails</a> #}
                             <a href="{{ path('app_animal_edit', {'id': animal.id}) }}" class="btn btn-warning mb-2">Modifier</a>
-                            <form method="post" action="{{ path('app_animal_delete', {'id': animal.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet animal ?');">
+                            <form method="post" action="{{ path('app_animal_delete', {'id': animal.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet animal ?');" style="display:inline-block;">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ animal.id) }}">
                                 <button class="btn btn-danger">Supprimer</button>
                             </form>

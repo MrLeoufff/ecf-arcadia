@@ -4,11 +4,11 @@
 
 {% block body %}
     <h1 class="text-center">Gestion des avis</h1>
-    <div class="container mt-5">
+    <div class="container mt-5 p-5 rounded-4 cadre">
         <div class="row">
             {% for review in reviews %}
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center avis">
                         <div class="card-body">
                             <h5 class="card-title">Avis #{{ review.id }}</h5>
                             <p class="card-text"><strong>Pseudo:</strong> {{ review.pseudo }}</p>

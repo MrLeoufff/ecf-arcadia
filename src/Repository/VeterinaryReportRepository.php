@@ -29,6 +29,46 @@ class VeterinaryReportRepository extends ServiceEntityRepository
         return $foods;
     }
 
+    public function findByDateRange($startDate, $endDate)
+    {
+        $qb = $this->createQueryBuilder('v');
+
+        if ($startDate) {
+            $qb->andWhere('v.report_date >= :startDate')
+                ->setParameter('startDate', $startDate);
+        }
+
+        if ($endDate) {
+            $qb->andWhere('v.report_date <= :endDate')
+                ->setParameter('endDate', $endDate);
+        }
+
+        return $qb->orderBy('v.report_date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByCriteria(array $criteria)
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if (isset($criteria['report_date']['gte'])) {
+            $qb->andWhere('r.reportDate >= :startDate')
+                ->setParameter('startDate', $criteria['report_date']['gte']);
+        }
+        if (isset($criteria['report_date']['lte'])) {
+            $qb->andWhere('r.reportDate <= :endDate')
+                ->setParameter('endDate', $criteria['report_date']['lte']);
+        }
+        if (isset($criteria['animal'])) {
+            $qb->andWhere('r.animal = :animalId')
+                ->setParameter('animalId', $criteria['animal']);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+
 //    /**
     //     * @return VeterinaryReport[] Returns an array of VeterinaryReport objects
     //     */

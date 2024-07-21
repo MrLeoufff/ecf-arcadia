@@ -106,7 +106,7 @@ class DefaultController extends AbstractController
     public function getAnimalsByHabitat(
         Habitat $habitat,
         AnimalRepository $animalRepository,
-        VeterinaryReportRepository $veterinaryReportRepository
+        VeterinaryReportRepository $veterinaryReportRepository,
     ): Response
     {
         $animals = $animalRepository->findBy(['habitat' => $habitat]);

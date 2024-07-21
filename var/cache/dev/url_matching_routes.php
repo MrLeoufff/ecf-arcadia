@@ -23,6 +23,7 @@ return [
         '/contact/send' => [[['_route' => 'app_contact_send', '_controller' => 'App\\Controller\\ContactController::send'], null, null, null, false, false, null]],
         '/contact/confirmation' => [[['_route' => 'app_contact_confirmation', '_controller' => 'App\\Controller\\ContactController::confirmation'], null, null, null, false, false, null]],
         '/admin/dashboard' => [[['_route' => 'app_admin_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
+        '/admin/dashboard/filter' => [[['_route' => 'app_admin_dashboard_filter', '_controller' => 'App\\Controller\\DashboardController::filterReports'], null, ['POST' => 0], null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\DefaultController::index'], null, null, null, false, false, null]],
         '/habitat' => [[['_route' => 'app_habitat', '_controller' => 'App\\Controller\\DefaultController::habitat'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/service' => [[['_route' => 'app_service', '_controller' => 'App\\Controller\\DefaultController::service'], null, null, null, false, false, null]],
