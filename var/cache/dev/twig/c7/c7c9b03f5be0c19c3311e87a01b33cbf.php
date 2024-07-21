@@ -87,7 +87,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         yield "\">
                     <img src=\"";
         // line 29
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/logos/ArcadiaN&B.svg"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/logo/ArcadiaN&B.svg"), "html", null, true);
         yield "\" alt=\"Logo Jurasikarcadia\">
                 </a>
                 <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -465,7 +465,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         <nav class=\"navbar navbar-expand-lg\">
             <div class=\"container-fluid\">
                 <a class=\"navbar-brand\" href=\"{{ path('app_home') }}\">
-                    <img src=\"{{ asset('assets/logos/ArcadiaN&B.svg') }}\" alt=\"Logo Jurasikarcadia\">
+                    <img src=\"{{ asset('assets/logo/ArcadiaN&B.svg') }}\" alt=\"Logo Jurasikarcadia\">
                 </a>
                 <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                     <span class=\"navbar-toggler-icon\"></span>
