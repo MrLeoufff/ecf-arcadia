@@ -7,9 +7,9 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /vendor/
-/DataFixtures/
 /node_modules/
 /supervisord.log/
+./var/
 
 ###< symfony/framework-bundle ###
 
