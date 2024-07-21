@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Habitat;
 use App\Entity\Review;
 use App\Form\HabitatCommentType;
-use App\Form\HabitatType;
 use App\Form\ReviewType;
 use App\Repository\AnimalRepository;
 use App\Repository\HabitatRepository;
@@ -71,7 +70,7 @@ class DefaultController extends AbstractController
         AnimalRepository $animalRepository,
         VeterinaryReportRepository $veterinaryReportRepository,
         Request $request,
-        EntityManagerInterface $em
+        EntityManagerInterface $entityManager
     ): Response
     {
         $habitats = $habitatRepository->findAll();
@@ -85,8 +84,8 @@ class DefaultController extends AbstractController
                 $form->handleRequest($request);
 
                 if ($form->isSubmitted() && $form->isValid()) {
-                    $em->persist($habitat);
-                    $em->flush();
+                    $entityManager->persist($habitat);
+                    $entityManager->flush();
                     $this->addFlash('success', 'Commentaire ajouté avec succes');
                     return $this->redirectToRoute('app_habitat');
                 }

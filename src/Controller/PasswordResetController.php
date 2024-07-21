@@ -19,7 +19,7 @@ class PasswordResetController extends AbstractController
     #[Route('/request', name: 'request', methods: ['GET', 'POST'])]
     public function request(
         Request $request,
-        EntityManagerInterface $em,
+        EntityManagerInterface $entityManager,
         ResetPasswordService $resetPasswordService
     ): Response
     {
@@ -28,7 +28,7 @@ class PasswordResetController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $email = $form->get('email')->getData();
-            $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
+            $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
 
             if ($user) {
                 $resetPasswordService->sendResetPasswordEmail($user);
@@ -49,11 +49,11 @@ class PasswordResetController extends AbstractController
     public function reset(
         string $token,
         Request $request,
-        EntityManagerInterface $em,
+        EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $passwordHasher
     ): Response
     {
-        $user = $em->getRepository(User::class)->findOneBy(['resetPasswordToken' => $token]);
+        $user = $entityManager->getRepository(User::class)->findOneBy(['resetPasswordToken' => $token]);
 
         if (!$user) {
             $this->addFlash('danger', 'Le lien de réinitialisation du mot de passe est invalide.');
@@ -77,8 +77,8 @@ class PasswordResetController extends AbstractController
                     )
                 );
                 $user->setResetPasswordToken(null);
-                $em->persist($user);
-                $em->flush();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
                 $this->addFlash('success', 'Votre mot de passe a été réinitialisé avec succès.');
 

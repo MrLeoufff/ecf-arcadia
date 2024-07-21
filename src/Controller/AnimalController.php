@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Document\AnimalView;
 use App\Entity\Animal;
-use App\Entity\Habitat;
-use App\Entity\VeterinaryReport;
 use App\Form\AnimalType;
 use App\Repository\AnimalFeedingRepository;
 use App\Repository\AnimalRepository;
@@ -31,7 +29,12 @@ class AnimalController extends AbstractController
     }
 
     #[Route('/veto/animal/new', name: 'app_animal_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $em, HabitatRepository $habitatRepository, SluggerInterface $slugger): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        HabitatRepository $habitatRepository,
+        SluggerInterface $slugger
+    ): Response
     {
         $habitat = $habitatRepository->findOneBy([]);
         if (!$habitat) {
@@ -73,8 +76,8 @@ class AnimalController extends AbstractController
                 $this->addFlash('error', 'No images found.');
             }
 
-            $em->persist($animal);
-            $em->flush();
+            $entityManager->persist($animal);
+            $entityManager->flush();
 
             $this->addFlash('success', 'Animal created successfully with images.');
 
@@ -88,10 +91,10 @@ class AnimalController extends AbstractController
 
     #[Route('/animal', name: 'app_animal_list')]
     public function list(
-        EntityManagerInterface $em,
+        EntityManagerInterface $entityManager,
     ): Response
     {
-        $animals = $em->getRepository(Animal::class)->findAll();
+        $animals = $entityManager->getRepository(Animal::class)->findAll();
 
         return $this->render('animal/list.html.twig', [
             'animals' => $animals,
@@ -100,7 +103,13 @@ class AnimalController extends AbstractController
 
 
     #[Route('/veto/animal/{id}/edit', name: 'app_animal_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Animal $animal, EntityManagerInterface $em, SluggerInterface $slugger, HabitatRepository $habitatRepository): Response
+    public function edit(
+        Request $request,
+        Animal $animal,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger,
+        HabitatRepository $habitatRepository
+    ): Response
     {
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
@@ -145,7 +154,7 @@ class AnimalController extends AbstractController
                 $animal->setImage($imageNames);
             }
 
-            $em->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -158,11 +167,15 @@ class AnimalController extends AbstractController
     }
 
     #[Route('/veto/animal/{id}/', name: 'app_animal_delete', methods: ['POST'])]
-    public function delete(Request $request, Animal $animal, EntityManagerInterface $em): Response
+    public function delete(
+        Request $request,
+        Animal $animal,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete' . $animal->getId(), $request->request->get('_token'))) {
-            $em->remove($animal);
-            $em->flush();
+            $entityManager->remove($animal);
+            $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_animal_index');
@@ -171,21 +184,21 @@ class AnimalController extends AbstractController
     #[Route('/animal/{id}', name: 'app_animal_show', methods: ['GET'])]
     public function show(
         Animal $animal,
-        DocumentManager $dm,
+        DocumentManager $documentManager,
         VeterinaryReportRepository $veterinaryReportRepository,
         AnimalFeedingRepository $animalFeedingRepository
     ): Response
     {
-        $animalView = $dm->getRepository(AnimalView::class)->findOneBy(['animalName' => $animal->getName()]);
+        $animalView = $documentManager->getRepository(AnimalView::class)->findOneBy(['animalName' => $animal->getName()]);
 
         if (!$animalView) {
             $animalView = new AnimalView();
             $animalView->setAnimalName($animal->getName());
-            $dm->persist($animalView);
+            $documentManager->persist($animalView);
         }
 
         $animalView->incrementViews();
-        $dm->flush();
+        $documentManager->flush();
 
         $veterinaryReports = $veterinaryReportRepository->findBy(['animal' => $animal]);
         $animalFeedings = $animalFeedingRepository->findBy(['animal' => $animal]);

@@ -47,7 +47,7 @@ class UserController extends AbstractController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        EntityManagerInterface $em,
+        EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $passwordHasher,
         MailerService $mailer
     ): Response
@@ -65,8 +65,8 @@ class UserController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-            $em->persist($user);
-            $em->flush();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             $mailer->sendUserCreationEmail($user);
 
@@ -84,7 +84,12 @@ class UserController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
+    public function edit(
+        Request $request,
+        User $user,
+        EntityManagerInterface $entityManager,
+        UserPasswordHasherInterface $passwordHasher
+    ): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -100,7 +105,7 @@ class UserController extends AbstractController
                     )
                 );
             }
-            $em->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_user_list');
         }
@@ -111,19 +116,23 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, EntityManagerInterface $em):Response
+    public function delete(
+        Request $request,
+        User $user,
+        EntityManagerInterface $entityManager
+    ):Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $em->remove($user);
-            $em->flush();
+            $entityManager->remove($user);
+            $entityManager->flush();
         }
         return $this->redirectToRoute('app_user_list');
     }
 
     #[Route('/dashboard', name: 'dashboard', methods: ['GET'])]
-    public function dashboard(DocumentManager $dm): Response
+    public function dashboard(DocumentManager $documentManager): Response
     {
-        $animalViews = $dm->getRepository(AnimalView::class)->findAll();
+        $animalViews = $documentManager->getRepository(AnimalView::class)->findAll();
 
         return $this->render('admin/dashboard.html.twig', [
             'animalViews' => $animalViews,

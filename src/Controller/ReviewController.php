@@ -14,15 +14,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReviewController extends AbstractController
 {
     #[Route('/review/new', name: 'app_review_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $em): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($review);
-            $em->flush();
+            $entityManager->persist($review);
+            $entityManager->flush();
 
             $this->addFlash('success', 'Votre avis a été soumis et est en attente de validation.');
 
@@ -45,7 +48,11 @@ class ReviewController extends AbstractController
     }
 
     #[Route('/employee/review/{id}/approve', name: 'app_review_approve', methods: ['POST'])]
-    public function approve(Request $request, Review $review, EntityManagerInterface $entityManager): Response
+    public function approve(
+        Request $request,
+        Review $review,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($this->isCsrfTokenValid('approve'.$review->getId(), $request->request->get('_token'))) {
             $review->setValid(true);
@@ -58,7 +65,11 @@ class ReviewController extends AbstractController
     }
 
     #[Route('/employee/review/{id}/delete', name: 'app_review_delete', methods: ['POST'])]
-    public function delete(Request $request, Review $review, EntityManagerInterface $entityManager): Response
+    public function delete(
+        Request $request,
+        Review $review,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
             $entityManager->remove($review);

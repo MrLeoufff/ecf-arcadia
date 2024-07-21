@@ -26,7 +26,10 @@ class HabitatController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger): Response
     {
         $habitat = new Habitat();
         $form = $this->createForm(HabitatType::class, $habitat);
@@ -64,8 +67,8 @@ class HabitatController extends AbstractController
                 $this->addFlash('error', 'No images found.');
             }
 
-            $em->persist($habitat);
-            $em->flush();
+            $entityManager->persist($habitat);
+            $entityManager->flush();
 
             $this->addFlash('success', 'Habitat created successfully with images.');
 
@@ -87,7 +90,12 @@ class HabitatController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Habitat $habitat, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function edit(
+        Request $request,
+        Habitat $habitat,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger
+    ): Response
     {
         $form = $this->createForm(HabitatType::class, $habitat);
         $form->handleRequest($request);
@@ -122,7 +130,7 @@ class HabitatController extends AbstractController
                 $this->addFlash('error', 'No images found.');
             }
 
-            $em->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_habitat_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -134,7 +142,11 @@ class HabitatController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Habitat $habitat, EntityManagerInterface $entityManager): Response
+    public function delete(
+        Request $request,
+        Habitat $habitat,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete'.$habitat->getId(), $request->request->get('_token'))) {
             $entityManager->remove($habitat);

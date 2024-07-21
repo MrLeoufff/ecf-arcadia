@@ -23,7 +23,11 @@ class VeterinaryReportController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $em, VeterinaryReportRepository $veterinaryReportRepository): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        VeterinaryReportRepository $veterinaryReportRepository
+    ): Response
     {
         $veterinaryReport = new VeterinaryReport();
         $form = $this->createForm(VeterinaryReportType::class, $veterinaryReport);
@@ -49,8 +53,8 @@ class VeterinaryReportController extends AbstractController
                     'existing_foods' => $existingFoods
                 ]);
             }
-            $em->persist($veterinaryReport);
-            $em->flush();
+            $entityManager->persist($veterinaryReport);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_veterinary_report_index');
         }
@@ -71,7 +75,10 @@ class VeterinaryReportController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, VeterinaryReport $veterinaryReport, EntityManagerInterface $entityManager): Response
+    public function edit(
+        Request $request,
+        VeterinaryReport $veterinaryReport,
+        EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(VeterinaryReportType::class, $veterinaryReport);
         $form->handleRequest($request);
@@ -89,7 +96,11 @@ class VeterinaryReportController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, VeterinaryReport $veterinaryReport, EntityManagerInterface $entityManager): Response
+    public function delete(
+        Request $request,
+        VeterinaryReport $veterinaryReport,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete'.$veterinaryReport->getId(), $request->request->get('_token'))) {
             $entityManager->remove($veterinaryReport);

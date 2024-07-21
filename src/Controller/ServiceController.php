@@ -25,7 +25,11 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger
+    ): Response
     {
         $service = new Service();
         $form = $this->createForm(ServiceType::class, $service);
@@ -62,8 +66,8 @@ class ServiceController extends AbstractController
                 $this->addFlash('error', 'No images found.');
             }
 
-            $em->persist($service);
-            $em->flush();
+            $entityManager->persist($service);
+            $entityManager->flush();
 
             $this->addFlash('success', 'Service created successfully with images.');
 
@@ -85,7 +89,11 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Service $service, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function edit(
+        Request $request,
+        Service $service,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
 
@@ -115,7 +123,7 @@ class ServiceController extends AbstractController
                 }
                 $service->setImage($imageNames);
             }
-            $em->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_service_index');
         }
@@ -127,11 +135,14 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Service $service, EntityManagerInterface $em): Response
+    public function delete(
+        Request $request,
+        Service $service,
+        EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->request->get('_token'))) {
-            $em->remove($service);
-            $em->flush();
+            $entityManager->remove($service);
+            $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_service_index');

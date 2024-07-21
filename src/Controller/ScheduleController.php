@@ -27,7 +27,7 @@ class ScheduleController extends AbstractController
     public function new(
         Request $request,
         ScheduleRepository$scheduleRepository,
-        EntityManagerInterface $em
+        EntityManagerInterface $entityManager
     ): Response
     {
 
@@ -42,8 +42,8 @@ class ScheduleController extends AbstractController
                 return $this->redirectToRoute('app_schedule_edit', ['id' => $existingSchedule->getId()]);
             }
 
-            $em->persist($schedule);
-            $em->flush();
+            $entityManager->persist($schedule);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_schedule_index');
         }
@@ -55,13 +55,16 @@ class ScheduleController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Schedule $schedule, EntityManagerInterface  $em): Response
+    public function edit(
+        Request $request,
+        Schedule $schedule,
+        EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ScheduleType::class, $schedule);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_schedule_index');
         }
@@ -73,11 +76,14 @@ class ScheduleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Schedule $schedule, EntityManagerInterface $em): Response
+    public function delete(
+        Request $request,
+        Schedule $schedule,
+        EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$schedule->getId(), $request->request->get('_token'))) {
-            $em->remove($schedule);
-            $em->flush();
+            $entityManager->remove($schedule);
+            $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_schedule_index');

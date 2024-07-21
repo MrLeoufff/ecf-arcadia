@@ -14,7 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(Request $request, MailerService $mailerService): Response
+    public function index(
+        Request $request,
+        MailerService $mailerService
+    ): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -33,7 +36,10 @@ class ContactController extends AbstractController
     }
 
     #[Route('/send', name: 'send')]
-    public function send(Request $request, MailerService $mailerService): Response
+    public function send(
+        Request $request,
+        MailerService $mailerService
+    ): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);

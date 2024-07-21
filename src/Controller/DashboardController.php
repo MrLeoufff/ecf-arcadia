@@ -20,17 +20,15 @@ class DashboardController extends AbstractController
 {
     #[Route('/admin/dashboard', name: 'app_admin_dashboard')]
     public function index(
-        AnimalRepository $animalRepository,
+        AnimalRepository  $animalRepository,
         ServiceRepository $serviceRepository,
-        UserRepository $userRepository,
-        DocumentManager $dm,
-        VeterinaryReportRepository $veterinaryReportRepository,
-        Request $request
+        UserRepository    $userRepository,
+        DocumentManager   $documentManager,
     ): Response {
         $totalUsers = $userRepository->count([]);
         $totalAnimals = $animalRepository->count([]);
         $totalServices = $serviceRepository->count([]);
-        $animalViews = $dm->getRepository(AnimalView::class)->findBy([], ['views' => 'DESC']);
+        $animalViews = $documentManager->getRepository(AnimalView::class)->findBy([], ['views' => 'DESC']);
 
         $filterForm = $this->createForm(VeterinaryReportFilterType::class);
 
@@ -44,7 +42,11 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/admin/dashboard/filter', name: 'app_admin_dashboard_filter', methods: ['POST'])]
-    public function filterReports(Request $request, VeterinaryReportRepository $veterinaryReportRepository, LoggerInterface $logger): JsonResponse
+    public function filterReports(
+        Request $request,
+        VeterinaryReportRepository $veterinaryReportRepository,
+        LoggerInterface $logger
+    ): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 

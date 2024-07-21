@@ -51,7 +51,11 @@ class AnimalFeedingController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, AnimalFeeding $animalFeeding, EntityManagerInterface $entityManager): Response
+    public function edit(
+        Request $request,
+        AnimalFeeding $animalFeeding,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         $form = $this->createForm(AnimalFeedingType::class, $animalFeeding);
         $form->handleRequest($request);
@@ -69,7 +73,11 @@ class AnimalFeedingController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, AnimalFeeding $animalFeeding, EntityManagerInterface $entityManager): Response
+    public function delete(
+        Request $request,
+        AnimalFeeding $animalFeeding,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete'.$animalFeeding->getId(), $request->request->get('_token'))) {
             $entityManager->remove($animalFeeding);
