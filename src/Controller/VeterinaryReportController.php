@@ -56,6 +56,8 @@ class VeterinaryReportController extends AbstractController
             $entityManager->persist($veterinaryReport);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Rapport vétérinaire créé avec succès.');
+
             return $this->redirectToRoute('app_veterinary_report_index');
         }
 
@@ -84,14 +86,21 @@ class VeterinaryReportController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+                $this->addFlash('success', 'Rapport vétérinaire modifié avec succès.');
 
-            return $this->redirectToRoute('app_veterinary_report_index');
+                return $this->redirectToRoute('app_veterinary_report_index');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Une erreur s\'est produite lors de la modification du rapport vétérinaire.');
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Le formulaire contient des erreurs. Veuillez vérifier les champs.');
         }
 
         return $this->render('veterinary_report/edit.html.twig', [
             'veterinary_report' => $veterinaryReport,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -102,9 +111,17 @@ class VeterinaryReportController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$veterinaryReport->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($veterinaryReport);
-            $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete' . $veterinaryReport->getId(), $request->request->get('_token'))) {
+            try {
+                $entityManager->remove($veterinaryReport);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Rapport vétérinaire supprimé avec succès.');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Une erreur s\'est produite lors de la suppression du rapport vétérinaire.');
+            }
+        } else {
+            $this->addFlash('error', 'Token CSRF invalide. Échec de la suppression du rapport vétérinaire.');
         }
 
         return $this->redirectToRoute('app_veterinary_report_index');

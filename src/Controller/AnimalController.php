@@ -61,7 +61,7 @@ class AnimalController extends AbstractController
                             $this->getParameter('images_directory'),
                             $newFilename
                         );
-                        $this->addFlash('success', 'Image uploaded successfully.');
+                        $this->addFlash('success', 'Image téléchargée avec succès.');
                     } catch (FileException $e) {
                         $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
                         return $this->render('animal/new.html.twig', [
@@ -73,13 +73,13 @@ class AnimalController extends AbstractController
                 }
                 $animal->setImage($imageNames);
             } else {
-                $this->addFlash('error', 'No images found.');
+                $this->addFlash('error', 'Aucune image trouvée.');
             }
 
             $entityManager->persist($animal);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Animal created successfully with images.');
+            $this->addFlash('success', 'Animal créé avec succès avec des images.');
 
             return $this->redirectToRoute('app_animal_list');
         }
@@ -142,6 +142,7 @@ class AnimalController extends AbstractController
                             $this->getParameter('images_directory'),
                             $newFilename
                         );
+                        $this->addFlash('success', 'Image téléchargée avec succès.');
                     } catch (FileException $e) {
                         $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
                         return $this->render('animal/edit.html.twig', [
@@ -176,6 +177,10 @@ class AnimalController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $animal->getId(), $request->request->get('_token'))) {
             $entityManager->remove($animal);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Animal supprimé avec succès.');
+        } else {
+            $this->addFlash('error', 'Échec de la suppression de l\'animal.');
         }
 
         return $this->redirectToRoute('app_animal_index');

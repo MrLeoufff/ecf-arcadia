@@ -51,6 +51,8 @@ class DefaultController extends AbstractController
             $this->addFlash('success', 'Votre avis a été soumis et est en attente de validation.');
 
             return $this->redirectToRoute('app_home');
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Erreur lors de la soumission de votre avis.');
         }
 
         return $this->render('default/index.html.twig', [
@@ -88,7 +90,10 @@ class DefaultController extends AbstractController
                     $entityManager->flush();
                     $this->addFlash('success', 'Commentaire ajouté avec succes');
                     return $this->redirectToRoute('app_habitat');
+                } elseif ($form->isSubmitted()) {
+                    $this->addFlash('error', 'Échec de l\'ajout du commentaire.');
                 }
+
                 $formViews[$habitat->getId()] = $form->createView();
             }
         }

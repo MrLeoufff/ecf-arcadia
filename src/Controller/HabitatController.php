@@ -51,7 +51,7 @@ class HabitatController extends AbstractController
                             $this->getParameter('images_directory'),
                             $newFilename
                         );
-                        $this->addFlash('success', 'Image uploaded successfully.');
+                        $this->addFlash('success', 'Image téléchargée avec succès.');
                     } catch (FileException $e) {
                         $this->addFlash('error', 'Une érreur est survenue lors de l\'envoie de la photo.');
                         return $this->render('habitat/new.html.twig', [
@@ -64,13 +64,13 @@ class HabitatController extends AbstractController
                 }
                 $habitat->setImage($imageNames);
             } else {
-                $this->addFlash('error', 'No images found.');
+                $this->addFlash('error', 'Aucune image trouvée.');
             }
 
             $entityManager->persist($habitat);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Habitat created successfully with images.');
+            $this->addFlash('success', 'Habitat créé avec succès avec des images.');
 
             return $this->redirectToRoute('app_habitat_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -115,9 +115,9 @@ class HabitatController extends AbstractController
                             $this->getParameter('images_directory'),
                             $newFilename
                         );
-                        $this->addFlash('success', 'Image uploaded successfully.');
+                        $this->addFlash('success', 'Image téléchargée avec succès.');
                     } catch (FileException $e) {
-                        $this->addFlash('error', 'An error occurred while uploading the image.');
+                        $this->addFlash('error', 'Une erreur s\'est produite lors du téléchargement de l\'image.');
                         return $this->render('habitat/edit.html.twig', [
                             'habitat' => $habitat,
                             'form' => $form,
@@ -127,7 +127,7 @@ class HabitatController extends AbstractController
                 }
                 $habitat->setImage($imageNames);
             } else {
-                $this->addFlash('error', 'No images found.');
+                $this->addFlash('error', 'Aucune image trouvée.');
             }
 
             $entityManager->flush();

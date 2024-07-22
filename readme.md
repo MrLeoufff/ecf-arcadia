@@ -31,7 +31,7 @@ Mon projet contiens les fichiers suivants à la racine :
 - Ouvrez un terminal (Tabby est vraiment génial):
 - Clonez mon dépôt Git [Github](https://github.com/MrLeoufff/ecf-arcadia)
 - ```git clone mon-dépôt git```
-- ```cd nom-du-repertoire```
+- ```cd ecf-arcadia```
 
 ## Déploiement de l'app en local
 
@@ -42,6 +42,10 @@ Mon projet contiens les fichiers suivants à la racine :
 
 - Dans un navigateur de votre choix :
 - [url](http://localhost:9000)
+
+## Identifiants
+
+- Consulter la copie ECF
 
 ##  Arrêt les conteneurs
 

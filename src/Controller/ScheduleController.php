@@ -39,11 +39,14 @@ class ScheduleController extends AbstractController
             $existingSchedule = $scheduleRepository->findOneBy(['day' => $schedule->getDay()]);
 
             if ($existingSchedule) {
+                $this->addFlash('info', 'Un horaire pour ce jour existe déjà. Vous êtes redirigé vers sa page de modification.');
                 return $this->redirectToRoute('app_schedule_edit', ['id' => $existingSchedule->getId()]);
             }
 
             $entityManager->persist($schedule);
             $entityManager->flush();
+
+            $this->addFlash('success', 'L\'horaire a été créé avec succès.');
 
             return $this->redirectToRoute('app_schedule_index');
         }
@@ -66,7 +69,11 @@ class ScheduleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'horaire a été modifié avec succès.');
+
             return $this->redirectToRoute('app_schedule_index');
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Échec de la modification de l\'horaire.');
         }
 
         return $this->render('schedule/edit.html.twig', [
@@ -84,7 +91,12 @@ class ScheduleController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$schedule->getId(), $request->request->get('_token'))) {
             $entityManager->remove($schedule);
             $entityManager->flush();
+
+            $this->addFlash('success', 'L\'horaire a été supprimé avec succès.');
+        } else {
+            $this->addFlash('error', 'Échec de la suppression de l\'horaire.');
         }
+
 
         return $this->redirectToRoute('app_schedule_index');
     }

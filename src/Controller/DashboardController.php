@@ -79,8 +79,8 @@ class DashboardController extends AbstractController
         try {
             $veterinaryReports = $queryBuilder->getQuery()->getResult();
         } catch (\Exception $e) {
-            $logger->error('Error fetching veterinary reports: ' . $e->getMessage());
-            return new JsonResponse(['error' => 'Internal Server Error'], 500);
+            $logger->error('Erreur lors de la récupération des rapports vétérinaires: ' . $e->getMessage());
+            return new JsonResponse(['error' => 'Erreur Interne du Serveur'], 500);
         }
 
         $reportData = [];

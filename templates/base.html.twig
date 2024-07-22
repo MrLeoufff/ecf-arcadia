@@ -117,14 +117,15 @@
     </header>
     <div class="container mt-3">
         {% for label, messages in app.flashes %}
-            <div class="alert alert-{{ label }}">
+            <div class="alert alert-{{ label }}" role="alert" style="height:10vh">
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
     </div>
-        {% block body %}
+    {% block body %}
         {% endblock %}
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0">
             <p class="col-md-4 mb-0 text-muted">© 2024 Arcadia</p>

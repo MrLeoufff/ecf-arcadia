@@ -57,31 +57,35 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $cleanEmail = $this->noXSS->nettoyage($form->get('email')->getData());
-            $user->setEmail($cleanEmail);
-            $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
-            $entityManager->persist($user);
-            $entityManager->flush();
+            try {
+                $cleanEmail = $this->noXSS->nettoyage($form->get('email')->getData());
+                $user->setEmail($cleanEmail);
+                $user->setPassword(
+                    $passwordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            $mailer->sendUserCreationEmail($user);
+                $mailer->sendUserCreationEmail($user);
 
-            $roles = implode(', ', $user->getRoles());
-            $this->addFlash('success', sprintf('Nouvel utilisateur créé avec le rôle: %s', $roles));
+                $roles = implode(', ', $user->getRoles());
+                $this->addFlash('success', sprintf('Nouvel utilisateur créé avec le rôle: %s', $roles));
 
-
-            return $this->redirectToRoute('app_user_list');
+                return $this->redirectToRoute('app_user_list');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Une erreur s\'est produite lors de la création de l\'utilisateur.');
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Le formulaire contient des erreurs. Veuillez vérifier les champs.');
         }
 
         return $this->render('user/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(
@@ -95,20 +99,29 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $cleanEmail = $this->noXSS->nettoyage($form->get('email')->getData());
-            $user->setEmail($cleanEmail);
-            if ($form->get('password')->getData()) {
-                $user->setPassword(
-                    $passwordHasher->hashPassword(
-                        $user,
-                        $form->get('password')->getData()
-                    )
-                );
-            }
-            $entityManager->flush();
+            try {
+                $cleanEmail = $this->noXSS->nettoyage($form->get('email')->getData());
+                $user->setEmail($cleanEmail);
+                if ($form->get('password')->getData()) {
+                    $user->setPassword(
+                        $passwordHasher->hashPassword(
+                            $user,
+                            $form->get('password')->getData()
+                        )
+                    );
+                }
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_user_list');
+                $this->addFlash('success', 'Utilisateur modifié avec succès.');
+
+                return $this->redirectToRoute('app_user_list');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Une erreur s\'est produite lors de la modification de l\'utilisateur.');
+            }
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Le formulaire contient des erreurs. Veuillez vérifier les champs.');
         }
+
         return $this->render('user/edit.html.twig', [
             'form' => $form->createView(),
             'user' => $user
@@ -122,10 +135,19 @@ class UserController extends AbstractController
         EntityManagerInterface $entityManager
     ):Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($user);
-            $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            try {
+                $entityManager->remove($user);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Utilisateur supprimé avec succès.');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Une erreur s\'est produite lors de la suppression de l\'utilisateur.');
+            }
+        } else {
+            $this->addFlash('error', 'Token CSRF invalide. Échec de la suppression de l\'utilisateur.');
         }
+
         return $this->redirectToRoute('app_user_list');
     }
 

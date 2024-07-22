@@ -50,7 +50,7 @@ class ServiceController extends AbstractController
                             $this->getParameter('images_directory'),
                             $newFilename
                         );
-                        $this->addFlash('success', 'Image uploaded successfully.');
+                        $this->addFlash('success', 'Image téléchargée avec succès.');
                     } catch (FileException $e) {
                         $this->addFlash('error', 'Une érreur est survenue lors de l\'envoie de la photo.');
                         return $this->render('service/new.html.twig', [
@@ -63,13 +63,13 @@ class ServiceController extends AbstractController
                 }
                 $service->setImage($imageNames);
             } else {
-                $this->addFlash('error', 'No images found.');
+                $this->addFlash('error', 'Aucune image trouvée.');
             }
 
             $entityManager->persist($service);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Service created successfully with images.');
+            $this->addFlash('success', 'Service créé avec succès avec des images.');
 
             return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -95,7 +95,6 @@ class ServiceController extends AbstractController
         EntityManagerInterface $entityManager,
         SluggerInterface $slugger): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
 
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
@@ -116,14 +115,18 @@ class ServiceController extends AbstractController
                             $newFilename
                         );
                     } catch (FileException $e) {
-
+                        $this->addFlash('error', 'Une erreur s\'est produite lors du téléchargement de l\'image.');
                     }
 
                     $imageNames[] = $newFilename;
                 }
                 $service->setImage($imageNames);
+                $this->addFlash('success', 'Images téléchargées avec succès.');
+            } else {
+                $this->addFlash('info', 'Aucune image trouvée.');
             }
             $entityManager->flush();
+            $this->addFlash('success', 'Service modifié avec succès.');
 
             return $this->redirectToRoute('app_service_index');
         }
@@ -143,6 +146,10 @@ class ServiceController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->request->get('_token'))) {
             $entityManager->remove($service);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Service supprimé avec succès.');
+         } else {
+            $this->addFlash('error', 'Échec de la suppression du service.');
         }
 
         return $this->redirectToRoute('app_service_index');

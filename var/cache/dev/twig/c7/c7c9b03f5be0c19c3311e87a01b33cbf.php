@@ -252,7 +252,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
             // line 120
             yield "            <div class=\"alert alert-";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true);
-            yield "\">
+            yield "\" role=\"alert\" style=\"height:10vh\">
                 ";
             // line 121
             $context['_parent'] = $context;
@@ -268,18 +268,19 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 124
-            yield "            </div>
+            yield "                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+            </div>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['label'], $context['messages'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 126
-        yield "    </div>
-        ";
         // line 127
+        yield "    </div>
+    ";
+        // line 128
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 129
+        // line 130
         yield "        <footer class=\"d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0\">
             <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia</p>
             <ul class=\"nav col-md-4 justify-content-center\">
@@ -390,7 +391,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         return; yield '';
     }
 
-    // line 127
+    // line 128
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -400,7 +401,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 128
+        // line 129
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -432,7 +433,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  404 => 128,  394 => 127,  374 => 21,  363 => 22,  360 => 21,  350 => 20,  338 => 17,  328 => 16,  308 => 6,  283 => 129,  281 => 127,  278 => 126,  271 => 124,  262 => 122,  258 => 121,  253 => 120,  249 => 119,  245 => 117,  235 => 110,  232 => 109,  226 => 106,  220 => 103,  217 => 102,  214 => 101,  208 => 98,  202 => 95,  196 => 92,  193 => 91,  190 => 90,  184 => 87,  178 => 84,  172 => 81,  166 => 77,  164 => 76,  156 => 70,  152 => 68,  148 => 66,  144 => 64,  142 => 63,  137 => 60,  135 => 59,  124 => 53,  118 => 50,  109 => 44,  104 => 41,  90 => 29,  86 => 28,  79 => 23,  77 => 20,  74 => 19,  72 => 16,  68 => 15,  56 => 6,  49 => 1,);
+        return array (  405 => 129,  395 => 128,  375 => 21,  364 => 22,  361 => 21,  351 => 20,  339 => 17,  329 => 16,  309 => 6,  284 => 130,  282 => 128,  279 => 127,  271 => 124,  262 => 122,  258 => 121,  253 => 120,  249 => 119,  245 => 117,  235 => 110,  232 => 109,  226 => 106,  220 => 103,  217 => 102,  214 => 101,  208 => 98,  202 => 95,  196 => 92,  193 => 91,  190 => 90,  184 => 87,  178 => 84,  172 => 81,  166 => 77,  164 => 76,  156 => 70,  152 => 68,  148 => 66,  144 => 64,  142 => 63,  137 => 60,  135 => 59,  124 => 53,  118 => 50,  109 => 44,  104 => 41,  90 => 29,  86 => 28,  79 => 23,  77 => 20,  74 => 19,  72 => 16,  68 => 15,  56 => 6,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -556,14 +557,15 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
     </header>
     <div class=\"container mt-3\">
         {% for label, messages in app.flashes %}
-            <div class=\"alert alert-{{ label }}\">
+            <div class=\"alert alert-{{ label }}\" role=\"alert\" style=\"height:10vh\">
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
+                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
             </div>
         {% endfor %}
     </div>
-        {% block body %}
+    {% block body %}
         {% endblock %}
         <footer class=\"d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0\">
             <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia</p>

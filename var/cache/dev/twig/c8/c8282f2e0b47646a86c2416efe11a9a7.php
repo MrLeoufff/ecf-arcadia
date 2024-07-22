@@ -119,37 +119,59 @@ class __TwigTemplate_592a751c848efbebbdfc1973320b07e2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 13
-        yield "    <div class=\"card container text-center form-control\">
-        <h1>Contactez-nous</h1>
-        ";
-        // line 15
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 15, $this->source); })()), 'form_start');
-        yield "
-        <div class=\"card-header\">
+        yield "    <div class=\"container\">
+        <div class=\"card m-2 avis mt-xxl-5 text-center form-control\">
+            <h1 class=\"mt-4\">Contactez-nous</h1>
             ";
-        // line 17
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 17, $this->source); })()), "title", [], "any", false, false, false, 17), 'row');
+        // line 16
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 16, $this->source); })()), 'form_start');
         yield "
-        </div>
-        <div class=\"card-body text-center\">
-            ";
+            <div class=\"card-header\">
+                <div class=\"form-group\">
+                    ";
+        // line 19
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 19, $this->source); })()), "title", [], "any", false, false, false, 19), 'label');
+        yield "
+                    ";
         // line 20
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 20, $this->source); })()), "description", [], "any", false, false, false, 20), 'row');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 20, $this->source); })()), "title", [], "any", false, false, false, 20), 'widget', ["attr" => ["class" => "form-control mx-auto", "style" => "max-width: 400px;"]]);
         yield "
+                </div>
+            </div>
+            <div class=\"card-body\">
+                <div class=\"form-group\">
+                    ";
+        // line 25
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 25, $this->source); })()), "description", [], "any", false, false, false, 25), 'label');
+        yield "
+                    ";
+        // line 26
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 26, $this->source); })()), "description", [], "any", false, false, false, 26), 'widget', ["attr" => ["class" => "form-control mx-auto", "style" => "max-width: 400px;"]]);
+        yield "
+                </div>
+                <div class=\"form-group\">
+                    ";
+        // line 29
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 29, $this->source); })()), "email", [], "any", false, false, false, 29), 'label');
+        yield "
+                    ";
+        // line 30
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 30, $this->source); })()), "email", [], "any", false, false, false, 30), 'widget', ["attr" => ["class" => "form-control mx-auto", "style" => "max-width: 400px;"]]);
+        yield "
+                </div>
+            </div>
+            <div class=\"card-footer text-center\">
+                <button class=\"btn btn-primary\" type=\"submit\">Envoyer</button>
+            </div>
             ";
-        // line 21
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), "email", [], "any", false, false, false, 21), 'row');
+        // line 36
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 36, $this->source); })()), 'form_end');
         yield "
         </div>
-        <button class=\"btn btn-primary\" type=\"submit\">Envoyer</button>
-        ";
-        // line 24
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 24, $this->source); })()), 'form_end');
-        yield "
-    </div>
-    <div class=\"card container\">
-        <div class=\"card-body\">
-            <div id=\"map\"></div>
+        <div class=\"card m-2 avis mt-xxl-5\">
+            <div class=\"card-body\">
+                <div id=\"map\" style=\"height: 400px;\"></div>
+            </div>
         </div>
     </div>
 ";
@@ -162,7 +184,7 @@ class __TwigTemplate_592a751c848efbebbdfc1973320b07e2 extends Template
         return; yield '';
     }
 
-    // line 33
+    // line 48
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -172,12 +194,12 @@ class __TwigTemplate_592a751c848efbebbdfc1973320b07e2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 34
+        // line 49
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
     <script src=\"";
-        // line 35
+        // line 50
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/localisation.js"), "html", null, true);
         yield "?\$";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate("now", "U"), "html", null, true);
@@ -215,7 +237,7 @@ class __TwigTemplate_592a751c848efbebbdfc1973320b07e2 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  181 => 35,  176 => 34,  166 => 33,  147 => 24,  141 => 21,  137 => 20,  131 => 17,  126 => 15,  122 => 13,  112 => 12,  99 => 9,  92 => 6,  82 => 5,  62 => 3,  39 => 1,);
+        return array (  203 => 50,  198 => 49,  188 => 48,  168 => 36,  159 => 30,  155 => 29,  149 => 26,  145 => 25,  137 => 20,  133 => 19,  127 => 16,  122 => 13,  112 => 12,  99 => 9,  92 => 6,  82 => 5,  62 => 3,  39 => 1,);
     }
 
     public function getSourceContext()
@@ -232,25 +254,40 @@ class __TwigTemplate_592a751c848efbebbdfc1973320b07e2 extends Template
 {% endblock %}
 
 {% block body %}
-    <div class=\"card container text-center form-control\">
-        <h1>Contactez-nous</h1>
-        {{ form_start(form) }}
-        <div class=\"card-header\">
-            {{ form_row(form.title) }}
+    <div class=\"container\">
+        <div class=\"card m-2 avis mt-xxl-5 text-center form-control\">
+            <h1 class=\"mt-4\">Contactez-nous</h1>
+            {{ form_start(form) }}
+            <div class=\"card-header\">
+                <div class=\"form-group\">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control mx-auto', 'style': 'max-width: 400px;' }}) }}
+                </div>
+            </div>
+            <div class=\"card-body\">
+                <div class=\"form-group\">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control mx-auto', 'style': 'max-width: 400px;' }}) }}
+                </div>
+                <div class=\"form-group\">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control mx-auto', 'style': 'max-width: 400px;' }}) }}
+                </div>
+            </div>
+            <div class=\"card-footer text-center\">
+                <button class=\"btn btn-primary\" type=\"submit\">Envoyer</button>
+            </div>
+            {{ form_end(form) }}
         </div>
-        <div class=\"card-body text-center\">
-            {{ form_row(form.description) }}
-            {{ form_row(form.email) }}
-        </div>
-        <button class=\"btn btn-primary\" type=\"submit\">Envoyer</button>
-        {{ form_end(form) }}
-    </div>
-    <div class=\"card container\">
-        <div class=\"card-body\">
-            <div id=\"map\"></div>
+        <div class=\"card m-2 avis mt-xxl-5\">
+            <div class=\"card-body\">
+                <div id=\"map\" style=\"height: 400px;\"></div>
+            </div>
         </div>
     </div>
 {% endblock %}
+
+
 
 {% block javascripts %}
     {{ parent() }}

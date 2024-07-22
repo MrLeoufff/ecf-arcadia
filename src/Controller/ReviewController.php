@@ -30,6 +30,8 @@ class ReviewController extends AbstractController
             $this->addFlash('success', 'Votre avis a été soumis et est en attente de validation.');
 
             return $this->redirectToRoute('app_home');
+        } elseif ($form->isSubmitted()) {
+            $this->addFlash('error', 'Erreur lors de la soumission de votre avis.');
         }
 
         return $this->render('review/new.html.twig', [
@@ -59,6 +61,8 @@ class ReviewController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'avis a été approuvé.');
+        } else {
+            $this->addFlash('error', 'Échec de l\'approbation de l\'avis.');
         }
 
         return $this->redirectToRoute('app_employee_reviews');
@@ -76,6 +80,8 @@ class ReviewController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'avis a été supprimé.');
+        } else {
+            $this->addFlash('error', 'Échec de la suppression de l\'avis.');
         }
 
         return $this->redirectToRoute('app_employee_reviews');

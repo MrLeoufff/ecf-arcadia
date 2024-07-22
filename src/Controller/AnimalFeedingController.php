@@ -33,7 +33,11 @@ class AnimalFeedingController extends AbstractController
             $entityManager->persist($animalFeeding);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Alimentation de l\'animal créée avec succès.');
+
             return $this->redirectToRoute('app_animal_feeding_index');
+        } else {
+            $this->addFlash('error', 'Échec de la création de l\'alimentation de l\'animal.');
         }
 
         return $this->render('animal_feeding/new.html.twig', [
@@ -63,7 +67,11 @@ class AnimalFeedingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'Alimentation de l\'animal mise à jour avec succès.');
+
             return $this->redirectToRoute('app_animal_feeding_index');
+        } else {
+            $this->addFlash('error', 'Échec de la mise à jour de l\'alimentation de l\'animal.');
         }
 
         return $this->render('animal_feeding/edit.html.twig', [
@@ -82,8 +90,11 @@ class AnimalFeedingController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$animalFeeding->getId(), $request->request->get('_token'))) {
             $entityManager->remove($animalFeeding);
             $entityManager->flush();
-        }
 
+            $this->addFlash('success', 'Alimentation de l\'animal supprimée avec succès.');
+        } else {
+            $this->addFlash('error', 'Échec de la suppression de l\'alimentation de l\'animal.');
+        }
         return $this->redirectToRoute('app_animal_feeding_index');
     }
 
