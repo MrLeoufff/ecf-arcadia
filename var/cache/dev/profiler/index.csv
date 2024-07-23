@@ -355,3 +355,8 @@ c56405,127.0.0.1,GET,http://localhost:8000/,1721663397,,200,request
 42cf3c,127.0.0.1,GET,http://localhost:8000/public/styles/app.css,1721663397,,404,request
 d647ab,192.168.1.41,GET,http://192.168.1.41:8000/,1721667712,,200,request
 5ba0d5,192.168.1.41,GET,http://192.168.1.41:8000/,1721667733,,200,request
+c36484,127.0.0.1,GET,http://localhost:8000/,1721746588,326891,500,request
+326891,127.0.0.1,GET,http://localhost:8000/,1721746588,,500,request
+a1971a,127.0.0.1,GET,http://localhost:8000/,1721746632,,200,request
+2779cc,127.0.0.1,GET,http://localhost:8000/public/styles/app.css,1721746633,84e923,404,request
+84e923,127.0.0.1,GET,http://localhost:8000/public/styles/app.css,1721746633,,404,request
