@@ -7,9 +7,9 @@ services:
       - "9000:80"
     environment:
       APP_ENV: dev
-      MONGODB_URI: mongodb://mongo:27017/symfony
+      # MONGODB_URI: mongodb://mongo:27017/symfony
       DATABASE_URL: mysql://root:toto@mysql:3306/arcadia_db
-      MAILER_DSN: mailjet+api://06ffe4a76df69ee729705458a67250c2:54c397094fd53dbcd9fe0900e99f5a21@api.mailjet:com
+      # MAILER_DSN: mailjet+api://06ffe4a76df69ee729705458a67250c2:54c397094fd53dbcd9fe0900e99f5a21@api.mailjet:com
     volumes:
       - .:/var/www/html
     depends_on:
