@@ -6,7 +6,7 @@ Ce guide vous aidera à déployer mon application Symfony en local en utilisant 
 
 Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-- Git
+- [Git](https://git-srm.com/download)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
