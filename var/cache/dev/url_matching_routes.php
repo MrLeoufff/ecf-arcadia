@@ -29,6 +29,7 @@ return [
         '/service' => [[['_route' => 'app_service', '_controller' => 'App\\Controller\\DefaultController::service'], null, null, null, false, false, null]],
         '/veto/habitat' => [[['_route' => 'app_habitat_index', '_controller' => 'App\\Controller\\HabitatController::index'], null, ['GET' => 0], null, true, false, null]],
         '/veto/habitat/new' => [[['_route' => 'app_habitat_new', '_controller' => 'App\\Controller\\HabitatController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/mentions-legal' => [[['_route' => 'app_legal', '_controller' => 'App\\Controller\\LegalController::index'], null, null, null, false, false, null]],
         '/password-reset/request' => [[['_route' => 'app_password_reset_request', '_controller' => 'App\\Controller\\PasswordResetController::request'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/review/new' => [[['_route' => 'app_review_new', '_controller' => 'App\\Controller\\ReviewController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/employee/reviews' => [[['_route' => 'app_employee_reviews', '_controller' => 'App\\Controller\\ReviewController::index'], null, ['GET' => 0], null, false, false, null]],

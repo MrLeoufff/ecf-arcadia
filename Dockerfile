@@ -38,6 +38,7 @@ COPY build/nginx/conf/default.conf /etc/nginx/conf.d/default.conf
 COPY build/php/custom.ini /usr/local/etc/php/conf.d/
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY build/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Rendre le script exécutable
 RUN chmod +x /usr/local/bin/entrypoint.sh

@@ -284,7 +284,10 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         yield "        <footer class=\"d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0\">
             <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia</p>
             <ul class=\"nav col-md-4 justify-content-center\">
-                <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-2 text-muted\">Mentions légales</a></li>
+                <li class=\"nav-item\"><a href=\"";
+        // line 133
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_legal");
+        yield "\" class=\"nav-link px-2 text-muted\">Mentions légales</a></li>
             </ul>
             <div class=\"col-md-4 d-flex justify-content-end \">
                 <a href=\"#\" class=\"m-lg-4 me-2 text-muted\"><i class=\"bi bi-facebook\"></i></a>
@@ -433,7 +436,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  405 => 129,  395 => 128,  375 => 21,  364 => 22,  361 => 21,  351 => 20,  339 => 17,  329 => 16,  309 => 6,  284 => 130,  282 => 128,  279 => 127,  271 => 124,  262 => 122,  258 => 121,  253 => 120,  249 => 119,  245 => 117,  235 => 110,  232 => 109,  226 => 106,  220 => 103,  217 => 102,  214 => 101,  208 => 98,  202 => 95,  196 => 92,  193 => 91,  190 => 90,  184 => 87,  178 => 84,  172 => 81,  166 => 77,  164 => 76,  156 => 70,  152 => 68,  148 => 66,  144 => 64,  142 => 63,  137 => 60,  135 => 59,  124 => 53,  118 => 50,  109 => 44,  104 => 41,  90 => 29,  86 => 28,  79 => 23,  77 => 20,  74 => 19,  72 => 16,  68 => 15,  56 => 6,  49 => 1,);
+        return array (  408 => 129,  398 => 128,  378 => 21,  367 => 22,  364 => 21,  354 => 20,  342 => 17,  332 => 16,  312 => 6,  289 => 133,  284 => 130,  282 => 128,  279 => 127,  271 => 124,  262 => 122,  258 => 121,  253 => 120,  249 => 119,  245 => 117,  235 => 110,  232 => 109,  226 => 106,  220 => 103,  217 => 102,  214 => 101,  208 => 98,  202 => 95,  196 => 92,  193 => 91,  190 => 90,  184 => 87,  178 => 84,  172 => 81,  166 => 77,  164 => 76,  156 => 70,  152 => 68,  148 => 66,  144 => 64,  142 => 63,  137 => 60,  135 => 59,  124 => 53,  118 => 50,  109 => 44,  104 => 41,  90 => 29,  86 => 28,  79 => 23,  77 => 20,  74 => 19,  72 => 16,  68 => 15,  56 => 6,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -570,7 +573,7 @@ class __TwigTemplate_a381b51a3fcd681de23b940fb1e8e532 extends Template
         <footer class=\"d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0\">
             <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia</p>
             <ul class=\"nav col-md-4 justify-content-center\">
-                <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-2 text-muted\">Mentions légales</a></li>
+                <li class=\"nav-item\"><a href=\"{{ path('app_legal') }}\" class=\"nav-link px-2 text-muted\">Mentions légales</a></li>
             </ul>
             <div class=\"col-md-4 d-flex justify-content-end \">
                 <a href=\"#\" class=\"m-lg-4 me-2 text-muted\"><i class=\"bi bi-facebook\"></i></a>

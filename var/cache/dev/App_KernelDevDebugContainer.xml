@@ -434,6 +434,13 @@
         <argument type="service" id=".service_locator.QaaoWjx.App\Controller\HabitatController"/>
       </call>
     </service>
+    <service id="App\Controller\LegalController" class="App\Controller\LegalController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.QaaoWjx.App\Controller\LegalController"/>
+      </call>
+    </service>
     <service id="App\Controller\PasswordResetController" class="App\Controller\PasswordResetController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -7315,6 +7322,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HabitatController" class="App\Controller\HabitatController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HabitatController" class="App\Controller\HabitatController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HabitatController" class="App\Controller\HabitatController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LegalController" class="App\Controller\LegalController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LegalController" class="App\Controller\LegalController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\LegalController" class="App\Controller\LegalController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PasswordResetController" class="App\Controller\PasswordResetController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PasswordResetController" class="App\Controller\PasswordResetController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PasswordResetController" class="App\Controller\PasswordResetController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -9103,6 +9113,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.QaaoWjx" method="withContext"/>
     </service>
+    <service id=".service_locator.QaaoWjx.App\Controller\LegalController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\LegalController"/>
+      <argument>App\Controller\LegalController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.QaaoWjx" method="withContext"/>
+    </service>
     <service id=".service_locator.QaaoWjx.App\Controller\PasswordResetController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PasswordResetController"/>
       <argument>App\Controller\PasswordResetController</argument>
@@ -9331,6 +9347,7 @@
           <argument>App\Controller\DashboardController</argument>
           <argument>App\Controller\DefaultController</argument>
           <argument>App\Controller\HabitatController</argument>
+          <argument>App\Controller\LegalController</argument>
           <argument>App\Controller\PasswordResetController</argument>
           <argument>App\Controller\ReviewController</argument>
           <argument>App\Controller\ScheduleController</argument>
