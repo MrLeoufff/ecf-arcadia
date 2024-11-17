@@ -35,6 +35,8 @@ jobs:
           touch data/database.sqlite
       - name: Clear Symfony cache
         run: php bin/console cache:clear --env=test
+      - name: Display Symfony logs
+        run: tail -n 50 var/log/test.log
       - name: Start Symfony server
         run: php -S 0.0.0.0:8000 -t public/ > /dev/null 2>&1 &
       - name: Execute tests (Unit and Feature tests) via PHPUnit
