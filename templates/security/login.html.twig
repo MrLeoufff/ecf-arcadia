@@ -9,6 +9,8 @@
         <label for="password">Mot de passe:</label>
         <input class="input-group-text" type="password" id="password" name="_password" required>
 
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
         <button class="btn btn-primary" type="submit">Login</button>
 
         {% if error %}

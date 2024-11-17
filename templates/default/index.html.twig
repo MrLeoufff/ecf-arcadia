@@ -123,8 +123,28 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Soumettre</button>
+                <input type="hidden" name="accept_pseudo" id="accept_pseudo" value="0">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                    Soumettre
+                </button>
                 {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">Confirmer l'affichage du pseudo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        En soumettant votre avis, vous acceptez que votre pseudo soit affiché publiquement. Voulez-vous continuer ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" id="confirmButton">J'accepte</button>
+                    </div>
+                </div>
             </div>
         </div>
         {# Fin section avis #}
@@ -154,6 +174,7 @@
                     </tbody>
                 </table>
             </div>
+        {# Fin section Horaires #}
         </div>
 {% endblock %}
 {% block javascripts %}

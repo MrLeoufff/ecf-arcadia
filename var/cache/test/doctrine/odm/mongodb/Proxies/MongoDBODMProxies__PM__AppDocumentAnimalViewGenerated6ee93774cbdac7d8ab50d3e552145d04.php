@@ -7,17 +7,17 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
     /**
      * @var \Closure|null initializer responsible for generating the wrapped object
      */
-    private $initializer9cb46 = null;
+    private $initializer7e9a8 = null;
 
     /**
      * @var bool tracks initialization status - true while the object is initializing
      */
-    private $initializationTracker4da55 = false;
+    private $initializationTracker56e5d = false;
 
     /**
      * @var bool[] map of public properties of the parent class
      */
-    private static $publicPropertiesd787c = [
+    private static $publicPropertiesf3e12 = [
         
     ];
 
@@ -25,7 +25,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
      * @var array[][] visibility and default value of defined properties, indexed by
      * property name and class name
      */
-    private static $privatePropertiescf10c = [
+    private static $privatePropertiesbc658 = [
         
     ];
 
@@ -33,7 +33,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
      * @var string[][] declaring class name of defined protected properties, indexed by
      * property name
      */
-    private static $protectedProperties7a219 = [
+    private static $protectedProperties41bb8 = [
         'animalName' => 'App\\Document\\AnimalView',
         'animalId' => 'App\\Document\\AnimalView',
         'views' => 'App\\Document\\AnimalView',
@@ -49,13 +49,13 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
      *
      * @return mixed
      */
-    private function callInitializer0b5fa($methodName, array $parameters)
+    private function callInitializer2e7f2($methodName, array $parameters)
     {
-        if ($this->initializationTracker4da55 || ! $this->initializer9cb46) {
+        if ($this->initializationTracker56e5d || ! $this->initializer7e9a8) {
             return;
         }
 
-        $this->initializationTracker4da55 = true;
+        $this->initializationTracker56e5d = true;
 
         $this->animalName = null;
         $this->animalId = null;
@@ -70,8 +70,8 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
 
 
-        $result = $this->initializer9cb46->__invoke($this, $methodName, $parameters, $this->initializer9cb46, $properties);
-        $this->initializationTracker4da55 = false;
+        $result = $this->initializer7e9a8->__invoke($this, $methodName, $parameters, $this->initializer7e9a8, $properties);
+        $this->initializationTracker56e5d = false;
 
         return $result;
     }
@@ -90,21 +90,21 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
         unset($instance->animalName, $instance->animalId, $instance->views);
 
-        $instance->initializer9cb46 = $initializer;
+        $instance->initializer7e9a8 = $initializer;
 
         return $instance;
     }
 
     public function & __get($name)
     {
-        $this->initializer9cb46 && ! $this->initializationTracker4da55 && $this->callInitializer0b5fa('__get', array('name' => $name));
+        $this->initializer7e9a8 && ! $this->initializationTracker56e5d && $this->callInitializer2e7f2('__get', array('name' => $name));
 
-        if (isset(self::$publicPropertiesd787c[$name])) {
+        if (isset(self::$publicPropertiesf3e12[$name])) {
             return $this->$name;
         }
 
-        if (isset(self::$protectedProperties7a219[$name])) {
-            if ($this->initializationTracker4da55) {
+        if (isset(self::$protectedProperties41bb8[$name])) {
+            if ($this->initializationTracker56e5d) {
                 return $this->$name;
             }
 
@@ -112,7 +112,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
             $callers      = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
             $caller       = isset($callers[1]) ? $callers[1] : [];
             $object       = isset($caller['object']) ? $caller['object'] : '';
-            $expectedType = self::$protectedProperties7a219[$name];
+            $expectedType = self::$protectedProperties41bb8[$name];
 
             if ($object instanceof $expectedType) {
                 return $this->$name;
@@ -123,7 +123,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
             if ($class === $expectedType || is_subclass_of($class, $expectedType) || $class === 'ReflectionProperty') {
                 return $this->$name;
             }
-        } elseif (isset(self::$privatePropertiescf10c[$name])) {
+        } elseif (isset(self::$privatePropertiesbc658[$name])) {
             // check private property access via same class
             $callers = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
             $caller  = isset($callers[1]) ? $callers[1] : [];
@@ -131,7 +131,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
             static $accessorCache = [];
 
-            if (isset(self::$privatePropertiescf10c[$name][$class])) {
+            if (isset(self::$privatePropertiesbc658[$name][$class])) {
                 $cacheKey = $class . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -142,8 +142,8 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
                 return $accessor($this);
             }
 
-            if ($this->initializationTracker4da55 || 'ReflectionProperty' === $class) {
-                $tmpClass = key(self::$privatePropertiescf10c[$name]);
+            if ($this->initializationTracker56e5d || 'ReflectionProperty' === $class) {
+                $tmpClass = key(self::$privatePropertiesbc658[$name]);
                 $cacheKey = $tmpClass . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -188,18 +188,18 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
     public function __set($name, $value)
     {
-        $this->initializer9cb46 && $this->callInitializer0b5fa('__set', array('name' => $name, 'value' => $value));
+        $this->initializer7e9a8 && $this->callInitializer2e7f2('__set', array('name' => $name, 'value' => $value));
 
-        if (isset(self::$publicPropertiesd787c[$name])) {
+        if (isset(self::$publicPropertiesf3e12[$name])) {
             return ($this->$name = $value);
         }
 
-        if (isset(self::$protectedProperties7a219[$name])) {
+        if (isset(self::$protectedProperties41bb8[$name])) {
             // check protected property access via compatible class
             $callers      = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
             $caller       = isset($callers[1]) ? $callers[1] : [];
             $object       = isset($caller['object']) ? $caller['object'] : '';
-            $expectedType = self::$protectedProperties7a219[$name];
+            $expectedType = self::$protectedProperties41bb8[$name];
 
             if ($object instanceof $expectedType) {
                 return ($this->$name = $value);
@@ -210,7 +210,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
             if ($class === $expectedType || is_subclass_of($class, $expectedType) || $class === 'ReflectionProperty') {
                 return ($this->$name = $value);
             }
-        } elseif (isset(self::$privatePropertiescf10c[$name])) {
+        } elseif (isset(self::$privatePropertiesbc658[$name])) {
             // check private property access via same class
             $callers = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
             $caller  = isset($callers[1]) ? $callers[1] : [];
@@ -218,7 +218,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
             static $accessorCache = [];
 
-            if (isset(self::$privatePropertiescf10c[$name][$class])) {
+            if (isset(self::$privatePropertiesbc658[$name][$class])) {
                 $cacheKey = $class . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -230,7 +230,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
             }
 
             if ('ReflectionProperty' === $class) {
-                $tmpClass = key(self::$privatePropertiescf10c[$name]);
+                $tmpClass = key(self::$privatePropertiesbc658[$name]);
                 $cacheKey = $tmpClass . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -268,18 +268,18 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
     public function __isset($name)
     {
-        $this->initializer9cb46 && $this->callInitializer0b5fa('__isset', array('name' => $name));
+        $this->initializer7e9a8 && $this->callInitializer2e7f2('__isset', array('name' => $name));
 
-        if (isset(self::$publicPropertiesd787c[$name])) {
+        if (isset(self::$publicPropertiesf3e12[$name])) {
             return isset($this->$name);
         }
 
-        if (isset(self::$protectedProperties7a219[$name])) {
+        if (isset(self::$protectedProperties41bb8[$name])) {
             // check protected property access via compatible class
             $callers      = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
             $caller       = isset($callers[1]) ? $callers[1] : [];
             $object       = isset($caller['object']) ? $caller['object'] : '';
-            $expectedType = self::$protectedProperties7a219[$name];
+            $expectedType = self::$protectedProperties41bb8[$name];
 
             if ($object instanceof $expectedType) {
                 return isset($this->$name);
@@ -298,7 +298,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
             static $accessorCache = [];
 
-            if (isset(self::$privatePropertiescf10c[$name][$class])) {
+            if (isset(self::$privatePropertiesbc658[$name][$class])) {
                 $cacheKey = $class . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -310,7 +310,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
             }
 
             if ('ReflectionProperty' === $class) {
-                $tmpClass = key(self::$privatePropertiescf10c[$name]);
+                $tmpClass = key(self::$privatePropertiesbc658[$name]);
                 $cacheKey = $tmpClass . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -344,20 +344,20 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
     public function __unset($name)
     {
-        $this->initializer9cb46 && $this->callInitializer0b5fa('__unset', array('name' => $name));
+        $this->initializer7e9a8 && $this->callInitializer2e7f2('__unset', array('name' => $name));
 
-        if (isset(self::$publicPropertiesd787c[$name])) {
+        if (isset(self::$publicPropertiesf3e12[$name])) {
             unset($this->$name);
 
             return;
         }
 
-        if (isset(self::$protectedProperties7a219[$name])) {
+        if (isset(self::$protectedProperties41bb8[$name])) {
             // check protected property access via compatible class
             $callers      = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
             $caller       = isset($callers[1]) ? $callers[1] : [];
             $object       = isset($caller['object']) ? $caller['object'] : '';
-            $expectedType = self::$protectedProperties7a219[$name];
+            $expectedType = self::$protectedProperties41bb8[$name];
 
             if ($object instanceof $expectedType) {
                 unset($this->$name);
@@ -372,7 +372,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
                 return;
             }
-        } elseif (isset(self::$privatePropertiescf10c[$name])) {
+        } elseif (isset(self::$privatePropertiesbc658[$name])) {
             // check private property access via same class
             $callers = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
             $caller  = isset($callers[1]) ? $callers[1] : [];
@@ -380,7 +380,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
             static $accessorCache = [];
 
-            if (isset(self::$privatePropertiescf10c[$name][$class])) {
+            if (isset(self::$privatePropertiesbc658[$name][$class])) {
                 $cacheKey = $class . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -392,7 +392,7 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
             }
 
             if ('ReflectionProperty' === $class) {
-                $tmpClass = key(self::$privatePropertiescf10c[$name]);
+                $tmpClass = key(self::$privatePropertiesbc658[$name]);
                 $cacheKey = $tmpClass . '#' . $name;
                 $accessor = isset($accessorCache[$cacheKey])
                     ? $accessorCache[$cacheKey]
@@ -428,33 +428,33 @@ class Generated6ee93774cbdac7d8ab50d3e552145d04 extends \App\Document\AnimalView
 
     public function __clone()
     {
-        $this->initializer9cb46 && $this->callInitializer0b5fa('__clone', []);
+        $this->initializer7e9a8 && $this->callInitializer2e7f2('__clone', []);
     }
 
     public function __sleep()
     {
-        $this->initializer9cb46 && $this->callInitializer0b5fa('__sleep', []);
+        $this->initializer7e9a8 && $this->callInitializer2e7f2('__sleep', []);
 
         return array_keys((array) $this);
     }
 
     public function setProxyInitializer(?\Closure $initializer = null) : void
     {
-        $this->initializer9cb46 = $initializer;
+        $this->initializer7e9a8 = $initializer;
     }
 
     public function getProxyInitializer() : ?\Closure
     {
-        return $this->initializer9cb46;
+        return $this->initializer7e9a8;
     }
 
     public function initializeProxy() : bool
     {
-        return $this->initializer9cb46 && $this->callInitializer0b5fa('initializeProxy', []);
+        return $this->initializer7e9a8 && $this->callInitializer2e7f2('initializeProxy', []);
     }
 
     public function isProxyInitialized() : bool
     {
-        return ! $this->initializer9cb46;
+        return ! $this->initializer7e9a8;
     }
 }

@@ -14,8 +14,15 @@ a {
     font-family: 'Roboto', serif;
 }
 
-btn-primary {
-    color: #B99470;
+.btn.btn-primary {
+    background-color: #6e7e3e;
+    color: #ffffff;
+    border-color: #A9B388;
+}
+
+.btn.btn-primary:hover {
+    background-color: #8f9a68;
+    border-color: #8f9a68;
 }
 
 link,

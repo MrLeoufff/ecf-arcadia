@@ -80,18 +80,23 @@ class __TwigTemplate_63cb3b5a05f5f3245082a1db135c0ee8 extends Template
         <label for=\"password\">Mot de passe:</label>
         <input class=\"input-group-text\" type=\"password\" id=\"password\" name=\"_password\" required>
 
+        <input type=\"hidden\" name=\"_csrf_token\" value=\"";
+        // line 12
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("authenticate"), "html", null, true);
+        yield "\">
+
         <button class=\"btn btn-primary\" type=\"submit\">Login</button>
 
         ";
-        // line 14
-        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 14, $this->source); })())) {
-            // line 15
+        // line 16
+        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 16, $this->source); })())) {
+            // line 17
             yield "            <div>";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 15, $this->source); })()), "messageKey", [], "any", false, false, false, 15), CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 15, $this->source); })()), "messageData", [], "any", false, false, false, 15), "security"), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 17, $this->source); })()), "messageKey", [], "any", false, false, false, 17), CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 17, $this->source); })()), "messageData", [], "any", false, false, false, 17), "security"), "html", null, true);
             yield "</div>
         ";
         }
-        // line 17
+        // line 19
         yield "    </form>
 ";
         
@@ -124,7 +129,7 @@ class __TwigTemplate_63cb3b5a05f5f3245082a1db135c0ee8 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  95 => 17,  89 => 15,  87 => 14,  77 => 7,  72 => 5,  69 => 4,  59 => 3,  36 => 1,);
+        return array (  100 => 19,  94 => 17,  92 => 16,  85 => 12,  77 => 7,  72 => 5,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -139,6 +144,8 @@ class __TwigTemplate_63cb3b5a05f5f3245082a1db135c0ee8 extends Template
 
         <label for=\"password\">Mot de passe:</label>
         <input class=\"input-group-text\" type=\"password\" id=\"password\" name=\"_password\" required>
+
+        <input type=\"hidden\" name=\"_csrf_token\" value=\"{{ csrf_token('authenticate') }}\">
 
         <button class=\"btn btn-primary\" type=\"submit\">Login</button>
 

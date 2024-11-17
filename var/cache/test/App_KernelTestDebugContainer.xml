@@ -206,6 +206,7 @@
     <parameter key="doctrine.orm.naming_strategy.underscore.class">Doctrine\ORM\Mapping\UnderscoreNamingStrategy</parameter>
     <parameter key="doctrine.orm.quote_strategy.default.class">Doctrine\ORM\Mapping\DefaultQuoteStrategy</parameter>
     <parameter key="doctrine.orm.quote_strategy.ansi.class">Doctrine\ORM\Mapping\AnsiQuoteStrategy</parameter>
+    <parameter key="doctrine.orm.typed_field_mapper.default.class">Doctrine\ORM\Mapping\DefaultTypedFieldMapper</parameter>
     <parameter key="doctrine.orm.entity_listener_resolver.class">Doctrine\Bundle\DoctrineBundle\Mapping\ContainerEntityListenerResolver</parameter>
     <parameter key="doctrine.orm.second_level_cache.default_cache_factory.class">Doctrine\ORM\Cache\DefaultCacheFactory</parameter>
     <parameter key="doctrine.orm.second_level_cache.default_region.class">Doctrine\ORM\Cache\Region\DefaultRegion</parameter>
@@ -721,6 +722,7 @@
         <argument key="doctrine" type="service" id="doctrine" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.debug_data_holder" type="service" id="doctrine.debug_data_holder" on-invalid="ignore_uninitialized"/>
         <argument key="form.type.entity" type="service" id="form.type.entity" on-invalid="ignore_uninitialized"/>
+        <argument key="twig" type="service" id="twig" on-invalid="ignore_uninitialized"/>
         <argument key="twig.form.engine" type="service" id="twig.form.engine" on-invalid="ignore_uninitialized"/>
         <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
@@ -789,6 +791,9 @@
         </argument>
         <argument key="form.type.entity" type="collection">
           <argument>reset</argument>
+        </argument>
+        <argument key="twig" type="collection">
+          <argument>resetGlobals</argument>
         </argument>
         <argument key="twig.form.engine" type="collection">
           <argument>reset</argument>
@@ -2032,11 +2037,13 @@
         <argument key="doctrine.database_drop_command" type="service_closure" id="doctrine.database_drop_command" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.query_sql_command" type="service_closure" id="doctrine.query_sql_command" on-invalid="ignore_uninitialized"/>
         <argument key="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand" type="service_closure" id="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand" on-invalid="ignore_uninitialized"/>
+        <argument key="doctrine.dbal.idle_connection_listener" type="service_closure" id="doctrine.dbal.idle_connection_listener" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.dbal.default_schema_manager_factory" type="service_closure" id="doctrine.dbal.default_schema_manager_factory" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.dbal.legacy_schema_manager_factory" type="service_closure" id="doctrine.dbal.legacy_schema_manager_factory" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.dbal.default_connection.configuration" type="service_closure" id="doctrine.dbal.default_connection.configuration" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.dbal.default_connection.event_manager" type="service_closure" id="doctrine.dbal.default_connection.event_manager" on-invalid="ignore_uninitialized"/>
         <argument key="Doctrine\Bundle\DoctrineBundle\Dbal\ManagerRegistryAwareConnectionProvider" type="service_closure" id="Doctrine\Bundle\DoctrineBundle\Dbal\ManagerRegistryAwareConnectionProvider" on-invalid="ignore_uninitialized"/>
+        <argument key="doctrine.dbal.connection_expiries" type="service_closure" id="doctrine.dbal.connection_expiries" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.debug_data_holder" type="service_closure" id="doctrine.debug_data_holder" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.orm.proxy_cache_warmer" type="service_closure" id="doctrine.orm.proxy_cache_warmer" on-invalid="ignore_uninitialized"/>
         <argument key="form.type_guesser.doctrine" type="service_closure" id="form.type_guesser.doctrine" on-invalid="ignore_uninitialized"/>
@@ -2054,6 +2061,7 @@
         <argument key="doctrine.orm.naming_strategy.underscore_number_aware" type="service_closure" id="doctrine.orm.naming_strategy.underscore_number_aware" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.orm.quote_strategy.default" type="service_closure" id="doctrine.orm.quote_strategy.default" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.orm.quote_strategy.ansi" type="service_closure" id="doctrine.orm.quote_strategy.ansi" on-invalid="ignore_uninitialized"/>
+        <argument key="doctrine.orm.typed_field_mapper.default" type="service_closure" id="doctrine.orm.typed_field_mapper.default" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.ulid_generator" type="service_closure" id="doctrine.ulid_generator" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.uuid_generator" type="service_closure" id="doctrine.uuid_generator" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.orm.command.entity_manager_provider" type="service_closure" id="doctrine.orm.command.entity_manager_provider" on-invalid="ignore_uninitialized"/>
@@ -2303,6 +2311,7 @@
         <argument key="debug.security.event_dispatcher.main" type="service_closure" id="debug.security.event_dispatcher.main" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.dbal.logging_middleware.default" type="service_closure" id="doctrine.dbal.logging_middleware.default" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.dbal.debug_middleware.default" type="service_closure" id="doctrine.dbal.debug_middleware.default" on-invalid="ignore_uninitialized"/>
+        <argument key="doctrine.dbal.idle_connection_middleware.default" type="service_closure" id="doctrine.dbal.idle_connection_middleware.default" on-invalid="ignore_uninitialized"/>
         <argument key="security.listener.csrf_protection" type="service_closure" id="security.listener.csrf_protection" on-invalid="ignore_uninitialized"/>
         <argument key="controller.is_csrf_token_valid_attribute_listener" type="service_closure" id="controller.is_csrf_token_valid_attribute_listener" on-invalid="ignore_uninitialized"/>
         <argument key="security.logout.listener.csrf_token_clearing" type="service_closure" id="security.logout.listener.csrf_token_clearing" on-invalid="ignore_uninitialized"/>
@@ -3951,6 +3960,14 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="doctrine.dbal.idle_connection_listener"/>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>192</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.view</argument>
         <argument type="collection">
           <argument type="service_closure" id="controller.template_attribute_listener"/>
@@ -5467,6 +5484,12 @@
       <argument type="service" id="doctrine"/>
       <argument type="service" id="profiler"/>
     </service>
+    <service id="doctrine.dbal.idle_connection_listener" class="Symfony\Bridge\Doctrine\Middleware\IdleConnection\Listener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="doctrine.dbal.connection_expiries"/>
+      <argument type="service" id="service_container"/>
+    </service>
     <service id="doctrine.dbal.default_schema_manager_factory" class="Doctrine\DBAL\Schema\DefaultSchemaManagerFactory"/>
     <service id="doctrine.dbal.legacy_schema_manager_factory" class="Doctrine\DBAL\Schema\LegacySchemaManagerFactory"/>
     <service id="doctrine.dbal.default_connection.configuration" class="Doctrine\DBAL\Configuration">
@@ -5475,20 +5498,9 @@
       </call>
       <call method="setMiddlewares">
         <argument type="collection">
-          <argument type="service">
-            <service class="Doctrine\DBAL\Logging\Middleware">
-              <argument type="service" id="monolog.logger.doctrine"/>
-            </service>
-          </argument>
-          <argument type="service">
-            <service class="Doctrine\Bundle\DoctrineBundle\Middleware\DebugMiddleware">
-              <argument type="service" id="doctrine.debug_data_holder"/>
-              <argument type="service" id="debug.stopwatch" on-invalid="null"/>
-              <call method="setConnectionName">
-                <argument>default</argument>
-              </call>
-            </service>
-          </argument>
+          <argument type="service" id="doctrine.dbal.logging_middleware.default"/>
+          <argument type="service" id="doctrine.dbal.debug_middleware.default"/>
+          <argument type="service" id="doctrine.dbal.idle_connection_middleware.default"/>
         </argument>
       </call>
     </service>
@@ -5545,6 +5557,7 @@
         <argument key="driver">pdo_mysql</argument>
         <argument key="use_savepoints">true</argument>
         <argument key="dbname_suffix">_test%env(default::TEST_TOKEN)%</argument>
+        <argument key="idle_connection_ttl">600</argument>
         <argument key="host">localhost</argument>
         <argument key="port">null</argument>
         <argument key="user">root</argument>
@@ -5572,6 +5585,7 @@
         </service>
       </argument>
     </service>
+    <service id="doctrine.dbal.connection_expiries" class="ArrayObject"/>
     <service id="doctrine.dbal.logging_middleware" class="Doctrine\DBAL\Logging\Middleware" abstract="true">
       <tag name="monolog.logger" channel="doctrine"/>
       <tag name="doctrine.middleware" connection="default" priority="10"/>
@@ -5587,6 +5601,13 @@
       <tag name="doctrine.middleware" connection="default" priority="10"/>
       <argument type="service" id="doctrine.debug_data_holder"/>
       <argument type="service" id="debug.stopwatch" on-invalid="null"/>
+    </service>
+    <service id="doctrine.dbal.idle_connection_middleware" class="Doctrine\Bundle\DoctrineBundle\Middleware\IdleConnectionMiddleware" abstract="true">
+      <tag name="doctrine.middleware" connection="default" priority="10"/>
+      <argument type="service" id="doctrine.dbal.connection_expiries"/>
+      <argument type="collection">
+        <argument key="default">600</argument>
+      </argument>
     </service>
     <service id=".1_ServiceLocator~GB2Ci18" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <argument type="collection"/>
@@ -5649,6 +5670,7 @@
     </service>
     <service id="doctrine.orm.quote_strategy.default" class="Doctrine\ORM\Mapping\DefaultQuoteStrategy"/>
     <service id="doctrine.orm.quote_strategy.ansi" class="Doctrine\ORM\Mapping\AnsiQuoteStrategy"/>
+    <service id="doctrine.orm.typed_field_mapper.default" class="Doctrine\ORM\Mapping\DefaultTypedFieldMapper"/>
     <service id="doctrine.ulid_generator" class="Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator">
       <tag name="doctrine.id_generator"/>
       <argument>null</argument>
@@ -5818,11 +5840,17 @@
       <call method="setQuoteStrategy">
         <argument type="service" id="doctrine.orm.quote_strategy.default"/>
       </call>
+      <call method="setTypedFieldMapper">
+        <argument type="service" id="doctrine.orm.typed_field_mapper.default"/>
+      </call>
       <call method="setEntityListenerResolver">
         <argument type="service" id="doctrine.orm.default_entity_listener_resolver"/>
       </call>
       <call method="setLazyGhostObjectEnabled">
         <argument>true</argument>
+      </call>
+      <call method="setIdentityGenerationPreferences">
+        <argument type="collection"/>
       </call>
       <call method="setRepositoryFactory">
         <argument type="service" id="doctrine.orm.container_repository_factory"/>
@@ -6078,6 +6106,7 @@
       <tag name="container.preload" class="Twig\ExtensionSet"/>
       <tag name="container.preload" class="Twig\Template"/>
       <tag name="container.preload" class="Twig\TemplateWrapper"/>
+      <tag name="kernel.reset" method="resetGlobals"/>
       <argument type="service" id="twig.loader.native_filesystem"/>
       <argument type="collection">
         <argument key="strict_variables">true</argument>
@@ -6255,6 +6284,14 @@
       <call method="addPath">
         <argument>C:\wamp64\www\studi-ecf-arcadia\vendor\symfony\web-profiler-bundle/Resources/views</argument>
         <argument>!WebProfiler</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\studi-ecf-arcadia\vendor\symfony\ux-turbo/templates</argument>
+        <argument>Turbo</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\studi-ecf-arcadia\vendor\symfony\ux-turbo/templates</argument>
+        <argument>!Turbo</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp64\www\studi-ecf-arcadia\vendor\symfony\security-bundle/Resources/views</argument>
@@ -7246,12 +7283,12 @@
       <argument type="collection">
         <argument key="login_path">app_login</argument>
         <argument key="check_path">app_login</argument>
+        <argument key="enable_csrf">true</argument>
+        <argument key="csrf_token_id">authenticate</argument>
         <argument key="use_forward">false</argument>
         <argument key="username_parameter">_username</argument>
         <argument key="password_parameter">_password</argument>
         <argument key="csrf_parameter">_csrf_token</argument>
-        <argument key="csrf_token_id">authenticate</argument>
-        <argument key="enable_csrf">false</argument>
         <argument key="post_only">true</argument>
         <argument key="form_only">false</argument>
       </argument>
@@ -7662,6 +7699,9 @@
       <call method="setAutoGeneratePersistentCollectionClasses">
         <argument>0</argument>
       </call>
+      <call method="setUseTransactionalFlush">
+        <argument>false</argument>
+      </call>
       <call method="setRepositoryFactory">
         <argument type="service" id="doctrine_mongodb.odm.container_repository_factory"/>
       </call>
@@ -7676,7 +7716,7 @@
         </argument>
         <argument key="driver" type="collection">
           <argument key="name">symfony-mongodb</argument>
-          <argument key="version">2.8.0</argument>
+          <argument key="version">2.9.0</argument>
         </argument>
       </argument>
     </service>
@@ -8867,11 +8907,21 @@
       <argument type="service" id=".service_locator.BxSdgVt"/>
     </service>
     <service id="doctrine.dbal.logging_middleware.default" class="Doctrine\DBAL\Logging\Middleware">
+      <tag name="monolog.logger" channel="doctrine"/>
       <argument type="service" id="monolog.logger.doctrine"/>
     </service>
     <service id="doctrine.dbal.debug_middleware.default" class="Doctrine\Bundle\DoctrineBundle\Middleware\DebugMiddleware">
       <argument type="service" id="doctrine.debug_data_holder"/>
       <argument type="service" id="debug.stopwatch" on-invalid="null"/>
+      <call method="setConnectionName">
+        <argument>default</argument>
+      </call>
+    </service>
+    <service id="doctrine.dbal.idle_connection_middleware.default" class="Doctrine\Bundle\DoctrineBundle\Middleware\IdleConnectionMiddleware">
+      <argument type="service" id="doctrine.dbal.connection_expiries"/>
+      <argument type="collection">
+        <argument key="default">600</argument>
+      </argument>
       <call method="setConnectionName">
         <argument>default</argument>
       </call>

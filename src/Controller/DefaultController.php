@@ -39,21 +39,26 @@ class DefaultController extends AbstractController
         $animals = $animalRepository->findAll();
 
 
-
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()){
+        $acceptPseudo = $request->request->get('accept_pseudo') === '1';
+
+        if (!$acceptPseudo) {
+            $this->addFlash('error', 'Vous devez accepter que votre pseudo soit affiché pour soumettre un avis.');
+        } elseif ($form->isValid()) {
             $em->persist($review);
             $em->flush();
 
             $this->addFlash('success', 'Votre avis a été soumis et est en attente de validation.');
 
             return $this->redirectToRoute('app_home');
-        } elseif ($form->isSubmitted()) {
-            $this->addFlash('error', 'Erreur lors de la soumission de votre avis.');
+        } else {
+            $this->addFlash('error', 'Erreur lors de la soumission de votre avis');
         }
+    }
 
         return $this->render('default/index.html.twig', [
             'reviews' => $avisAAfficher,

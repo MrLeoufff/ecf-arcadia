@@ -403,7 +403,9 @@ class __TwigTemplate_af2ff2f3ef1bbb2f714cf4f73fb06a04 extends Template
         yield "                    </tbody>
                 </table>
             </div>
-        </div>
+        ";
+        // line 158
+        yield "        </div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -414,7 +416,7 @@ class __TwigTemplate_af2ff2f3ef1bbb2f714cf4f73fb06a04 extends Template
         return; yield '';
     }
 
-    // line 159
+    // line 160
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -424,12 +426,12 @@ class __TwigTemplate_af2ff2f3ef1bbb2f714cf4f73fb06a04 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 160
+        // line 161
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
     <script src=\"";
-        // line 161
+        // line 162
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/stars_reviews.js"), "html", null, true);
         yield "?\$";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate("now", "U"), "html", null, true);
@@ -466,7 +468,7 @@ class __TwigTemplate_af2ff2f3ef1bbb2f714cf4f73fb06a04 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  433 => 161,  428 => 160,  418 => 159,  403 => 154,  396 => 152,  391 => 150,  386 => 149,  381 => 146,  379 => 145,  375 => 144,  372 => 143,  368 => 142,  356 => 132,  354 => 131,  348 => 127,  335 => 117,  328 => 113,  324 => 112,  318 => 109,  314 => 108,  309 => 106,  306 => 105,  296 => 101,  292 => 100,  287 => 97,  281 => 96,  277 => 94,  273 => 92,  270 => 91,  266 => 90,  261 => 88,  257 => 86,  253 => 85,  249 => 83,  247 => 82,  242 => 78,  234 => 75,  223 => 73,  219 => 72,  214 => 70,  211 => 69,  207 => 68,  203 => 66,  201 => 65,  198 => 63,  190 => 60,  179 => 58,  175 => 57,  170 => 55,  167 => 54,  163 => 53,  159 => 51,  157 => 50,  154 => 48,  146 => 45,  135 => 43,  131 => 42,  126 => 40,  123 => 39,  119 => 38,  115 => 36,  104 => 27,  98 => 24,  92 => 21,  86 => 17,  84 => 16,  76 => 9,  70 => 4,  60 => 3,  37 => 1,);
+        return array (  435 => 162,  430 => 161,  420 => 160,  408 => 158,  403 => 154,  396 => 152,  391 => 150,  386 => 149,  381 => 146,  379 => 145,  375 => 144,  372 => 143,  368 => 142,  356 => 132,  354 => 131,  348 => 127,  335 => 117,  328 => 113,  324 => 112,  318 => 109,  314 => 108,  309 => 106,  306 => 105,  296 => 101,  292 => 100,  287 => 97,  281 => 96,  277 => 94,  273 => 92,  270 => 91,  266 => 90,  261 => 88,  257 => 86,  253 => 85,  249 => 83,  247 => 82,  242 => 78,  234 => 75,  223 => 73,  219 => 72,  214 => 70,  211 => 69,  207 => 68,  203 => 66,  201 => 65,  198 => 63,  190 => 60,  179 => 58,  175 => 57,  170 => 55,  167 => 54,  163 => 53,  159 => 51,  157 => 50,  154 => 48,  146 => 45,  135 => 43,  131 => 42,  126 => 40,  123 => 39,  119 => 38,  115 => 36,  104 => 27,  98 => 24,  92 => 21,  86 => 17,  84 => 16,  76 => 9,  70 => 4,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -627,6 +629,7 @@ class __TwigTemplate_af2ff2f3ef1bbb2f714cf4f73fb06a04 extends Template
                     </tbody>
                 </table>
             </div>
+        {# Fin section Horaires #}
         </div>
 {% endblock %}
 {% block javascripts %}

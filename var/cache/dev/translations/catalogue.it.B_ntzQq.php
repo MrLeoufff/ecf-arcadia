@@ -169,7 +169,7 @@ $catalogue = new MessageCatalogue('it', array (
     'Too many failed login attempts, please try again later.' => 'Troppi tentativi di login falliti, riprova tra un po\'.',
     'Invalid or expired login link.' => 'Link di login scaduto o non valido.',
     'Too many failed login attempts, please try again in %minutes% minute.' => 'Troppi tentativi di login falliti, riprova tra %minutes% minuto.',
-    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Troppi tentativi di accesso falliti, riprova tra %minutes% minuti.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Troppi tentativi di login falliti, riprova tra %minutes% minuti.',
   ),
 ));
 
@@ -288,6 +288,10 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'This URL is missing a top-level domain.' => 'Cette URL doit contenir un domaine de premier niveau.',
     'This value is too short. It should contain at least one word.|This value is too short. It should contain at least {{ min }} words.' => 'Cette valeur est trop courte. Elle doit contenir au moins un mot.|Cette valeur est trop courte. Elle doit contenir au moins {{ min }} mots.',
     'This value is too long. It should contain one word.|This value is too long. It should contain {{ max }} words or less.' => 'Cette valeur est trop longue. Elle doit contenir au maximum un mot.|Cette valeur est trop longue. Elle doit contenir au maximum {{ max }} mots.',
+    'This value does not represent a valid week in the ISO 8601 format.' => 'Cette valeur ne représente pas une semaine valide au format ISO 8601.',
+    'This value is not a valid week.' => 'Cette valeur n\'est pas une semaine valide.',
+    'This value should not be before week "{{ min }}".' => 'Cette valeur ne doit pas être antérieure à la semaine "{{ min }}".',
+    'This value should not be after week "{{ max }}".' => 'Cette valeur ne doit pas être postérieure à la semaine "{{ max }}".',
     'This form should not contain extra fields.' => 'Ce formulaire ne doit pas contenir de champs supplémentaires.',
     'The uploaded file was too large. Please try to upload a smaller file.' => 'Le fichier téléchargé est trop volumineux. Merci d\'essayer d\'envoyer un fichier plus petit.',
     'The CSRF token is invalid. Please try to resubmit the form.' => 'Le jeton CSRF est invalide. Veuillez renvoyer le formulaire.',

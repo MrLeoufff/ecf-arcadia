@@ -115,6 +115,8 @@ $catalogue = new MessageCatalogue('nl', array (
     'The detected character encoding is invalid ({{ detected }}). Allowed encodings are {{ encodings }}.' => 'De gedetecteerde karaktercodering is ongeldig ({{ detected }}). De toegestane coderingen zijn {{ encodings }}.',
     'This value is not a valid MAC address.' => 'Deze waarde is geen geldig MAC-adres.',
     'This URL is missing a top-level domain.' => 'Deze URL mist een top-level domein.',
+    'This value is too short. It should contain at least one word.|This value is too short. It should contain at least {{ min }} words.' => 'Deze waarde is te kort. Het moet ten minste één woord bevatten.|Deze waarde is te kort. Het moet ten minste {{ min }} woorden bevatten.',
+    'This value is too long. It should contain one word.|This value is too long. It should contain {{ max }} words or less.' => 'Deze waarde is te lang. Het moet één woord zijn.|Deze waarde is te lang. Het mag maximaal {{ max }} woorden bevatten.',
     'This form should not contain extra fields.' => 'Dit formulier mag geen extra velden bevatten.',
     'The uploaded file was too large. Please try to upload a smaller file.' => 'Het geüploade bestand is te groot. Probeer een kleiner bestand te uploaden.',
     'The CSRF token is invalid. Please try to resubmit the form.' => 'De CSRF-token is ongeldig. Probeer het formulier opnieuw te versturen.',
@@ -169,7 +171,7 @@ $catalogue = new MessageCatalogue('nl', array (
     'Too many failed login attempts, please try again later.' => 'Te veel onjuiste inlogpogingen, probeer het later nogmaals.',
     'Invalid or expired login link.' => 'Ongeldige of verlopen inloglink.',
     'Too many failed login attempts, please try again in %minutes% minute.' => 'Te veel onjuiste inlogpogingen, probeer het opnieuw over %minutes% minuut.',
-    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Te veel mislukte inlogpogingen, probeer het over %minutes% minuten opnieuw.',
+    'Too many failed login attempts, please try again in %minutes% minutes.' => 'Te veel onjuiste inlogpogingen, probeer het opnieuw over %minutes% minuten.',
   ),
 ));
 
@@ -288,6 +290,10 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'This URL is missing a top-level domain.' => 'Cette URL doit contenir un domaine de premier niveau.',
     'This value is too short. It should contain at least one word.|This value is too short. It should contain at least {{ min }} words.' => 'Cette valeur est trop courte. Elle doit contenir au moins un mot.|Cette valeur est trop courte. Elle doit contenir au moins {{ min }} mots.',
     'This value is too long. It should contain one word.|This value is too long. It should contain {{ max }} words or less.' => 'Cette valeur est trop longue. Elle doit contenir au maximum un mot.|Cette valeur est trop longue. Elle doit contenir au maximum {{ max }} mots.',
+    'This value does not represent a valid week in the ISO 8601 format.' => 'Cette valeur ne représente pas une semaine valide au format ISO 8601.',
+    'This value is not a valid week.' => 'Cette valeur n\'est pas une semaine valide.',
+    'This value should not be before week "{{ min }}".' => 'Cette valeur ne doit pas être antérieure à la semaine "{{ min }}".',
+    'This value should not be after week "{{ max }}".' => 'Cette valeur ne doit pas être postérieure à la semaine "{{ max }}".',
     'This form should not contain extra fields.' => 'Ce formulaire ne doit pas contenir de champs supplémentaires.',
     'The uploaded file was too large. Please try to upload a smaller file.' => 'Le fichier téléchargé est trop volumineux. Merci d\'essayer d\'envoyer un fichier plus petit.',
     'The CSRF token is invalid. Please try to resubmit the form.' => 'Le jeton CSRF est invalide. Veuillez renvoyer le formulaire.',

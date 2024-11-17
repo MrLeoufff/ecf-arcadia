@@ -7,9 +7,7 @@ services:
       - "9000:80"
     environment:
       APP_ENV: dev
-      # MONGODB_URI: mongodb://mongo:27017/symfony
       DATABASE_URL: mysql://root:toto@mysql:3306/arcadia_db
-      # MAILER_DSN: mailjet+api://06ffe4a76df69ee729705458a67250c2:54c397094fd53dbcd9fe0900e99f5a21@api.mailjet:com
     volumes:
       - .:/var/www/html
     depends_on:
@@ -31,8 +29,6 @@ services:
     ports:
       - "8082:3306"
     volumes:
-      # - ./docs/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
-      # - ./docs/02_insert.sql:/docker-entrypoint-initdb.d/02_insert.sql
       - ./mysql-dump/dump.sql:/docker-entrypoint-initdb.d/dump.sql
       - ./mysql-dump:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql

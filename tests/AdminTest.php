@@ -11,9 +11,6 @@ class AdminTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/admin/user');
 
-        // Vérifier si la réponse est une redirection
         $this->assertTrue($client->getResponse()->isRedirect());
-
     }
 }
-
