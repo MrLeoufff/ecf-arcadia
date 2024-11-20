@@ -12,6 +12,7 @@ use App\Repository\ReviewRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\VeterinaryReportRepository;
+use App\Service\NoXSS;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class DefaultController extends AbstractController
 {
+    private NoXSS $noXSS;
+
+    public function __construct(NoXSS $noXSS)
+    {
+        $this->noXSS = $noXSS;
+    }
+
     #[Route('/', name: 'app_home')]
     public function index(
         ReviewRepository $reviewRepository,
@@ -29,36 +37,40 @@ class DefaultController extends AbstractController
         EntityManagerInterface $em,
         HabitatRepository $habitatRepository,
         AnimalRepository $animalRepository,
-    ): Response
-    {
+    ): Response {
         $avisAAfficher = $reviewRepository->findBy(['valid' => true]);
+        foreach ($avisAAfficher as $review) {
+            $review->setComment($this->noXSS->nettoyage($review->getComment()));
+            $review->setPseudo($this->noXSS->nettoyage($review->getPseudo()));
+        }
         $schedules = $scheduleRepository->findAll();
         $services = $serviceRepository->findAll();
         $user = $this->getUser();
         $habitats = $habitatRepository->findAll();
         $animals = $animalRepository->findAll();
 
-
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()){
-        $acceptPseudo = $request->request->get('accept_pseudo') === '1';
+        if ($form->isSubmitted()) {
+            $acceptPseudo = $request->request->get('accept_pseudo') === '1';
 
-        if (!$acceptPseudo) {
-            $this->addFlash('error', 'Vous devez accepter que votre pseudo soit affiché pour soumettre un avis.');
-        } elseif ($form->isValid()) {
-            $em->persist($review);
-            $em->flush();
+            if (!$acceptPseudo) {
+                $this->addFlash('error', 'Vous devez accepter que votre pseudo soit affiché pour soumettre un avis.');
+            } elseif ($form->isValid()) {
+                $review->setComment($this->noXSS->nettoyage($review->getComment()));
+                $review->setPseudo($this->noXSS->nettoyage($review->getPseudo()));
+                $em->persist($review);
+                $em->flush();
 
-            $this->addFlash('success', 'Votre avis a été soumis et est en attente de validation.');
+                $this->addFlash('success', 'Votre avis a été soumis et est en attente de validation.');
 
-            return $this->redirectToRoute('app_home');
-        } else {
-            $this->addFlash('error', 'Erreur lors de la soumission de votre avis');
+                return $this->redirectToRoute('app_home');
+            } else {
+                $this->addFlash('error', 'Erreur lors de la soumission de votre avis');
+            }
         }
-    }
 
         return $this->render('default/index.html.twig', [
             'reviews' => $avisAAfficher,
@@ -67,7 +79,7 @@ class DefaultController extends AbstractController
             'user' => $user,
             'services' => $services,
             'habitats' => $habitats,
-            'animals' => $animals
+            'animals' => $animals,
         ]);
     }
 
@@ -78,8 +90,7 @@ class DefaultController extends AbstractController
         VeterinaryReportRepository $veterinaryReportRepository,
         Request $request,
         EntityManagerInterface $entityManager
-    ): Response
-    {
+    ): Response {
         $habitats = $habitatRepository->findAll();
         $animals = $animalRepository->findAll();
         $veterinaryReports = $veterinaryReportRepository->findAll();
@@ -107,7 +118,7 @@ class DefaultController extends AbstractController
             'habitats' => $habitats,
             'animals' => $animals,
             'veterinaryReports' => $veterinaryReports,
-            'formViews' => $formViews
+            'formViews' => $formViews,
         ]);
     }
 
@@ -116,10 +127,8 @@ class DefaultController extends AbstractController
         Habitat $habitat,
         AnimalRepository $animalRepository,
         VeterinaryReportRepository $veterinaryReportRepository,
-    ): Response
-    {
+    ): Response {
         $animals = $animalRepository->findBy(['habitat' => $habitat]);
-
 
         $animalData = [];
         foreach ($animals as $animal) {
@@ -148,7 +157,7 @@ class DefaultController extends AbstractController
         return $this->json([
             'habitat_name' => $habitat->getName(),
             'habitat_detail' => $habitat->getDescription(),
-            'animals' =>$animalData,
+            'animals' => $animalData,
         ]);
     }
 
@@ -158,7 +167,7 @@ class DefaultController extends AbstractController
         $service = $serviceRepository->findAll();
 
         return $this->render('default/service.html.twig', [
-            'service' => $service
+            'service' => $service,
         ]);
     }
 }

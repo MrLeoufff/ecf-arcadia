@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
+use App\Service\NoXSS;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,17 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReviewController extends AbstractController
 {
+    private NoXSS $noXSS;
+
+    public function __construct(NoXSS $noXSS)
+    {
+        $this->noXSS = $noXSS;
+    }
+
     #[Route('/review/new', name: 'app_review_new', methods: ['GET', 'POST'])]
-    public function new(
+    public function new (
         Request $request,
         EntityManagerInterface $entityManager
-    ): Response
-    {
+    ): Response {
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $review->setPseudo($this->noXSS->nettoyage($review->getPseudo()));
+            $review->setComment($this->noXSS->nettoyage($review->getComment()));
+
             $entityManager->persist($review);
             $entityManager->flush();
 
@@ -44,6 +54,11 @@ class ReviewController extends AbstractController
     {
         $avisAAfficher = $reviewRepository->findAll();
 
+        foreach ($avisAAfficher as $review) {
+            $review->setComment($this->noXSS->nettoyage($review->getComment()));
+            $review->setPseudo($this->noXSS->nettoyage($review->getPseudo()));
+        }
+
         return $this->render('review/index.html.twig', [
             'reviews' => $avisAAfficher,
         ]);
@@ -54,9 +69,8 @@ class ReviewController extends AbstractController
         Request $request,
         Review $review,
         EntityManagerInterface $entityManager
-    ): Response
-    {
-        if ($this->isCsrfTokenValid('approve'.$review->getId(), $request->request->get('_token'))) {
+    ): Response {
+        if ($this->isCsrfTokenValid('approve' . $review->getId(), $request->request->get('_token'))) {
             $review->setValid(true);
             $entityManager->flush();
 
@@ -73,9 +87,8 @@ class ReviewController extends AbstractController
         Request $request,
         Review $review,
         EntityManagerInterface $entityManager
-    ): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
+    ): Response {
+        if ($this->isCsrfTokenValid('delete' . $review->getId(), $request->request->get('_token'))) {
             $entityManager->remove($review);
             $entityManager->flush();
 
