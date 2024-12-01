@@ -22,9 +22,10 @@ jobs:
 
       - name: Deploy application
         run: |
-          sshpass -e ssh -o strictHostKeyChecking=no  ${{ secrets.SSH_USER}}@${{ secrets.SSH_IP}} "
+          sshpass -e ssh -o strictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP }} "
           cd htdocs &&
           cd reneleliard.online/ &&
+          git config --global --add safe.directory /home/${{ secrets.SSH_USER }}/htdocs/reneleliard.online &&
           git pull https://github.com/MrLeoufff/ecf-arcadia.git &&
           composer install
           "
