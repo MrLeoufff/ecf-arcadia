@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         L.latLng(userLocation.lat, userLocation.lon),
                         L.latLng(lieuPrecis.lat, lieuPrecis.lon),
                     ],
+                    router: L.Routing.osrmv1({
+                        language: 'fr', // Langue des instructions
+                        profile: 'car', // Mode de transport (voiture)
+                    }),
+                    showAlternatives: false,
                 }).addTo(map);
 
                 setTimeout(function () {

@@ -100,7 +100,7 @@ class __TwigTemplate_bfe0e8c6ea3cdc8293c3b72a6e9ae0ce extends Template
                 <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
                     <ul class=\"navbar-nav mx-auto mb-2 mb-lg-0\">
                         <li class=\"nav-item\">
-                            <a class=\"nav-link active clickable\" aria-current=\"page\" onclick=\"window.location.replace('/')\">Accueil</a>
+                            <a class=\"nav-link clickable\" aria-current=\"page\" onclick=\"window.location.replace('/')\">Accueil</a>
                         </li>
                         <li class=\"nav-item ms-lg-5\">
                             ";
@@ -496,7 +496,7 @@ class __TwigTemplate_bfe0e8c6ea3cdc8293c3b72a6e9ae0ce extends Template
                 <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
                     <ul class=\"navbar-nav mx-auto mb-2 mb-lg-0\">
                         <li class=\"nav-item\">
-                            <a class=\"nav-link active clickable\" aria-current=\"page\" onclick=\"window.location.replace('/')\">Accueil</a>
+                            <a class=\"nav-link clickable\" aria-current=\"page\" onclick=\"window.location.replace('/')\">Accueil</a>
                         </li>
                         <li class=\"nav-item ms-lg-5\">
                             {# Quick Win #}

@@ -74,365 +74,368 @@ class __TwigTemplate_c7888f4eeb0df24bd3482339a32cdc8e extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        yield "    <div class=\"row mb-4 m-4\">
-        <div class=\"col-lg-8\">
-            <div class=\"card mb-3 rounded-4 cadre\">
-                <div class=\"row g-0\">
-                    ";
-        // line 9
-        yield "                    <div class=\"col-lg-6 rounded-4\">
-                        <div class=\"card-body\">
-                            <h5 class=\"card-title\">Présentation</h5>
-                            <p class=\"card-text\">Arcadia est un zoo situé en France près de la forêt de Brocéliande, en Bretagne depuis 1990. Ils possèdent tout un panel d'animaux.</p>
-                        </div>
-                    </div>
-                    ";
-        // line 16
-        yield "                    ";
+        yield "\t<div class=\"row mb-4 m-4\">
+\t\t<div class=\"col-lg-8\">
+\t\t\t<div class=\"card mb-3 rounded-4 cadre\">
+\t\t\t\t<div
+\t\t\t\t\tclass=\"row g-0\">
+\t\t\t\t\t";
+        // line 10
+        yield "\t\t\t\t\t<div class=\"col-lg-6 rounded-4\">
+\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t<h5 class=\"card-title\">Présentation</h5>
+\t\t\t\t\t\t\t<p class=\"card-text\">Arcadia est un zoo situé en France près de la forêt de Brocéliande, en Bretagne depuis 1990. Ils possèdent tout un panel d'animaux.</p>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t\t";
         // line 17
-        yield "                    <div class=\"col-lg-6\">
-                        <div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-bs-ride=\"carousel\">
-                            <div class=\"carousel-inner rounded-4\">
-                                <div class=\"carousel-item active\">
-                                    <img src=\"";
-        // line 21
+        yield "\t\t\t\t\t";
+        // line 18
+        yield "\t\t\t\t\t<div class=\"col-lg-6\">
+\t\t\t\t\t\t<div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-bs-ride=\"carousel\">
+\t\t\t\t\t\t\t<div class=\"carousel-inner rounded-4\">
+\t\t\t\t\t\t\t\t<div class=\"carousel-item active\">
+\t\t\t\t\t\t\t\t\t<img src=\"";
+        // line 22
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("dino/IMG-20240714-WA0010.jpg"), "html", null, true);
         yield "\" class=\"d-block w-100\" alt=\"...\">
-                                </div>
-                                <div class=\"carousel-item\">
-                                    <img src=\"";
-        // line 24
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t<div class=\"carousel-item\">
+\t\t\t\t\t\t\t\t\t<img src=\"";
+        // line 25
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("dino/IMG_20240713_112328.jpg"), "html", null, true);
         yield "\" class=\"d-block w-100\" alt=\"...\">
-                                </div>
-                                <div class=\"carousel-item\">
-                                    <img src=\"";
-        // line 27
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t<div class=\"carousel-item\">
+\t\t\t\t\t\t\t\t\t<img src=\"";
+        // line 28
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("dino/IMG_20240713_113033.jpg"), "html", null, true);
         yield "\" class=\"d-block w-100\" alt=\"...\">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=\"row row-cols-1 row-cols-lg-4 gap-lg-3 gap-xxl-4\">
-                ";
-        // line 36
-        yield "                <div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
-                    <h2 class=\"text-center\">Services</h2>
-                    ";
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div
+\t\t\t\tclass=\"row row-cols-1 row-cols-lg-4 gap-lg-3 gap-xxl-4\">
+\t\t\t\t";
         // line 38
+        yield "\t\t\t\t<div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
+\t\t\t\t\t<h2 class=\"text-center\">Services</h2>
+\t\t\t\t\t";
+        // line 40
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["services"]) || array_key_exists("services", $context) ? $context["services"] : (function () { throw new RuntimeError('Variable "services" does not exist.', 38, $this->source); })()), 0, 3));
+        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["services"]) || array_key_exists("services", $context) ? $context["services"] : (function () { throw new RuntimeError('Variable "services" does not exist.', 40, $this->source); })()), 0, 3));
         foreach ($context['_seq'] as $context["_key"] => $context["service"]) {
-            // line 39
-            yield "                    <div class=\"card-header text-center form-control mb-3 avis\">
-                        <h3>";
-            // line 40
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["service"], "name", [], "any", false, false, false, 40), "html", null, true);
-            yield "</h3>
-                        <div class=\"card-body\">
-                            ";
+            // line 41
+            yield "\t\t\t\t\t\t<div class=\"card-header text-center form-control mb-3 avis\">
+\t\t\t\t\t\t\t<h3>";
             // line 42
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["service"], "name", [], "any", false, false, false, 42), "html", null, true);
+            yield "</h3>
+\t\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t\t";
+            // line 44
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["service"], "image", [], "any", false, false, false, 42));
+            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["service"], "image", [], "any", false, false, false, 44));
             foreach ($context['_seq'] as $context["_key"] => $context["image"]) {
-                // line 43
-                yield "                                <img class=\"img-fluid rounded-3\" src=\"";
+                // line 45
+                yield "\t\t\t\t\t\t\t\t\t<img class=\"img-fluid rounded-3\" src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images/" . $context["image"])), "html", null, true);
                 yield "\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["service"], "name", [], "any", false, false, false, 43), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["service"], "name", [], "any", false, false, false, 45), "html", null, true);
                 yield "\">
-                            ";
+\t\t\t\t\t\t\t\t";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['image'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 45
-            yield "                        </div>
-                    </div>
-                    ";
+            // line 47
+            yield "\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['service'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 48
-        yield "                </div>
-                ";
         // line 50
-        yield "                ";
-        // line 51
-        yield "                <div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
-                    <h2 class=\"text-center\">Habitats</h2>
-                    ";
+        yield "\t\t\t\t</div>
+\t\t\t\t";
+        // line 52
+        yield "\t\t\t\t";
         // line 53
+        yield "\t\t\t\t<div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
+\t\t\t\t\t<h2 class=\"text-center\">Habitats</h2>
+\t\t\t\t\t";
+        // line 55
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["habitats"]) || array_key_exists("habitats", $context) ? $context["habitats"] : (function () { throw new RuntimeError('Variable "habitats" does not exist.', 53, $this->source); })()), 0, 3));
+        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["habitats"]) || array_key_exists("habitats", $context) ? $context["habitats"] : (function () { throw new RuntimeError('Variable "habitats" does not exist.', 55, $this->source); })()), 0, 3));
         foreach ($context['_seq'] as $context["_key"] => $context["habitat"]) {
-            // line 54
-            yield "                        <div class=\"card-header text-center form-control mb-3 avis\">
-                            <h3>";
-            // line 55
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["habitat"], "name", [], "any", false, false, false, 55), "html", null, true);
-            yield "</h3>
-                            <div class=\"card-body\">
-                                ";
+            // line 56
+            yield "\t\t\t\t\t\t<div class=\"card-header text-center form-control mb-3 avis\">
+\t\t\t\t\t\t\t<h3>";
             // line 57
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["habitat"], "name", [], "any", false, false, false, 57), "html", null, true);
+            yield "</h3>
+\t\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t\t";
+            // line 59
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["habitat"], "image", [], "any", false, false, false, 57));
+            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["habitat"], "image", [], "any", false, false, false, 59));
             foreach ($context['_seq'] as $context["_key"] => $context["image"]) {
-                // line 58
-                yield "                                    <img class=\"img-fluid rounded-3\" src=\"";
+                // line 60
+                yield "\t\t\t\t\t\t\t\t\t<img class=\"img-fluid rounded-3\" src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images/" . $context["image"])), "html", null, true);
                 yield "\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["habitat"], "name", [], "any", false, false, false, 58), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["habitat"], "name", [], "any", false, false, false, 60), "html", null, true);
                 yield "\">
-                                ";
+\t\t\t\t\t\t\t\t";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['image'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 60
-            yield "                            </div>
-                        </div>
-                    ";
+            // line 62
+            yield "\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['habitat'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 63
-        yield "                </div>
-                ";
         // line 65
-        yield "                ";
-        // line 66
-        yield "                <div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
-                    <h2 class=\"text-center\">Animaux</h2>
-                    ";
+        yield "\t\t\t\t</div>
+\t\t\t\t";
+        // line 67
+        yield "\t\t\t\t";
         // line 68
+        yield "\t\t\t\t<div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
+\t\t\t\t\t<h2 class=\"text-center\">Animaux</h2>
+\t\t\t\t\t";
+        // line 70
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["animals"]) || array_key_exists("animals", $context) ? $context["animals"] : (function () { throw new RuntimeError('Variable "animals" does not exist.', 68, $this->source); })()), 0, 3));
+        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), (isset($context["animals"]) || array_key_exists("animals", $context) ? $context["animals"] : (function () { throw new RuntimeError('Variable "animals" does not exist.', 70, $this->source); })()), 0, 3));
         foreach ($context['_seq'] as $context["_key"] => $context["animal"]) {
-            // line 69
-            yield "                        <div class=\"card-header text-center form-control mb-3 avis\">
-                            <h3>";
-            // line 70
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["animal"], "name", [], "any", false, false, false, 70), "html", null, true);
-            yield "</h3>
-                            <div class=\"card-body\">
-                                ";
+            // line 71
+            yield "\t\t\t\t\t\t<div class=\"card-header text-center form-control mb-3 avis\">
+\t\t\t\t\t\t\t<h3>";
             // line 72
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["animal"], "name", [], "any", false, false, false, 72), "html", null, true);
+            yield "</h3>
+\t\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t\t";
+            // line 74
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["animal"], "image", [], "any", false, false, false, 72));
+            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["animal"], "image", [], "any", false, false, false, 74));
             foreach ($context['_seq'] as $context["_key"] => $context["image"]) {
-                // line 73
-                yield "                                    <img class=\"img-fluid rounded-3\" src=\"";
+                // line 75
+                yield "\t\t\t\t\t\t\t\t\t<img class=\"img-fluid rounded-3\" src=\"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/images/" . $context["image"])), "html", null, true);
                 yield "\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["animal"], "name", [], "any", false, false, false, 73), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["animal"], "name", [], "any", false, false, false, 75), "html", null, true);
                 yield "\">
-                                ";
+\t\t\t\t\t\t\t\t";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['image'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 75
-            yield "                            </div>
-                        </div>
-                    ";
+            // line 77
+            yield "\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['animal'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 78
-        yield "                </div>
-            </div>
-        </div>
-        ";
-        // line 82
-        yield "        ";
-        // line 83
-        yield "        <div class=\"col-lg-4 p-4 rounded-4 border cadre\">
-            <h2 class=\"text-center\">Avis</h2>
-            ";
+        // line 80
+        yield "\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
+\t\t";
+        // line 84
+        yield "\t\t";
         // line 85
+        yield "\t\t<div class=\"col-lg-4 p-4 rounded-4 border cadre\">
+\t\t\t<h2 class=\"text-center\">Avis</h2>
+\t\t\t";
+        // line 87
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), Twig\Extension\CoreExtension::reverse($this->env->getCharset(), (isset($context["reviews"]) || array_key_exists("reviews", $context) ? $context["reviews"] : (function () { throw new RuntimeError('Variable "reviews" does not exist.', 85, $this->source); })())), 0, 3));
+        $context['_seq'] = CoreExtension::ensureTraversable(Twig\Extension\CoreExtension::slice($this->env->getCharset(), Twig\Extension\CoreExtension::reverse($this->env->getCharset(), (isset($context["reviews"]) || array_key_exists("reviews", $context) ? $context["reviews"] : (function () { throw new RuntimeError('Variable "reviews" does not exist.', 87, $this->source); })())), 0, 3));
         foreach ($context['_seq'] as $context["_key"] => $context["singleReview"]) {
-            // line 86
-            yield "                <div class=\"card m-2 avis mt-xxl-5\">
-                    <div class=\"card-header\">
-                        ";
             // line 88
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "pseudo", [], "any", false, false, false, 88), "html", null, true);
-            yield "
-                        <div class=\"rating\">
-                            ";
+            yield "\t\t\t\t<div class=\"card m-2 avis mt-xxl-5\">
+\t\t\t\t\t<div class=\"card-header\">
+\t\t\t\t\t\t";
             // line 90
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "pseudo", [], "any", false, false, false, 90), "html", null, true);
+            yield "
+\t\t\t\t\t\t<div class=\"rating\">
+\t\t\t\t\t\t\t";
+            // line 92
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable(range(1, 5));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 91
-                yield "                                ";
-                if (($context["i"] <= CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "rating", [], "any", false, false, false, 91))) {
-                    // line 92
-                    yield "                                    <i class=\"fas fa-star\"></i>
-                                ";
-                } else {
+                // line 93
+                yield "\t\t\t\t\t\t\t\t";
+                if (($context["i"] <= CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "rating", [], "any", false, false, false, 93))) {
                     // line 94
-                    yield "                                    <i class=\"far fa-star\"></i>
-                                ";
+                    yield "\t\t\t\t\t\t\t\t\t<i class=\"fas fa-star\"></i>
+\t\t\t\t\t\t\t\t";
+                } else {
+                    // line 96
+                    yield "\t\t\t\t\t\t\t\t\t<i class=\"far fa-star\"></i>
+\t\t\t\t\t\t\t\t";
                 }
-                // line 96
-                yield "                            ";
+                // line 98
+                yield "\t\t\t\t\t\t\t";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['i'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 97
-            yield "                        </div>
-                    </div>
-                    <div class=\"card-body\">
-                        <p class=\"text-muted\">";
-            // line 100
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "submittedAt", [], "any", false, false, false, 100), "d/m/Y"), "html", null, true);
+            // line 99
+            yield "\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<p class=\"text-muted\">";
+            // line 102
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "submittedAt", [], "any", false, false, false, 102), "d/m/Y"), "html", null, true);
             yield "</p>
-                        <p>";
-            // line 101
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "comment", [], "any", false, false, false, 101), "html", null, true);
+\t\t\t\t\t\t<p>";
+            // line 103
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["singleReview"], "comment", [], "any", false, false, false, 103), "html", null, true);
             yield "</p>
-                    </div>
-                </div>
-            ";
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['singleReview'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 105
-        yield "            <div class=\"card container text-center form-control avis mt-xxl-5\">
-                ";
-        // line 106
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 106, $this->source); })()), 'form_start');
-        yield "
-                <div class=\"card-header\">
-                    ";
+        // line 107
+        yield "\t\t\t<div class=\"card container text-center form-control avis mt-xxl-5\">
+\t\t\t\t";
         // line 108
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 108, $this->source); })()), "pseudo", [], "any", false, false, false, 108), 'label');
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 108, $this->source); })()), 'form_start');
         yield "
-                    ";
-        // line 109
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 109, $this->source); })()), "pseudo", [], "any", false, false, false, 109), 'widget');
+\t\t\t\t<div class=\"card-header\">
+\t\t\t\t\t";
+        // line 110
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 110, $this->source); })()), "pseudo", [], "any", false, false, false, 110), 'label');
         yield "
-                </div>
-                <div class=\"card-body\">
-                    ";
-        // line 112
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 112, $this->source); })()), "comment", [], "any", false, false, false, 112), 'label');
+\t\t\t\t\t";
+        // line 111
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 111, $this->source); })()), "pseudo", [], "any", false, false, false, 111), 'widget');
         yield "
-                    ";
-        // line 113
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 113, $this->source); })()), "comment", [], "any", false, false, false, 113), 'widget');
+\t\t\t\t</div>
+\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t";
+        // line 114
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 114, $this->source); })()), "comment", [], "any", false, false, false, 114), 'label');
         yield "
-                    <div class=\"form-group\">
-                        <label>Note</label>
-                        <div class=\"rating\" id=\"review-rating-container\">
-                            ";
-        // line 117
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 117, $this->source); })()), "rating", [], "any", false, false, false, 117), 'widget', ["attr" => ["type" => "hidden", "id" => "review_rating"]]);
+\t\t\t\t\t";
+        // line 115
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 115, $this->source); })()), "comment", [], "any", false, false, false, 115), 'widget');
         yield "
-                            <i class=\"far fa-star\" data-value=\"1\"></i>
-                            <i class=\"far fa-star\" data-value=\"2\"></i>
-                            <i class=\"far fa-star\" data-value=\"3\"></i>
-                            <i class=\"far fa-star\" data-value=\"4\"></i>
-                            <i class=\"far fa-star\" data-value=\"5\"></i>
-                        </div>
-                    </div>
-                </div>
-                <input type=\"hidden\" name=\"accept_pseudo\" id=\"accept_pseudo\" value=\"0\">
-                <button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#confirmModal\">
-                    Soumettre
-                </button>
-                ";
-        // line 130
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 130, $this->source); })()), 'form_end');
+\t\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t\t<label>Note</label>
+\t\t\t\t\t\t<div class=\"rating\" id=\"review-rating-container\">
+\t\t\t\t\t\t\t";
+        // line 119
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 119, $this->source); })()), "rating", [], "any", false, false, false, 119), 'widget', ["attr" => ["type" => "hidden", "id" => "review_rating"]]);
         yield "
-            </div>
-        </div>
-        <div class=\"modal fade\" id=\"confirmModal\" tabindex=\"-1\" aria-labelledby=\"confirmModalLabel\" aria-hidden=\"true\">
-            <div class=\"modal-dialog\">
-                <div class=\"modal-content\">
-                    <div class=\"modal-header\">
-                        <h5 class=\"modal-title\" id=\"confirmModalLabel\">Confirmer l'affichage du pseudo</h5>
-                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
-                    </div>
-                    <div class=\"modal-body\">
-                        En soumettant votre avis, vous acceptez que votre pseudo soit affiché publiquement. Voulez-vous continuer ?
-                    </div>
-                    <div class=\"modal-footer\">
-                        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
-                        <button type=\"button\" class=\"btn btn-primary\" id=\"confirmButton\">J'accepte</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        ";
-        // line 151
-        yield "        ";
-        // line 152
-        yield "            <div class=\"card container-fluid mt-3  mt-xxl-5\">
-                <table class=\"table avis\">
-                    <thead>
-                    <tr>
-                        <th>Jours </th>
-                        <th>Heure d'ouverture</th>
-                        <th>Heure de fermeture</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    ";
-        // line 162
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"1\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"2\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"3\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"4\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"5\"></i>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t\t<input type=\"hidden\" name=\"accept_pseudo\" id=\"accept_pseudo\" value=\"0\">
+\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#confirmModal\">
+\t\t\t\t\tSoumettre
+\t\t\t\t</button>
+\t\t\t\t";
+        // line 132
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 132, $this->source); })()), 'form_end');
+        yield "
+\t\t\t</div>
+\t\t</div>
+\t\t<div class=\"modal fade\" id=\"confirmModal\" tabindex=\"-1\" aria-labelledby=\"confirmModalLabel\" aria-hidden=\"true\">
+\t\t\t<div class=\"modal-dialog\">
+\t\t\t\t<div class=\"modal-content\">
+\t\t\t\t\t<div class=\"modal-header\">
+\t\t\t\t\t\t<h5 class=\"modal-title\" id=\"confirmModalLabel\">Confirmer l'affichage du pseudo</h5>
+\t\t\t\t\t\t<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class=\"modal-body\">
+\t\t\t\t\t\tEn soumettant votre avis, vous acceptez que votre pseudo soit affiché publiquement. Voulez-vous continuer ?
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class=\"modal-footer\">
+\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
+\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" id=\"confirmButton\">J'accepte</button>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
+\t\t";
+        // line 153
+        yield "\t\t";
+        // line 154
+        yield "\t\t<div class=\"card container-fluid mt-3  mt-xxl-5\">
+\t\t\t<table class=\"table avis\">
+\t\t\t\t<thead>
+\t\t\t\t\t<tr>
+\t\t\t\t\t\t<th>Jours
+\t\t\t\t\t\t</th>
+\t\t\t\t\t\t<th>Heure d'ouverture</th>
+\t\t\t\t\t\t<th>Heure de fermeture</th>
+\t\t\t\t\t</tr>
+\t\t\t\t</thead>
+\t\t\t\t<tbody>
+\t\t\t\t\t";
+        // line 165
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["schedules"]) || array_key_exists("schedules", $context) ? $context["schedules"] : (function () { throw new RuntimeError('Variable "schedules" does not exist.', 162, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["schedules"]) || array_key_exists("schedules", $context) ? $context["schedules"] : (function () { throw new RuntimeError('Variable "schedules" does not exist.', 165, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["schedule"]) {
-            // line 163
-            yield "                        <tr>
-                            <td>";
-            // line 164
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "day", [], "any", false, false, false, 164), "html", null, true);
+            // line 166
+            yield "\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t<td>";
+            // line 167
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "day", [], "any", false, false, false, 167), "html", null, true);
             yield "</td>
-                            ";
-            // line 165
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "isclosed", [], "any", false, false, false, 165)) {
-                // line 166
-                yield "                                <td>Fermé</td>
-                                <td>Fermé</td>
-                            ";
-            } else {
+\t\t\t\t\t\t\t";
+            // line 168
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "isclosed", [], "any", false, false, false, 168)) {
                 // line 169
-                yield "                                <td>";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "openingTime", [], "any", false, false, false, 169), "H:i"), "html", null, true);
+                yield "\t\t\t\t\t\t\t\t<td>Fermé</td>
+\t\t\t\t\t\t\t\t<td>Fermé</td>
+\t\t\t\t\t\t\t";
+            } else {
+                // line 172
+                yield "\t\t\t\t\t\t\t\t<td>";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "openingTime", [], "any", false, false, false, 172), "H:i"), "html", null, true);
                 yield "</td>
-                                <td>";
-                // line 170
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "closingTime", [], "any", false, false, false, 170), "H:i"), "html", null, true);
+\t\t\t\t\t\t\t\t<td>";
+                // line 173
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["schedule"], "closingTime", [], "any", false, false, false, 173), "H:i"), "html", null, true);
                 yield "</td>
-                            ";
+\t\t\t\t\t\t\t";
             }
-            // line 172
-            yield "                        </tr>
-                    ";
+            // line 175
+            yield "\t\t\t\t\t\t</tr>
+\t\t\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['schedule'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 174
-        yield "                    </tbody>
-                </table>
-            </div>
-        ";
-        // line 178
-        yield "        </div>
+        // line 177
+        yield "\t\t\t\t</tbody>
+\t\t\t</table>
+\t\t</div>
+\t\t";
+        // line 181
+        yield "\t</div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -443,7 +446,7 @@ class __TwigTemplate_c7888f4eeb0df24bd3482339a32cdc8e extends Template
         yield from [];
     }
 
-    // line 180
+    // line 183
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -456,17 +459,17 @@ class __TwigTemplate_c7888f4eeb0df24bd3482339a32cdc8e extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 181
-        yield "    ";
+        // line 184
+        yield "\t";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
-    <script src=\"";
-        // line 182
+\t<script src=\"";
+        // line 185
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/stars_reviews.js"), "html", null, true);
         yield "?\$";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate("now", "U"), "html", null, true);
         yield "\"></script>
-    <script src=\"https://kit.fontawesome.com/a076d05399.js\" crossorigin=\"anonymous\"></script>
+\t<script src=\"https://kit.fontawesome.com/a076d05399.js\" crossorigin=\"anonymous\"></script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -498,7 +501,7 @@ class __TwigTemplate_c7888f4eeb0df24bd3482339a32cdc8e extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  465 => 182,  460 => 181,  447 => 180,  435 => 178,  430 => 174,  423 => 172,  418 => 170,  413 => 169,  408 => 166,  406 => 165,  402 => 164,  399 => 163,  395 => 162,  383 => 152,  381 => 151,  358 => 130,  342 => 117,  335 => 113,  331 => 112,  325 => 109,  321 => 108,  316 => 106,  313 => 105,  303 => 101,  299 => 100,  294 => 97,  288 => 96,  284 => 94,  280 => 92,  277 => 91,  273 => 90,  268 => 88,  264 => 86,  260 => 85,  256 => 83,  254 => 82,  249 => 78,  241 => 75,  230 => 73,  226 => 72,  221 => 70,  218 => 69,  214 => 68,  210 => 66,  208 => 65,  205 => 63,  197 => 60,  186 => 58,  182 => 57,  177 => 55,  174 => 54,  170 => 53,  166 => 51,  164 => 50,  161 => 48,  153 => 45,  142 => 43,  138 => 42,  133 => 40,  130 => 39,  126 => 38,  122 => 36,  111 => 27,  105 => 24,  99 => 21,  93 => 17,  91 => 16,  83 => 9,  77 => 4,  64 => 3,  41 => 1,);
+        return array (  468 => 185,  463 => 184,  450 => 183,  438 => 181,  433 => 177,  426 => 175,  421 => 173,  416 => 172,  411 => 169,  409 => 168,  405 => 167,  402 => 166,  398 => 165,  385 => 154,  383 => 153,  360 => 132,  344 => 119,  337 => 115,  333 => 114,  327 => 111,  323 => 110,  318 => 108,  315 => 107,  305 => 103,  301 => 102,  296 => 99,  290 => 98,  286 => 96,  282 => 94,  279 => 93,  275 => 92,  270 => 90,  266 => 88,  262 => 87,  258 => 85,  256 => 84,  251 => 80,  243 => 77,  232 => 75,  228 => 74,  223 => 72,  220 => 71,  216 => 70,  212 => 68,  210 => 67,  207 => 65,  199 => 62,  188 => 60,  184 => 59,  179 => 57,  176 => 56,  172 => 55,  168 => 53,  166 => 52,  163 => 50,  155 => 47,  144 => 45,  140 => 44,  135 => 42,  132 => 41,  128 => 40,  124 => 38,  112 => 28,  106 => 25,  100 => 22,  94 => 18,  92 => 17,  84 => 10,  77 => 4,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -506,186 +509,190 @@ class __TwigTemplate_c7888f4eeb0df24bd3482339a32cdc8e extends Template
         return new Source("{% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class=\"row mb-4 m-4\">
-        <div class=\"col-lg-8\">
-            <div class=\"card mb-3 rounded-4 cadre\">
-                <div class=\"row g-0\">
-                    {# Section présentation #}
-                    <div class=\"col-lg-6 rounded-4\">
-                        <div class=\"card-body\">
-                            <h5 class=\"card-title\">Présentation</h5>
-                            <p class=\"card-text\">Arcadia est un zoo situé en France près de la forêt de Brocéliande, en Bretagne depuis 1990. Ils possèdent tout un panel d'animaux.</p>
-                        </div>
-                    </div>
-                    {# Fin présentation #}
-                    {# Section caroussel #}
-                    <div class=\"col-lg-6\">
-                        <div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-bs-ride=\"carousel\">
-                            <div class=\"carousel-inner rounded-4\">
-                                <div class=\"carousel-item active\">
-                                    <img src=\"{{ asset('dino/IMG-20240714-WA0010.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
-                                </div>
-                                <div class=\"carousel-item\">
-                                    <img src=\"{{ asset('dino/IMG_20240713_112328.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
-                                </div>
-                                <div class=\"carousel-item\">
-                                    <img src=\"{{ asset('dino/IMG_20240713_113033.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=\"row row-cols-1 row-cols-lg-4 gap-lg-3 gap-xxl-4\">
-                {# Section services #}
-                <div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
-                    <h2 class=\"text-center\">Services</h2>
-                    {% for service in services | slice(0, 3) %}
-                    <div class=\"card-header text-center form-control mb-3 avis\">
-                        <h3>{{ service.name }}</h3>
-                        <div class=\"card-body\">
-                            {% for image in service.image %}
-                                <img class=\"img-fluid rounded-3\" src=\"{{ asset('uploads/images/' ~ image) }}\" alt=\"{{ service.name }}\">
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                {# Fin section services #}
-                {# Section habitat #}
-                <div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
-                    <h2 class=\"text-center\">Habitats</h2>
-                    {% for habitat in habitats | slice(0, 3) %}
-                        <div class=\"card-header text-center form-control mb-3 avis\">
-                            <h3>{{ habitat.name }}</h3>
-                            <div class=\"card-body\">
-                                {% for image in habitat.image %}
-                                    <img class=\"img-fluid rounded-3\" src=\"{{ asset('uploads/images/' ~ image) }}\" alt=\"{{ habitat.name }}\">
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                {# Fin section habitat #}
-                {# Section Dino #}
-                <div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
-                    <h2 class=\"text-center\">Animaux</h2>
-                    {% for animal in animals | slice(0, 3) %}
-                        <div class=\"card-header text-center form-control mb-3 avis\">
-                            <h3>{{ animal.name }}</h3>
-                            <div class=\"card-body\">
-                                {% for image in animal.image %}
-                                    <img class=\"img-fluid rounded-3\" src=\"{{ asset('uploads/images/' ~ image) }}\" alt=\"{{ animal.name }}\">
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        {# Fin section Dino #}
-        {# Section Avis #}
-        <div class=\"col-lg-4 p-4 rounded-4 border cadre\">
-            <h2 class=\"text-center\">Avis</h2>
-            {% for singleReview in reviews | reverse | slice(0, 3) %}
-                <div class=\"card m-2 avis mt-xxl-5\">
-                    <div class=\"card-header\">
-                        {{ singleReview.pseudo }}
-                        <div class=\"rating\">
-                            {% for i in 1..5 %}
-                                {% if i <= singleReview.rating %}
-                                    <i class=\"fas fa-star\"></i>
-                                {% else %}
-                                    <i class=\"far fa-star\"></i>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class=\"card-body\">
-                        <p class=\"text-muted\">{{ singleReview.submittedAt|date('d/m/Y') }}</p>
-                        <p>{{ singleReview.comment }}</p>
-                    </div>
-                </div>
-            {% endfor %}
-            <div class=\"card container text-center form-control avis mt-xxl-5\">
-                {{ form_start(form) }}
-                <div class=\"card-header\">
-                    {{ form_label(form.pseudo) }}
-                    {{ form_widget(form.pseudo) }}
-                </div>
-                <div class=\"card-body\">
-                    {{ form_label(form.comment) }}
-                    {{ form_widget(form.comment) }}
-                    <div class=\"form-group\">
-                        <label>Note</label>
-                        <div class=\"rating\" id=\"review-rating-container\">
-                            {{ form_widget(form.rating, { 'attr': {'type': 'hidden', 'id': 'review_rating'} }) }}
-                            <i class=\"far fa-star\" data-value=\"1\"></i>
-                            <i class=\"far fa-star\" data-value=\"2\"></i>
-                            <i class=\"far fa-star\" data-value=\"3\"></i>
-                            <i class=\"far fa-star\" data-value=\"4\"></i>
-                            <i class=\"far fa-star\" data-value=\"5\"></i>
-                        </div>
-                    </div>
-                </div>
-                <input type=\"hidden\" name=\"accept_pseudo\" id=\"accept_pseudo\" value=\"0\">
-                <button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#confirmModal\">
-                    Soumettre
-                </button>
-                {{ form_end(form) }}
-            </div>
-        </div>
-        <div class=\"modal fade\" id=\"confirmModal\" tabindex=\"-1\" aria-labelledby=\"confirmModalLabel\" aria-hidden=\"true\">
-            <div class=\"modal-dialog\">
-                <div class=\"modal-content\">
-                    <div class=\"modal-header\">
-                        <h5 class=\"modal-title\" id=\"confirmModalLabel\">Confirmer l'affichage du pseudo</h5>
-                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
-                    </div>
-                    <div class=\"modal-body\">
-                        En soumettant votre avis, vous acceptez que votre pseudo soit affiché publiquement. Voulez-vous continuer ?
-                    </div>
-                    <div class=\"modal-footer\">
-                        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
-                        <button type=\"button\" class=\"btn btn-primary\" id=\"confirmButton\">J'accepte</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {# Fin section avis #}
-        {# Section Horaires #}
-            <div class=\"card container-fluid mt-3  mt-xxl-5\">
-                <table class=\"table avis\">
-                    <thead>
-                    <tr>
-                        <th>Jours </th>
-                        <th>Heure d'ouverture</th>
-                        <th>Heure de fermeture</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for schedule in schedules %}
-                        <tr>
-                            <td>{{ schedule.day }}</td>
-                            {% if schedule.isclosed %}
-                                <td>Fermé</td>
-                                <td>Fermé</td>
-                            {% else %}
-                                <td>{{ schedule.openingTime|date('H:i') }}</td>
-                                <td>{{ schedule.closingTime|date('H:i') }}</td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {# Fin section Horaires #}
-        </div>
+\t<div class=\"row mb-4 m-4\">
+\t\t<div class=\"col-lg-8\">
+\t\t\t<div class=\"card mb-3 rounded-4 cadre\">
+\t\t\t\t<div
+\t\t\t\t\tclass=\"row g-0\">
+\t\t\t\t\t{# Section présentation #}
+\t\t\t\t\t<div class=\"col-lg-6 rounded-4\">
+\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t<h5 class=\"card-title\">Présentation</h5>
+\t\t\t\t\t\t\t<p class=\"card-text\">Arcadia est un zoo situé en France près de la forêt de Brocéliande, en Bretagne depuis 1990. Ils possèdent tout un panel d'animaux.</p>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t\t{# Fin présentation #}
+\t\t\t\t\t{# Section caroussel #}
+\t\t\t\t\t<div class=\"col-lg-6\">
+\t\t\t\t\t\t<div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-bs-ride=\"carousel\">
+\t\t\t\t\t\t\t<div class=\"carousel-inner rounded-4\">
+\t\t\t\t\t\t\t\t<div class=\"carousel-item active\">
+\t\t\t\t\t\t\t\t\t<img src=\"{{ asset('dino/IMG-20240714-WA0010.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t<div class=\"carousel-item\">
+\t\t\t\t\t\t\t\t\t<img src=\"{{ asset('dino/IMG_20240713_112328.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t<div class=\"carousel-item\">
+\t\t\t\t\t\t\t\t\t<img src=\"{{ asset('dino/IMG_20240713_113033.jpg') }}\" class=\"d-block w-100\" alt=\"...\">
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div
+\t\t\t\tclass=\"row row-cols-1 row-cols-lg-4 gap-lg-3 gap-xxl-4\">
+\t\t\t\t{# Section services #}
+\t\t\t\t<div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
+\t\t\t\t\t<h2 class=\"text-center\">Services</h2>
+\t\t\t\t\t{% for service in services | slice(0, 3) %}
+\t\t\t\t\t\t<div class=\"card-header text-center form-control mb-3 avis\">
+\t\t\t\t\t\t\t<h3>{{ service.name }}</h3>
+\t\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t\t{% for image in service.image %}
+\t\t\t\t\t\t\t\t\t<img class=\"img-fluid rounded-3\" src=\"{{ asset('uploads/images/' ~ image) }}\" alt=\"{{ service.name }}\">
+\t\t\t\t\t\t\t\t{% endfor %}
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t{% endfor %}
+\t\t\t\t</div>
+\t\t\t\t{# Fin section services #}
+\t\t\t\t{# Section habitat #}
+\t\t\t\t<div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
+\t\t\t\t\t<h2 class=\"text-center\">Habitats</h2>
+\t\t\t\t\t{% for habitat in habitats | slice(0, 3) %}
+\t\t\t\t\t\t<div class=\"card-header text-center form-control mb-3 avis\">
+\t\t\t\t\t\t\t<h3>{{ habitat.name }}</h3>
+\t\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t\t{% for image in habitat.image %}
+\t\t\t\t\t\t\t\t\t<img class=\"img-fluid rounded-3\" src=\"{{ asset('uploads/images/' ~ image) }}\" alt=\"{{ habitat.name }}\">
+\t\t\t\t\t\t\t\t{% endfor %}
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t{% endfor %}
+\t\t\t\t</div>
+\t\t\t\t{# Fin section habitat #}
+\t\t\t\t{# Section Dino #}
+\t\t\t\t<div class=\"col rounded-4 border cadre mb-4 m-lg-3 m-xl-4\">
+\t\t\t\t\t<h2 class=\"text-center\">Animaux</h2>
+\t\t\t\t\t{% for animal in animals | slice(0, 3) %}
+\t\t\t\t\t\t<div class=\"card-header text-center form-control mb-3 avis\">
+\t\t\t\t\t\t\t<h3>{{ animal.name }}</h3>
+\t\t\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t\t\t{% for image in animal.image %}
+\t\t\t\t\t\t\t\t\t<img class=\"img-fluid rounded-3\" src=\"{{ asset('uploads/images/' ~ image) }}\" alt=\"{{ animal.name }}\">
+\t\t\t\t\t\t\t\t{% endfor %}
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t{% endfor %}
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
+\t\t{# Fin section Dino #}
+\t\t{# Section Avis #}
+\t\t<div class=\"col-lg-4 p-4 rounded-4 border cadre\">
+\t\t\t<h2 class=\"text-center\">Avis</h2>
+\t\t\t{% for singleReview in reviews | reverse | slice(0, 3) %}
+\t\t\t\t<div class=\"card m-2 avis mt-xxl-5\">
+\t\t\t\t\t<div class=\"card-header\">
+\t\t\t\t\t\t{{ singleReview.pseudo }}
+\t\t\t\t\t\t<div class=\"rating\">
+\t\t\t\t\t\t\t{% for i in 1..5 %}
+\t\t\t\t\t\t\t\t{% if i <= singleReview.rating %}
+\t\t\t\t\t\t\t\t\t<i class=\"fas fa-star\"></i>
+\t\t\t\t\t\t\t\t{% else %}
+\t\t\t\t\t\t\t\t\t<i class=\"far fa-star\"></i>
+\t\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t\t{% endfor %}
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<p class=\"text-muted\">{{ singleReview.submittedAt|date('d/m/Y') }}</p>
+\t\t\t\t\t\t<p>{{ singleReview.comment }}</p>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t{% endfor %}
+\t\t\t<div class=\"card container text-center form-control avis mt-xxl-5\">
+\t\t\t\t{{ form_start(form) }}
+\t\t\t\t<div class=\"card-header\">
+\t\t\t\t\t{{ form_label(form.pseudo) }}
+\t\t\t\t\t{{ form_widget(form.pseudo) }}
+\t\t\t\t</div>
+\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t{{ form_label(form.comment) }}
+\t\t\t\t\t{{ form_widget(form.comment) }}
+\t\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t\t<label>Note</label>
+\t\t\t\t\t\t<div class=\"rating\" id=\"review-rating-container\">
+\t\t\t\t\t\t\t{{ form_widget(form.rating, { 'attr': {'type': 'hidden', 'id': 'review_rating'} }) }}
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"1\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"2\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"3\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"4\"></i>
+\t\t\t\t\t\t\t<i class=\"far fa-star\" data-value=\"5\"></i>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t\t<input type=\"hidden\" name=\"accept_pseudo\" id=\"accept_pseudo\" value=\"0\">
+\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#confirmModal\">
+\t\t\t\t\tSoumettre
+\t\t\t\t</button>
+\t\t\t\t{{ form_end(form) }}
+\t\t\t</div>
+\t\t</div>
+\t\t<div class=\"modal fade\" id=\"confirmModal\" tabindex=\"-1\" aria-labelledby=\"confirmModalLabel\" aria-hidden=\"true\">
+\t\t\t<div class=\"modal-dialog\">
+\t\t\t\t<div class=\"modal-content\">
+\t\t\t\t\t<div class=\"modal-header\">
+\t\t\t\t\t\t<h5 class=\"modal-title\" id=\"confirmModalLabel\">Confirmer l'affichage du pseudo</h5>
+\t\t\t\t\t\t<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class=\"modal-body\">
+\t\t\t\t\t\tEn soumettant votre avis, vous acceptez que votre pseudo soit affiché publiquement. Voulez-vous continuer ?
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class=\"modal-footer\">
+\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Annuler</button>
+\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" id=\"confirmButton\">J'accepte</button>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
+\t\t{# Fin section avis #}
+\t\t{# Section Horaires #}
+\t\t<div class=\"card container-fluid mt-3  mt-xxl-5\">
+\t\t\t<table class=\"table avis\">
+\t\t\t\t<thead>
+\t\t\t\t\t<tr>
+\t\t\t\t\t\t<th>Jours
+\t\t\t\t\t\t</th>
+\t\t\t\t\t\t<th>Heure d'ouverture</th>
+\t\t\t\t\t\t<th>Heure de fermeture</th>
+\t\t\t\t\t</tr>
+\t\t\t\t</thead>
+\t\t\t\t<tbody>
+\t\t\t\t\t{% for schedule in schedules %}
+\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t<td>{{ schedule.day }}</td>
+\t\t\t\t\t\t\t{% if schedule.isclosed %}
+\t\t\t\t\t\t\t\t<td>Fermé</td>
+\t\t\t\t\t\t\t\t<td>Fermé</td>
+\t\t\t\t\t\t\t{% else %}
+\t\t\t\t\t\t\t\t<td>{{ schedule.openingTime|date('H:i') }}</td>
+\t\t\t\t\t\t\t\t<td>{{ schedule.closingTime|date('H:i') }}</td>
+\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t</tr>
+\t\t\t\t\t{% endfor %}
+\t\t\t\t</tbody>
+\t\t\t</table>
+\t\t</div>
+\t\t{# Fin section Horaires #}
+\t</div>
 {% endblock %}
 {% block javascripts %}
-    {{ parent() }}
-    <script src=\"{{ asset('js/stars_reviews.js') }}?\${{ \"now\"|date(\"U\") }}\"></script>
-    <script src=\"https://kit.fontawesome.com/a076d05399.js\" crossorigin=\"anonymous\"></script>
-{% endblock %}", "default/index.html.twig", "C:\\wamp64\\www\\studi-ecf-arcadia\\templates\\default\\index.html.twig");
+\t{{ parent() }}
+\t<script src=\"{{ asset('js/stars_reviews.js') }}?\${{ \"now\"|date(\"U\") }}\"></script>
+\t<script src=\"https://kit.fontawesome.com/a076d05399.js\" crossorigin=\"anonymous\"></script>
+{% endblock %}
+", "default/index.html.twig", "C:\\wamp64\\www\\studi-ecf-arcadia\\templates\\default\\index.html.twig");
     }
 }

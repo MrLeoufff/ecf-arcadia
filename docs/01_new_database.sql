@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS animal (
     name VARCHAR(150) NOT NULL,
     race VARCHAR(150) NOT NULL,
     image JSON,
-    habitat_id INT,
-    FOREIGN KEY (habitat_id) REFERENCES habitat(id)
+    habitat_id INT
+    # FOREIGN KEY (habitat_id) REFERENCES habitat(id)
 );
 
 CREATE TABLE IF NOT EXISTS contact (
@@ -64,9 +64,9 @@ CREATE TABLE IF NOT EXISTS veterinary_report (
     food VARCHAR(100),
     food_weight DECIMAL(5, 2),
     report_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    detail TEXT,
-    FOREIGN KEY (animal_id) REFERENCES animal(id),
-    FOREIGN KEY (user_id) REFERENCES user(id)
+    detail TEXT
+    # FOREIGN KEY (animal_id) REFERENCES animal(id),
+    # FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 CREATE TABLE IF NOT EXISTS animal_feeding (
@@ -75,9 +75,9 @@ CREATE TABLE IF NOT EXISTS animal_feeding (
     user_id INT,
     feeding_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     food VARCHAR(100),
-    quantity DECIMAL(5, 2),
-    FOREIGN KEY (animal_id) REFERENCES animal(id),
-    FOREIGN KEY (user_id) REFERENCES user(id)
+    quantity DECIMAL(5, 2)
+    # FOREIGN KEY (animal_id) REFERENCES animal(id),
+    # FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 

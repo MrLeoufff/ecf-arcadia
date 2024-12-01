@@ -26,6 +26,7 @@ class DocumentManagerConfig
     private $autoMapping;
     private $filters;
     private $metadataCacheDriver;
+    private $useTransactionalFlush;
     private $mappings;
     private $_usedProperties = [];
 
@@ -200,6 +201,19 @@ class DocumentManagerConfig
     }
 
     /**
+     * @default false
+     * @param ParamConfigurator|bool $value
+     * @return $this
+     */
+    public function useTransactionalFlush($value): static
+    {
+        $this->_usedProperties['useTransactionalFlush'] = true;
+        $this->useTransactionalFlush = $value;
+
+        return $this;
+    }
+
+    /**
      * @template TValue
      * @param TValue $value
      * @return \Symfony\Config\DoctrineMongodb\DocumentManagerConfig\MappingConfig|$this
@@ -292,6 +306,12 @@ class DocumentManagerConfig
             unset($value['metadata_cache_driver']);
         }
 
+        if (array_key_exists('use_transactional_flush', $value)) {
+            $this->_usedProperties['useTransactionalFlush'] = true;
+            $this->useTransactionalFlush = $value['use_transactional_flush'];
+            unset($value['use_transactional_flush']);
+        }
+
         if (array_key_exists('mappings', $value)) {
             $this->_usedProperties['mappings'] = true;
             $this->mappings = array_map(fn ($v) => \is_array($v) ? new \Symfony\Config\DoctrineMongodb\DocumentManagerConfig\MappingConfig($v) : $v, $value['mappings']);
@@ -338,6 +358,9 @@ class DocumentManagerConfig
         }
         if (isset($this->_usedProperties['metadataCacheDriver'])) {
             $output['metadata_cache_driver'] = $this->metadataCacheDriver instanceof \Symfony\Config\DoctrineMongodb\DocumentManagerConfig\MetadataCacheDriverConfig ? $this->metadataCacheDriver->toArray() : $this->metadataCacheDriver;
+        }
+        if (isset($this->_usedProperties['useTransactionalFlush'])) {
+            $output['use_transactional_flush'] = $this->useTransactionalFlush;
         }
         if (isset($this->_usedProperties['mappings'])) {
             $output['mappings'] = array_map(fn ($v) => $v instanceof \Symfony\Config\DoctrineMongodb\DocumentManagerConfig\MappingConfig ? $v->toArray() : $v, $this->mappings);
