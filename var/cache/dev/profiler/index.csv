@@ -135,3 +135,13 @@ f1bf99,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733051496,5eeb
 d5eee8,127.0.0.1,GET,http://127.0.0.1:8000/,1733054687,,200,request
 a4c85a,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733054688,14990d,404,request
 14990d,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733054688,,404,request
+b6f6fe,127.0.0.1,GET,http://127.0.0.1:8000/logout,1733055274,,302,request
+eb535e,127.0.0.1,GET,http://127.0.0.1:8000/,1733055275,,200,request
+a9d397,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733055275,00dbbd,404,request
+00dbbd,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733055275,,404,request
+2f62db,127.0.0.1,GET,http://127.0.0.1:8000/login,1733055277,,200,request
+f24dcb,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733055278,28c130,404,request
+28c130,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733055278,,404,request
+fb1c9f,127.0.0.1,GET,http://127.0.0.1:8000/login,1733055300,,200,request
+0f17bc,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733055300,f804fe,404,request
+f804fe,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733055300,,404,request
