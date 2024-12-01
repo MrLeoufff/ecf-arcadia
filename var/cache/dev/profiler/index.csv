@@ -99,3 +99,9 @@ dc1011,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1732896837,,404
 017cf5,127.0.0.1,GET,http://127.0.0.1:8000/,1732896845,,200,request
 01f2b6,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1732896845,9a6f84,404,request
 9a6f84,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1732896845,,404,request
+c957a1,127.0.0.1,GET,http://127.0.0.1:8000/,1733047831,,200,request
+72ee39,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733047832,7106c8,404,request
+7106c8,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733047832,,404,request
+739f37,127.0.0.1,GET,http://127.0.0.1:8000/mentions-legal,1733047836,,200,request
+420f52,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733047836,0282c6,404,request
+0282c6,127.0.0.1,GET,http://127.0.0.1:8000/public/styles/app.css,1733047836,,404,request
