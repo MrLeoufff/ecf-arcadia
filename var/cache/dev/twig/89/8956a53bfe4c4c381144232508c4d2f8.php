@@ -138,7 +138,7 @@ class __TwigTemplate_bfe0e8c6ea3cdc8293c3b72a6e9ae0ce extends Template
         // line 59
         if ((($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN") || $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_EMPLOYEE")) || $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_VETERINARIAN"))) {
             // line 60
-            yield "            <nav class=\"navbar navbar-expand-lg navbar-light bg-light mt-3\">
+            yield "            <nav class=\"navbar navbar-expand-lg navbar-light bg-secondary mt-3\">
                 <div class=\"container-fluid\">
                     <a class=\"navbar-brand\" href=\"#\">
                         ";
@@ -519,7 +519,7 @@ class __TwigTemplate_bfe0e8c6ea3cdc8293c3b72a6e9ae0ce extends Template
             </div>
         </nav>
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') or is_granted('ROLE_VETERINARIAN') %}
-            <nav class=\"navbar navbar-expand-lg navbar-light bg-light mt-3\">
+            <nav class=\"navbar navbar-expand-lg navbar-light bg-secondary mt-3\">
                 <div class=\"container-fluid\">
                     <a class=\"navbar-brand\" href=\"#\">
                         {% if is_granted('ROLE_ADMIN') %}

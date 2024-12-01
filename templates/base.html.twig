@@ -57,7 +57,7 @@
             </div>
         </nav>
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') or is_granted('ROLE_VETERINARIAN') %}
-            <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-secondary mt-3">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         {% if is_granted('ROLE_ADMIN') %}
