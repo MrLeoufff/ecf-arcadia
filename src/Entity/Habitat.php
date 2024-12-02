@@ -23,7 +23,7 @@ class Habitat
     #[ORM\Column(type: Types::TEXT, nullable: false)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $comment = null;
 
     #[ORM\Column(type: 'json', nullable: false)]

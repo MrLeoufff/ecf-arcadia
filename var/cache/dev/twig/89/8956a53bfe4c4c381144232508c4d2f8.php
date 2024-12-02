@@ -286,7 +286,7 @@ class __TwigTemplate_bfe0e8c6ea3cdc8293c3b72a6e9ae0ce extends Template
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
         // line 130
         yield "        <footer class=\"d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0\">
-            <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia (Leliard René)</p>
+            <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia</p>
             <ul class=\"nav col-md-4 justify-content-center\">
                 <li class=\"nav-item\"><a href=\"";
         // line 133
@@ -590,7 +590,7 @@ class __TwigTemplate_bfe0e8c6ea3cdc8293c3b72a6e9ae0ce extends Template
     {% block body %}
         {% endblock %}
         <footer class=\"d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto mb-0\">
-            <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia (Leliard René)</p>
+            <p class=\"col-md-4 mb-0 text-muted\">© 2024 Arcadia</p>
             <ul class=\"nav col-md-4 justify-content-center\">
                 <li class=\"nav-item\"><a href=\"{{ path('app_legal') }}\" class=\"nav-link px-2 text-muted\">Mentions légales</a></li>
             </ul>
